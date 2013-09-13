@@ -5,7 +5,6 @@
 (savehist-mode t)
 (toggle-uniquify-buffer-names t)
 (ido-mode 1)
-(defalias 'list-buffer 'ibuffer)
 (setq column-number-mode t)
 (setq indent-tabs-mode nil)
 
@@ -17,5 +16,6 @@
 (global-set-key (kbd "C-w") 'kill-word-or-region)
 (global-set-key (kbd "C-c C-k") 'kill-region)
 (global-set-key (kbd "C-;") 'set-mark-command)
+(global-set-key (kbd "C-x C-b") 'ibuffer)
 
 (provide 'conf/main)
