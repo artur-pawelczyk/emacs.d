@@ -19,5 +19,7 @@
 
 (require 'conf/packages)
 (require 'conf/main)
+(require 'conf/auto-complete)
+(require 'conf/python)
 
 (require 'init-finish)
