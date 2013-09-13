@@ -19,6 +19,7 @@
 
 (require 'conf/packages)
 (require 'conf/main)
+(require 'conf/dired)
 (require 'conf/auto-complete)
 (require 'conf/python)
 
