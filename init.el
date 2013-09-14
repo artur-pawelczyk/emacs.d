@@ -12,12 +12,16 @@
 (add-to-list 'load-path (user-file "lisp"))
 
 (setq custom-file (expand-file-name "custom.el" user-emacs-directory))
-(load custom-file)
+(if (file-exists-p custom-file)
+    (load custom-file))
 
 (require 'packages)
+(require 'conf/packages)
+(if (not (file-exists-p package-user-dir))
+    (packages-update))
+
 (require 'tools)
 
-(require 'conf/packages)
 (require 'conf/main)
 (require 'conf/dired)
 (require 'conf/auto-complete)
