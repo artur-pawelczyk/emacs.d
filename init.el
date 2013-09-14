@@ -26,5 +26,7 @@
 (require 'conf/dired)
 (require 'conf/auto-complete)
 (require 'conf/python)
+(require 'conf/javascript)
+(require 'conf/ediff)
 
 (require 'init-finish)
