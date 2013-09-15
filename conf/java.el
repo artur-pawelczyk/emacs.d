@@ -1,0 +1,11 @@
+(add-hook 'java-mode-hook (lambda ()
+			    (semantic-mode)
+			    (semantic-idle-completions-mode)
+			    (semantic-idle-summary-mode)
+			    (auto-complete-mode nil)
+			    (show-paren-mode)
+			    (define-key java-mode-map (kbd "M-/") 'semantic-ia-complete-symbol) 
+			    (define-key java-mode-map (kbd "M-.") 'semantic-ia-fast-jump)
+			    ))
+
+(provide 'conf/java)
