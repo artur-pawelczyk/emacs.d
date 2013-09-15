@@ -12,8 +12,7 @@
 (add-to-list 'load-path (user-file "lisp"))
 
 (setq custom-file (expand-file-name "custom.el" user-emacs-directory))
-(if (file-exists-p custom-file)
-    (load custom-file))
+(eval-after-load 'init-finish '(load-custom-file-if-exists))
 
 (require 'packages)
 (require 'conf/packages)
