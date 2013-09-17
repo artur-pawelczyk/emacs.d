@@ -7,9 +7,9 @@
 (ido-mode 1)
 (setq column-number-mode t)
 (setq indent-tabs-mode nil)
-(prefer-coding-system 'utf-8)
-(setq coding-system-for-read 'utf-8)
-(setq coding-system-for-write 'utf-8)
+(prefer-coding-system 'utf-8-unix)
+(setq coding-system-for-read 'utf-8-unix)
+(setq coding-system-for-write 'utf-8-unix)
 
 (windmove-default-keybindings)
 
