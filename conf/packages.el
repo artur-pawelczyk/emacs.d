@@ -1,6 +1,7 @@
 (setq user-package-list
       '(auctex
         auto-complete
+	bbdb
         ggtags
         git-commit-mode
         gitignore-mode
@@ -12,6 +13,6 @@
         web-mode
         yasnippet))
 
-(add-to-list 'package-archives '("marmalade" . "http://marmalade-repo.org/packages/"))
+(add-to-list 'package-archives '("mepla" . "http://melpa.milkbox.net/packages/"))
 
 (provide 'conf/packages)
