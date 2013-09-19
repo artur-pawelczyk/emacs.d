@@ -26,6 +26,7 @@
 (require 'conf/auto-complete)
 (require 'conf/python)
 (require 'conf/java)
+(require 'conf/jsp)
 (require 'conf/javascript)
 (require 'conf/ediff)
 
