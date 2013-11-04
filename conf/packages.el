@@ -1,6 +1,7 @@
 (setq user-package-list
       '(auctex
         auto-complete
+        org
 	bbdb
         ggtags
         git-commit-mode
