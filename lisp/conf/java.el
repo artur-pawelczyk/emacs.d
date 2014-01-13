@@ -1,6 +1,7 @@
 (add-hook 'java-mode-hook (lambda ()
  			    (semantic-mode)
                             (require 'malabar-mode)
+                            (require 'malabar-tools)
                             (add-to-list 'auto-mode-alist '("\\.java\\'" . malabar-mode))
                             (setq malabar-groovy-lib-dir (user-file "lisp/malabar/lib"))
                             (subword-mode)
@@ -9,9 +10,10 @@
 			    (define-key java-mode-map (kbd "M-/") 'semantic-complete-symbol) 
 			    (define-key java-mode-map (kbd "M-.") 'semantic-ia-fast-jump)
                             (c-set-style "gnu")
+                            (local-set-key (kbd "C-c C-v t") 'malabar-current-project-test)
+                            (local-set-key (kbd "C-c C-v i") 'malabar-current-project-install)
 			    ))
 
 (add-to-list 'load-path (user-file "lisp/malabar/lisp"))
-(add-to-list 'load-path (user-file "lisp/jdibug"))
 
 (provide 'conf/java)
