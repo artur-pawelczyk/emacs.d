@@ -20,5 +20,6 @@
 (global-set-key (kbd "C-c C-k") 'kill-region)
 (global-set-key (kbd "C-;") 'set-mark-command)
 (global-set-key (kbd "C-x C-b") 'ibuffer)
+(define-key key-translation-map [?\C-h] [?\C-?])
 
 (provide 'conf/main)
