@@ -1,4 +1,4 @@
-(require 'conf/rope)
+;;(require 'conf/rope)
 (require 'conf/jedi)
 
 (add-hook 'python-mode-hook (lambda ()
