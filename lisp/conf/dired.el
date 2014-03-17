@@ -15,6 +15,7 @@
 	  (lambda ()
 	    (setq dired-omit-files
 		  (concat dired-omit-files "\\|^\\..+$"))))
+(add-hook 'dired-mode-hook (lambda () (dired-omit-mode 1)))
 
 (set 'video-player "smplayer")
 (setq dired-guess-shell-alist-user
