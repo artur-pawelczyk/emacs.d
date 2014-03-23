@@ -20,7 +20,6 @@
 
 (global-set-key (kbd "C-w") 'kill-word-or-region)
 (global-set-key (kbd "C-c C-k") 'kill-region)
-(global-set-key (kbd "C-x C-b") 'ibuffer)
 (define-key key-translation-map (kbd "C-;") (kbd "C-SPC"))
 (define-key key-translation-map [?\C-h] [?\C-?])
 

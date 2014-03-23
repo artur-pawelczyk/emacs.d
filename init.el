@@ -16,6 +16,7 @@
 
 (require 'conf/main)
 (require 'conf/dired)
+(require 'conf/buffer-list)
 (require 'conf/auto-complete)
 (require 'conf/python)
 (require 'conf/java)
