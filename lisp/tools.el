@@ -25,4 +25,11 @@
   (flyspell-mode)
   (local-set-key (kbd "C-c C-c") 'kill-temp-buffer-current))
 
+(defun zap-to-char-exclusive (char)
+  (interactive (list
+                (read-char "Zap to char: " t)))
+  (zap-to-char 1 char)
+  (insert char)
+  (backward-char))
+
 (provide 'tools)

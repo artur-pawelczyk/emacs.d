@@ -23,5 +23,6 @@
 (define-key key-translation-map (kbd "C-;") (kbd "C-SPC"))
 (define-key key-translation-map [?\C-h] [?\C-?])
 (global-set-key (kbd "<f5>") 'magit-status)
+(global-set-key (kbd "M-z") 'zap-to-char-exclusive)
 
 (provide 'conf/main)
