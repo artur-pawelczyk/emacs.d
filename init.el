@@ -24,6 +24,7 @@
 (require 'conf/javascript)
 (require 'conf/ediff)
 (require 'conf/lisp)
+(require 'conf/org)
 
 (require 'init-finish)
 (put 'narrow-to-region 'disabled nil)
