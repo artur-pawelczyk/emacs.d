@@ -25,6 +25,7 @@
 	("\\.webm\\'" video-player)
 	("\\.mp4\\'" video-player)
 	("\\.mov\\'" video-player)
+        ("\\.mkv\\'" video-player)
 	))
 
 (provide 'conf/dired)

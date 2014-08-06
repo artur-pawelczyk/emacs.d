@@ -23,5 +23,7 @@
 (require 'conf/jsp)
 (require 'conf/javascript)
 (require 'conf/ediff)
+(require 'conf/lisp)
 
 (require 'init-finish)
+(put 'narrow-to-region 'disabled nil)

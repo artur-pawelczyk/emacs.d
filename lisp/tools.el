@@ -39,11 +39,12 @@
 
 (defun annotate-lines-regexp (regexp)
   (interactive (list (read-string "Annotate regexp: ")))
+  (save-excursion
   (let ((next-number 0))
     (while (search-forward-regexp regexp)
       (move-end-of-line nil)
       (comment-indent)
       (setq next-number (1+ next-number))
-      (insert (number-to-string next-number)))))
+      (insert (number-to-string next-number))))))
 
 (provide 'tools)

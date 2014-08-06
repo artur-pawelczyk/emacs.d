@@ -8,6 +8,4 @@
                             (c-set-style "java")
 			    ))
 
-(add-to-list 'load-path (user-file "lisp/malabar/lisp"))
-
 (provide 'conf/java)
