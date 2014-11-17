@@ -1,18 +1,18 @@
 (setq user-package-list
       '(auctex
+        bbdb
         auto-complete
-        org
-	bbdb
-        ggtags
+        cider
         git-commit-mode
         gitignore-mode
-        magit
         jedi
         js2-mode
-        lua-mode
+        magit
+        org
         php-mode
-        web-mode
-        yasnippet))
+        projectile
+        solarized-theme
+        web-mode))
 
 (add-to-list 'package-archives '("mepla" . "http://melpa.milkbox.net/packages/"))
 
