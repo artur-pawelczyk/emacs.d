@@ -3,6 +3,8 @@
 (put 'downcase-region 'disabled nil)
 (put 'upcase-region 'disabled nil)
 (put 'dired-find-alternate-file 'disabled nil)
+(put 'narrow-to-region 'disabled nil)
+
 
 (savehist-mode t)
 (toggle-uniquify-buffer-names t)
@@ -11,10 +13,10 @@
 (setq column-number-mode t)
 (setq-default indent-tabs-mode nil)
 (prefer-coding-system 'utf-8-unix)
+(show-paren-mode)
 
 (windmove-default-keybindings)
 
-(setq w3m-enable-google-feeling-lucky nil)
 (setq calendar-week-start-day 1)
 (setq async-shell-command-buffer 'new-buffer)
 

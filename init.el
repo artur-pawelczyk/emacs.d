@@ -27,4 +27,3 @@
 (require 'conf/org)
 
 (require 'init-finish)
-(put 'narrow-to-region 'disabled nil)
