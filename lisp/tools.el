@@ -1,8 +1,12 @@
+(require 'subword)
+
 (defun kill-word-or-region ()
   (interactive)
   (if mark-active
       (kill-region (point) (mark))
-    (backward-kill-word 1)))
+    (if subword-mode
+        (subword-backward-kill 1)
+        (backward-kill-word 1))))
 
 (defun load-custom-file-if-exists ()
   (if (file-exists-p custom-file)
