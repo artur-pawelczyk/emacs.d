@@ -25,5 +25,7 @@
 (require 'conf/ediff)
 (require 'conf/lisp)
 (require 'conf/org)
+(require 'conf/yasnippet)
+(require 'conf/mode-line)
 
 (require 'init-finish)

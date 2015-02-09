@@ -1,4 +1,4 @@
-(setq user-package-list
+(defvar user-package-list
       '(auctex
         bbdb
         auto-complete
@@ -12,7 +12,14 @@
         php-mode
         projectile
         solarized-theme
-        web-mode))
+        web-mode
+        yasnippet
+        undo-tree
+        smart-mode-line
+        markdown-mode
+        helm
+        helm-projectile))
+
 
 (add-to-list 'package-archives '("mepla" . "http://melpa.milkbox.net/packages/"))
 

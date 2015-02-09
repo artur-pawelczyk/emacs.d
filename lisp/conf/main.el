@@ -13,6 +13,7 @@
 (setq-default indent-tabs-mode nil)
 (prefer-coding-system 'utf-8-unix)
 (show-paren-mode)
+(global-undo-tree-mode)
 
 (windmove-default-keybindings)
 
