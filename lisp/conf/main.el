@@ -7,7 +7,6 @@
 
 
 (savehist-mode t)
-(toggle-uniquify-buffer-names t)
 (ido-mode 1)
 (ido-everywhere 1)
 (setq column-number-mode t)
