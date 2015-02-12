@@ -24,6 +24,7 @@
 	("\\.flv\\'" video-player)
 	("\\.webm\\'" video-player)
 	("\\.mp4\\'" video-player)
+        ("\\.mp4.part\\'" video-player)
 	("\\.mov\\'" video-player)
         ("\\.mkv\\'" video-player)
 	))
