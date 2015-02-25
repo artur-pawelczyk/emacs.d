@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: @EJB
+# key: ejb
+# --
+@EJB
+private $1 ${1:$(downcase-first-char yas-text)};

@@ -51,4 +51,11 @@
       (setq next-number (1+ next-number))
       (insert (number-to-string next-number))))))
 
+(defun downcase-first-char (str)
+  (if (= (length str) 0)
+      str
+    (let ((first (substring str 0 1))
+          (rest (substring str 1)))
+      (concat (downcase first) rest))))
+
 (provide 'tools)

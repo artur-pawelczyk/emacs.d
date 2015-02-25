@@ -1,0 +1,10 @@
+# -*- mode: snippet -*-
+# name: managed bean definition
+# key: bean
+# --
+
+<managed-bean>
+    <managed-bean-name></managed-bean-name>
+    <managed-bean-class></managed-bean-class>
+    <managed-bean-scope>request</managed-bean-scope>
+</managed-bean>
