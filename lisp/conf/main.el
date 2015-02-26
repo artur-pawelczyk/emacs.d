@@ -7,8 +7,6 @@
 
 
 (savehist-mode t)
-(ido-mode 1)
-(ido-everywhere 1)
 (setq column-number-mode t)
 (setq-default indent-tabs-mode nil)
 (prefer-coding-system 'utf-8-unix)
