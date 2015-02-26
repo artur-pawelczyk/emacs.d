@@ -1,7 +1,6 @@
-(require 'smart-mode-line)
-
 (setq sml/theme 'respectful)
-(eval-after-load 'init-finish '(sml/setup))
+(when (require 'smart-mode-line nil 'noerror)
+  (add-hook 'after-init-hook #'sml/setup))
 
 (setq rm-blacklist '(" MRev" " Helm" " AC" " Undo-Tree" " Abbrev"))
 
