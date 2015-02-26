@@ -32,4 +32,8 @@
   (view-mode 1))
 (advice-add 'help-do-xref :after #'help-do-xref--enable-view-mode)
 
+;; Prefer spliting frame horizontally.
+(setq split-height-threshold nil)
+(setq split-width-threshold 300)
+
 (provide 'conf/main)

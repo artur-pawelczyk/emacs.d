@@ -26,6 +26,7 @@
 (require 'conf/yasnippet)
 (require 'conf/mode-line)
 (require 'conf/clojure)
+(require 'conf/projects)
 
 (require 'server)
 (unless (server-running-p)
