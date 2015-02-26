@@ -3,9 +3,7 @@
 
 (add-to-list 'load-path (user-file "lisp"))
 
-(setq custom-file (expand-file-name "custom.el" user-emacs-directory))
-(eval-after-load 'init-finish '(server-start))
-(eval-after-load 'init-finish '(load-custom-file-if-exists))
+(setq custom-file (user-file "custom.el"))
 
 (require 'packages)
 (require 'conf/packages)
@@ -28,4 +26,8 @@
 (require 'conf/yasnippet)
 (require 'conf/mode-line)
 
-(require 'init-finish)
+(require 'server)
+(unless (server-running-p)
+  (server-start))
+
+(load-custom-file-if-exists)
