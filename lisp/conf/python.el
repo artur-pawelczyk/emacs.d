@@ -9,8 +9,6 @@
 (add-hook 'python-mode-hook #'jedi:ac-setup)
 (add-hook 'python-mode-hook (lambda ()
 			      (setq show-trailing-whitespace t)
-			      (set-fill-column 80)
-			      (auto-fill-mode t)
-			      (subword-mode t)))
+			      (set-fill-column 80)))
 
 (provide 'conf/python)

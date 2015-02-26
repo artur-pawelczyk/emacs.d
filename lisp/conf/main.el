@@ -11,18 +11,19 @@
 (setq-default indent-tabs-mode nil)
 (prefer-coding-system 'utf-8-unix)
 (show-paren-mode)
-(global-undo-tree-mode)
+(if (require 'undo-tree nil 'noerror)
+    (global-undo-tree-mode))
 
 (windmove-default-keybindings)
 
 (setq calendar-week-start-day 1)
 (setq async-shell-command-buffer 'new-buffer)
 
-(global-set-key (kbd "C-w") 'kill-word-or-region)
-(global-set-key (kbd "C-c C-k") 'kill-region)
+(global-set-key (kbd "C-w") #'kill-word-or-region)
+(global-set-key (kbd "C-c C-k") #'kill-region)
 (define-key key-translation-map (kbd "C-;") (kbd "C-SPC"))
 (define-key key-translation-map [?\C-h] [?\C-?])
-(global-set-key (kbd "<f5>") 'magit-status)
-(global-set-key (kbd "M-z") 'zap-to-char-exclusive)
+(global-set-key (kbd "<f5>") #'magit-status)
+(global-set-key (kbd "M-z") #'zap-to-char-exclusive)
 
 (provide 'conf/main)
