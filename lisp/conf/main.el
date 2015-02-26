@@ -1,4 +1,5 @@
 (tool-bar-mode 0)
+(scroll-bar-mode 0)
 
 (put 'downcase-region 'disabled nil)
 (put 'upcase-region 'disabled nil)
@@ -25,5 +26,10 @@
 (define-key key-translation-map [?\C-h] [?\C-?])
 (global-set-key (kbd "<f5>") #'magit-status)
 (global-set-key (kbd "M-z") #'zap-to-char-exclusive)
+
+;; Enable view-mode when showing function definition from help buffer.
+(defun help-do-xref--enable-view-mode (&rest args)
+  (view-mode 1))
+(advice-add 'help-do-xref :after #'help-do-xref--enable-view-mode)
 
 (provide 'conf/main)
