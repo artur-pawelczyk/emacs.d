@@ -12,8 +12,9 @@
 (setq-default indent-tabs-mode nil)
 (prefer-coding-system 'utf-8-unix)
 (show-paren-mode)
-(if (require 'undo-tree nil 'noerror)
-    (global-undo-tree-mode))
+(when (require 'undo-tree nil 'noerror)
+    (global-undo-tree-mode)
+    (setq undo-tree-auto-save-history t))
 
 (windmove-default-keybindings)
 
