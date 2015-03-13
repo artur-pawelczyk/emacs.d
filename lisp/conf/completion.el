@@ -14,6 +14,9 @@
     (helm-mode t)
   (conf/enable-ido))
 
+(defvar conf/imenu-function (if (require 'helm nil 'noerror)
+                                #'helm-imenu
+                              #'imenu))
 
 (eval-after-load "auto-complete-config" #'ac-config-default)
 (require 'auto-complete-config nil 'noerror)
