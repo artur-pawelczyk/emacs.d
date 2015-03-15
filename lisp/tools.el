@@ -63,4 +63,27 @@
   (let ((name-to-find (projectile-symbol-at-point)))
     (browse-url (format "http://duckduckgo.com/?q=!java+%s" name-to-find))))
 
+
+
+(defvar diff-region--buffer-a-name "*diff-region-A*")
+(defvar diff-region--buffer-b-name "*diff-region-B*")
+
+(defun diff-region-start ()
+  (interactive)
+  (when (use-region-p)
+    (let ((buffer (get-buffer-create diff-region--buffer-a-name)))
+      (with-current-buffer buffer
+        (erase-buffer))
+      (append-to-buffer buffer (region-beginning) (region-end)))))
+
+(defun diff-region-end ()
+  (interactive)
+  (when (use-region-p)
+    (let ((buffer-a (get-buffer-create diff-region--buffer-a-name))
+          (buffer-b (get-buffer-create diff-region--buffer-b-name)))
+      (with-current-buffer buffer-b
+        (erase-buffer))
+      (append-to-buffer buffer-b (region-beginning) (region-end))
+      (ediff-buffers buffer-a buffer-b))))
+
 (provide 'tools)
