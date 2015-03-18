@@ -58,4 +58,9 @@
           (rest (substring str 1)))
       (concat (downcase first) rest))))
 
+(defun javadoc-at-point ()
+  (interactive)
+  (let ((name-to-find (projectile-symbol-at-point)))
+    (browse-url (format "http://duckduckgo.com/?q=!java+%s" name-to-find))))
+
 (provide 'tools)
