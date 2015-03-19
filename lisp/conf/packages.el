@@ -1,5 +1,6 @@
 (defvar user-package-list
-      '(auctex
+      '(ace-window
+        auctex
         bbdb
         auto-complete
         cider
@@ -14,8 +15,10 @@
         solarized-theme
         web-mode
         yasnippet
+        java-snippets
         undo-tree
         smart-mode-line
+        slime
         markdown-mode
         helm
         helm-projectile))
