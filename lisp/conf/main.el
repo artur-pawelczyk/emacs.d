@@ -15,6 +15,7 @@
 (when (require 'undo-tree nil 'noerror)
     (global-undo-tree-mode)
     (setq undo-tree-auto-save-history t))
+(winner-mode t)
 
 (windmove-default-keybindings)
 
