@@ -21,4 +21,9 @@
 (eval-after-load "auto-complete-config" #'ac-config-default)
 (require 'auto-complete-config nil 'noerror)
 
+(recentf-mode t)
+(setq helm-ff-file-name-history-use-recentf t
+      helm-buffers-fuzzy-matching t
+      helm-split-window-in-side-p t)
+
 (provide 'conf/completion)
