@@ -8,39 +8,17 @@
 
 (require 'dash)
 
-(defvar ext-edit-mode-map (make-sparse-keymap))
-
-(defvar ext-edit-origin-buffer
-  "Name of the buffer that `ext-edit-region' was invoked from")
-(make-local-variable 'ext-edit-origin-buffer)
-  
+(defvar ext-edit-origin-overlay nil
+  "Overlay poining to the edited text.")
+(make-local-variable 'ext-edit-origin-overlay)
 
 
-(define-minor-mode ext-edit-mode
-  "Minor mode for editor temporary buffer.  It is always set up
-automatically"
-  nil
-  "Ext edit"
-  ext-edit-mode-map)
-    
-(defun ext-edit--overlay? (overlay)
-  "Is the OVERLAY an overlay used by the package"
-  (and overlay
-       (plist-get (overlay-properties overlay) 'ext-edit)))
-
-(defun ext-edit--find-overlay (buffer)
-  "Find overlays in the BUFFER that corespond to the package."
-  (with-current-buffer buffer
-    (let* ((all-overlays (car (overlay-lists))))
-      (car (-filter #'ext-edit--overlay? all-overlays)))))
-      
-  
 (defun ext-edit-save-to-origin ()
   "Finish editing in the temporary buffer."
   (interactive)
   (let ((new-contents (buffer-substring (point-min) (point-max)))
-        (overlay (ext-edit--find-overlay (get-buffer ext-edit-origin-buffer))))
-    (with-current-buffer ext-edit-origin-buffer
+        (overlay ext-edit-origin-overlay))
+    (with-current-buffer (overlay-buffer overlay)
       (save-excursion
         (let ((start (overlay-start overlay))
               (end (overlay-end overlay)))
@@ -51,12 +29,9 @@ automatically"
     (kill-buffer)))
 
 
-
-(define-key ext-edit-mode-map (kbd "C-x C-s") #'ext-edit-save-to-origin)
-
-(defun ext-edit-region ()
-  "Edit the region in a tempoaray buffer."
-  (interactive)
+(defun ext-edit-region (&optional mode)
+  "Edit the region in a tempoaray buffer using the MODE."
+  (interactive "CMajor mode: ")
   (let* ((origin-buffer-name (buffer-name))
          (editor-buffer-name (format "*%s-part*" origin-buffer-name))
          (contents (buffer-substring (mark) (point)))
@@ -64,8 +39,10 @@ automatically"
     (overlay-put overlay 'ext-edit editor-buffer-name)
     (switch-to-buffer-other-window (get-buffer-create editor-buffer-name))
     (insert contents)
-    (ext-edit-mode t)
-    (setq ext-edit-origin-buffer origin-buffer-name)))
+    (when mode
+      (funcall mode))
+    (local-set-key (kbd "C-x C-s") #'ext-edit-save-to-origin)
+    (setq ext-edit-origin-overlay overlay)))
 
 
 (provide 'ext-edit)
