@@ -18,6 +18,10 @@
                                 #'helm-imenu
                               #'imenu))
 
+(defun conf/imenu ()
+  (interactive)
+  (call-interactively conf/imenu-function))
+
 (eval-after-load "auto-complete-config" #'ac-config-default)
 (require 'auto-complete-config nil 'noerror)
 

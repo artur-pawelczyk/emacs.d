@@ -21,7 +21,8 @@
         slime
         markdown-mode
         helm
-        helm-projectile))
+        helm-projectile
+        ggtags))
 
 
 (add-to-list 'package-archives '("mepla" . "http://melpa.milkbox.net/packages/"))
