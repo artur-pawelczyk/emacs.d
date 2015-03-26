@@ -23,7 +23,6 @@
 (setq async-shell-command-buffer 'new-buffer)
 
 (global-set-key (kbd "C-w") #'kill-word-or-region)
-(global-set-key (kbd "C-c C-k") #'kill-region)
 (define-key key-translation-map (kbd "C-;") (kbd "C-SPC"))
 (define-key key-translation-map [?\C-h] [?\C-?])
 (global-set-key (kbd "<f5>") #'magit-status)
