@@ -27,7 +27,6 @@
 (require 'conf/mode-line)
 (require 'conf/clojure)
 (require 'conf/projects)
-(require 'conf/prog)
 
 (require 'server)
 (unless (server-running-p)
