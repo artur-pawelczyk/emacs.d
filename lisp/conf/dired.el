@@ -3,6 +3,7 @@
 	    (load "dired-x")))
 
 (require 'dired)
+(require 'dired-x)
 
 (setq dired-listing-switches "-hlDa")
 (setq dired-dwim-target t)
@@ -17,16 +18,16 @@
 		  (concat dired-omit-files "\\|^\\..+$"))))
 (add-hook 'dired-mode-hook (lambda () (dired-omit-mode 1)))
 
-(set 'video-player "smplayer")
+(defvar conf/video-player "smplayer")
 (setq dired-guess-shell-alist-user
       '(("\\.pdf\\'" "mupdf")
-	("\\.avi\\'" video-player)
-	("\\.flv\\'" video-player)
-	("\\.webm\\'" video-player)
-	("\\.mp4\\'" video-player)
-        ("\\.mp4.part\\'" video-player)
-	("\\.mov\\'" video-player)
-        ("\\.mkv\\'" video-player)
+	("\\.avi\\'" conf/video-player)
+	("\\.flv\\'" conf/video-player)
+	("\\.webm\\'" conf/video-player)
+	("\\.mp4\\'" conf/video-player)
+        ("\\.mp4.part\\'" conf/video-player)
+	("\\.mov\\'" conf/video-player)
+        ("\\.mkv\\'" conf/video-player)
 	))
 
 (provide 'conf/dired)
