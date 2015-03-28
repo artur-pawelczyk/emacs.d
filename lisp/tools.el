@@ -86,4 +86,20 @@
       (append-to-buffer buffer-b (region-beginning) (region-end))
       (ediff-buffers buffer-a buffer-b))))
 
+(defmacro with-package-lazy (package &rest body)
+  "Eval BODY after PAKCAGE is loaded.  Doesn't load package.
+See `with-package'"
+  (declare (indent 1))
+  `(eval-after-load ,package
+     (lambda () (progn
+                  ,@body))))
+
+(defmacro with-package (package &rest body)
+  "Load PACKAGE and then eval BODY.
+See `with-package-lazy'"
+  (declare (indent 1))
+  `(progn
+     (with-package-lazy ,package ,@body)
+     (require ,package nil :noerror)))
+
 (provide 'tools)
