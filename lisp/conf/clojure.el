@@ -1,4 +1,4 @@
-(defun conf/push-mark-before-jump ()
+(defun conf/push-mark-before-jump (&rest args)
   (push-mark))
 
 (defun conf/cider-apply-custom-advice ()
