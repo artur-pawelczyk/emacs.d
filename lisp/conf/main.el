@@ -6,18 +6,18 @@
 (put 'dired-find-alternate-file 'disabled nil)
 (put 'narrow-to-region 'disabled nil)
 
-
 (savehist-mode t)
 (setq column-number-mode t)
 (setq-default indent-tabs-mode nil)
 (prefer-coding-system 'utf-8-unix)
 (show-paren-mode)
+(setq ido-enable-flex-matching t)
 (when (require 'undo-tree nil 'noerror)
     (global-undo-tree-mode)
     (setq undo-tree-auto-save-history t))
 (winner-mode t)
-
 (windmove-default-keybindings)
+(setq save-interprogram-paste-before-kill t)
 
 (setq calendar-week-start-day 1)
 (setq async-shell-command-buffer 'new-buffer)
