@@ -38,7 +38,7 @@
 (setq split-width-threshold 300)
 
 ;; Ace-window
-(when (require 'ace-window nil :noerror)
+(with-package 'ace-window
   (global-set-key (kbd "M-o") #'ace-window)
   (setq aw-scope 'frame))
 

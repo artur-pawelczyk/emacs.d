@@ -5,7 +5,7 @@
 (setq jedi:environment-virtualenv
       (append python-environment-virtualenv '("--python" "python3")))
 
-(when (require 'jedi nil 'noerror)
+(with-package 'jedi
   (add-hook 'python-mode-hook #'jedi:setup)
   (add-hook 'python-mode-hook #'jedi:ac-setup))
 

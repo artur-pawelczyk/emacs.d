@@ -1,9 +1,9 @@
-(when (require 'projectile nil 'noerror)
-  (setq projectile-indexing-method 'alien)
+(setq projectile-indexing-method 'alien)
+
+(with-package 'projectile
   (projectile-global-mode))
 
-(when (require 'helm-projectile nil 'noerror)
+(with-package 'helm-projectile
   (helm-projectile-on))
-
 
 (provide 'conf/projects)

@@ -1,12 +1,10 @@
 (setq sml/theme 'respectful)
-(when (require 'smart-mode-line nil 'noerror)
+(with-package 'smart-mode-line
   (add-hook 'after-init-hook #'sml/setup))
 
 (setq rm-blacklist '(" MRev" " Helm" " AC" " Undo-Tree" " Abbrev" " SP" " yas"))
 
-(defun projectile-disable-mode-line ()
+(with-package 'projectile
   (setq projectile-mode-line nil))
-
-(eval-after-load "projectile" #'projectile-disable-mode-line)
 
 (provide 'conf/mode-line)
