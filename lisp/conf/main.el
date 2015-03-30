@@ -27,6 +27,7 @@
 (define-key key-translation-map [?\C-h] [?\C-?])
 (global-set-key (kbd "<f5>") #'magit-status)
 (global-set-key (kbd "M-z") #'zap-to-char-exclusive)
+(global-set-key (kbd "M-/") #'hippie-expand)
 
 ;; Enable `view-mode' when showing function definition from help buffer.
 (defun help-do-xref--enable-view-mode (&rest args)
