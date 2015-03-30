@@ -2,7 +2,7 @@
 (with-package 'smart-mode-line
   (add-hook 'after-init-hook #'sml/setup))
 
-(setq rm-blacklist '(" MRev" " Helm" " AC" " Undo-Tree" " Abbrev" " SP" " yas"))
+(setq rm-blacklist '(" MRev" " Helm" " AC" " Undo-Tree" " Abbrev" " SP" " SP/s" " yas" " GG"))
 
 (with-package 'projectile
   (setq projectile-mode-line nil))
