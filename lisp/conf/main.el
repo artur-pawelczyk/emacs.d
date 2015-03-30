@@ -12,16 +12,22 @@
 (prefer-coding-system 'utf-8-unix)
 (show-paren-mode)
 (setq ido-enable-flex-matching t)
-(when (require 'undo-tree nil 'noerror)
-    (global-undo-tree-mode)
-    (setq undo-tree-auto-save-history t))
 (winner-mode t)
 (windmove-default-keybindings)
 (setq save-interprogram-paste-before-kill t)
 
+(with-package 'undo-tree
+    (global-undo-tree-mode)
+    (setq undo-tree-auto-save-history t))
+
+(with-package 'smartparens
+  (sp-use-paredit-bindings)
+  (smartparens-global-mode))
+
 (setq calendar-week-start-day 1)
 (setq async-shell-command-buffer 'new-buffer)
 
+;; Global keys
 (global-set-key (kbd "C-w") #'kill-word-or-region)
 (define-key key-translation-map (kbd "C-;") (kbd "C-SPC"))
 (define-key key-translation-map [?\C-h] [?\C-?])

@@ -5,4 +5,8 @@
 (with-package-lazy 'js2-mode
   (define-key js2-mode-map (kbd "M-.") #'conf/imenu))
 
+(with-package 'smartparens
+  (add-hook 'java-mode-hook #'smartparens-strict-mode)
+  (sp-local-pair 'js2-mode "{" "}" :post-handlers '(:add conf/open-block)))
+
 (provide 'conf/javascript)

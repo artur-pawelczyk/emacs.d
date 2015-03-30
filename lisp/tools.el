@@ -102,4 +102,11 @@ See `with-package-lazy'"
      (with-package-lazy ,package ,@body)
      (require ,package nil :noerror)))
 
+(defun conf/open-block (id action context)
+  "Function to be used as a hook for Smartparens"
+  (when (eq action 'insert)
+    (save-excursion
+      (newline)
+      (indent-according-to-mode))))
+
 (provide 'tools)

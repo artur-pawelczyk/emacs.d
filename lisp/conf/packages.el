@@ -18,6 +18,7 @@
         java-snippets
         undo-tree
         smart-mode-line
+        smartparens
         slime
         markdown-mode
         helm
