@@ -15,6 +15,7 @@
 (winner-mode t)
 (windmove-default-keybindings)
 (setq save-interprogram-paste-before-kill t)
+(require 'linum-relative nil :noerror)
 
 (with-package 'undo-tree
     (global-undo-tree-mode)
@@ -28,6 +29,9 @@
   (define-key sp-keymap (kbd "C-{") 'sp-backward-barf-sexp)
   (define-key sp-keymap (kbd "C-M-k") #'conf/kill-sexp)
   (smartparens-global-mode 1))
+
+(with-package 'smartscan
+  (add-hook 'prog-mode-hook #'smartscan-mode))
 
 (setq calendar-week-start-day 1)
 (setq async-shell-command-buffer 'new-buffer)
