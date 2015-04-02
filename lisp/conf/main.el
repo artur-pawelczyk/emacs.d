@@ -22,12 +22,17 @@
     (setq undo-tree-auto-save-history t))
 
 (with-package 'smartparens
-  (sp-use-smartparens-bindings)
-  (define-key sp-keymap (kbd "C-)") 'sp-forward-slurp-sexp)
-  (define-key sp-keymap (kbd "C-}") 'sp-forward-barf-sexp)
-  (define-key sp-keymap (kbd "C-(") 'sp-backward-slurp-sexp)
-  (define-key sp-keymap (kbd "C-{") 'sp-backward-barf-sexp)
-  (define-key sp-keymap (kbd "C-M-k") #'conf/kill-sexp)
+  (define-key sp-keymap (kbd "C-M-f") #'sp-forward-sexp)
+  (define-key sp-keymap (kbd "C-M-b") #'sp-backward-sexp)
+  (define-key sp-keymap (kbd "C-M-u") #'sp-backward-up-sexp)
+  (define-key sp-keymap (kbd "C-M-d") #'sp-down-sexp)
+  (define-key sp-keymap (kbd "C-M-p") #'sp-backward-down-sexp)
+  (define-key sp-keymap (kbd "C-M-n") #'sp-up-sexp)
+  (define-key sp-keymap (kbd "C-M-k") #'sp-kill-sexp)
+  (define-key sp-keymap (kbd "C-)") #'sp-forward-slurp-sexp)
+  (define-key sp-keymap (kbd "C-}") #'sp-forward-barf-sexp)
+  (define-key sp-keymap (kbd "C-(") #'sp-backward-slurp-sexp)
+  (define-key sp-keymap (kbd "C-{") #'sp-backward-barf-sexp)
   (smartparens-global-mode 1))
 
 (with-package 'smartscan
