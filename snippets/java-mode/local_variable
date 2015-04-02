@@ -1,0 +1,6 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: local variable
+# key: var
+# binding: direct-keybinding
+# --
+${1:var} ${1:$(downcase-first-char yas-text)}
