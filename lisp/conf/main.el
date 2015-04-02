@@ -21,8 +21,13 @@
     (setq undo-tree-auto-save-history t))
 
 (with-package 'smartparens
-  (sp-use-paredit-bindings)
-  (smartparens-global-mode))
+  (sp-use-smartparens-bindings)
+  (define-key sp-keymap (kbd "C-)") 'sp-forward-slurp-sexp)
+  (define-key sp-keymap (kbd "C-}") 'sp-forward-barf-sexp)
+  (define-key sp-keymap (kbd "C-(") 'sp-backward-slurp-sexp)
+  (define-key sp-keymap (kbd "C-{") 'sp-backward-barf-sexp)
+  (define-key sp-keymap (kbd "C-M-k") #'conf/kill-sexp)
+  (smartparens-global-mode 1))
 
 (setq calendar-week-start-day 1)
 (setq async-shell-command-buffer 'new-buffer)
@@ -34,6 +39,7 @@
 (global-set-key (kbd "<f5>") #'magit-status)
 (global-set-key (kbd "M-z") #'zap-to-char-exclusive)
 (global-set-key (kbd "M-/") #'hippie-expand)
+
 
 ;; Enable `view-mode' when showing function definition from help buffer.
 (defun help-do-xref--enable-view-mode (&rest args)

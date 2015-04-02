@@ -8,7 +8,7 @@
 (define-key java-mode-map (kbd "C-c j") #'conf/imenu)
 
 (with-package 'smartparens
-  (add-hook 'java-mode-hook #'smartparens-strict-mode)
-  (sp-local-pair 'java-mode "{" "}" :post-handlers '(:add conf/open-block)))
+  (sp-local-pair 'java-mode "{" "}" :post-handlers '(:add conf/open-block))
+  (add-hook 'java-mode-hook (lambda () (setq conf/kill-sexp-function #'sp-kill-hybrid-sexp))))
 
 (provide 'conf/java)
