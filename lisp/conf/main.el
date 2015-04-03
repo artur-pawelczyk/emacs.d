@@ -65,5 +65,4 @@
   (global-set-key (kbd "M-o") #'ace-window)
   (setq aw-scope 'frame))
 
-
 (provide 'conf/main)
