@@ -122,8 +122,4 @@ See `with-package-lazy'"
     (apply #'call-process cmd nil t nil args)
     (buffer-substring (point-min) (1- (point-max)))))
 
-(defun translate-dos-path (dos)
-  (call-process-return-output "cygpath" dos))
-
-
 (provide 'tools)
