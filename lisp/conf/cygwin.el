@@ -12,4 +12,13 @@
 
 (advice-add #'compilation-find-file :around #'compilation-find-file--dos-path)
 
+;; `C-(' and `C-)' don't work on Windows
+(with-package-lazy 'smartparens
+  (define-key sp-keymap (kbd "C-c )") #'sp-forward-slurp-sexp)
+  (define-key sp-keymap (kbd "C-c (") #'sp-backward-slurp-sexp))
+
+(with-package 'dired
+  (define-key dired-mode-map (kbd "b") 'browse-url-of-dired-file))
+
+
 (provide 'conf/cygwin)
