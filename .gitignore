@@ -19,3 +19,10 @@
 /ido.last
 /projectile-bookmarks.eld
 /.python-environments/
+/.emacs.desktop
+/.emacs.desktop.lock
+/.org-id-locations
+/eshell/
+/games/
+/projectile.cache
+/recentf
