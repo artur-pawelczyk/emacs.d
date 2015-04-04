@@ -23,7 +23,8 @@
         markdown-mode
         helm
         helm-projectile
-        ggtags))
+        ggtags
+        linum-relative))
 
 
 (add-to-list 'package-archives '("mepla" . "http://melpa.milkbox.net/packages/"))
