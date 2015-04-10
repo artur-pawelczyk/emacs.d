@@ -30,7 +30,7 @@
   (define-key sp-keymap (kbd "C-M-d") #'sp-down-sexp)
   (define-key sp-keymap (kbd "C-M-p") #'sp-backward-down-sexp)
   (define-key sp-keymap (kbd "C-M-n") #'sp-up-sexp)
-  (define-key sp-keymap (kbd "C-M-k") #'sp-kill-sexp)
+  (define-key sp-keymap (kbd "C-M-k") #'conf/kill-sexp)
   (define-key sp-keymap (kbd "C-)") #'sp-forward-slurp-sexp)
   (define-key sp-keymap (kbd "C-}") #'sp-forward-barf-sexp)
   (define-key sp-keymap (kbd "C-(") #'sp-backward-slurp-sexp)
