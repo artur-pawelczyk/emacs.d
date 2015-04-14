@@ -8,6 +8,6 @@
 (with-package 'smartparens
   (sp-local-pair 'js2-mode "{" "}" :post-handlers '(:add conf/open-block))
   (with-package-lazy 'js2-mode
-    (add-hook 'js2-mode-hook (lambda () (setq conf/kill-sexp-function #'sp-kill-hybrid-sexp)))))
+    (add-hook 'js2-mode-hook #'conf/enable-hybrid-exp)))
 
 (provide 'conf/javascript)

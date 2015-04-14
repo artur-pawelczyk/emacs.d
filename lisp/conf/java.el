@@ -9,6 +9,6 @@
 
 (with-package 'smartparens
   (sp-local-pair 'java-mode "{" "}" :post-handlers '(:add conf/open-block))
-  (add-hook 'java-mode-hook (lambda () (setq conf/kill-sexp-function #'sp-kill-hybrid-sexp))))
+  (add-hook 'java-mode-hook #'conf/enable-hybrid-exp))
 
 (provide 'conf/java)

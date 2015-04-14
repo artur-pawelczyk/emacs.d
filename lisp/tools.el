@@ -109,14 +109,6 @@ See `with-package-lazy'"
       (newline)
       (indent-according-to-mode))))
 
-
-(defvar conf/kill-sexp-function (if (require 'smartparens nil :noerror) #'sp-kill-sexp #'kill-sexp))
-(make-local-variable 'conf/kill-sexp-function)
-
-(defun conf/kill-sexp (&optional arg)
-  (interactive "P")
-  (funcall conf/kill-sexp-function arg))
-
 (defun call-process-return-output (cmd &rest args)
   (with-temp-buffer
     (apply #'call-process cmd nil t nil args)

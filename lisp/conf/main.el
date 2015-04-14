@@ -23,6 +23,7 @@
     (global-undo-tree-mode)
     (setq undo-tree-auto-save-history t))
 
+(require 'hybrid-exp)
 (with-package 'smartparens
   (define-key sp-keymap (kbd "C-M-f") #'sp-forward-sexp)
   (define-key sp-keymap (kbd "C-M-b") #'sp-backward-sexp)
@@ -31,7 +32,7 @@
   (define-key sp-keymap (kbd "C-M-p") #'sp-backward-down-sexp)
   (define-key sp-keymap (kbd "C-M-n") #'sp-up-sexp)
   (define-key sp-keymap (kbd "C-M-k") #'conf/kill-sexp)
-  (define-key sp-keymap (kbd "C-)") #'sp-forward-slurp-sexp)
+  (define-key sp-keymap (kbd "C-)") #'conf/forward-slurp)
   (define-key sp-keymap (kbd "C-}") #'sp-forward-barf-sexp)
   (define-key sp-keymap (kbd "C-(") #'sp-backward-slurp-sexp)
   (define-key sp-keymap (kbd "C-{") #'sp-backward-barf-sexp)
