@@ -1,0 +1,6 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: $this->db->
+# key: db
+# binding: direct-keybinding
+# --
+$this->db->
