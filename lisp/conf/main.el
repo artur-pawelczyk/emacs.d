@@ -38,8 +38,9 @@
   (define-key sp-keymap (kbd "C-{") #'sp-backward-barf-sexp)
   (smartparens-global-mode 1))
 
-(with-package 'smartscan
-  (add-hook 'prog-mode-hook #'smartscan-mode))
+(with-package 'highlight-symbol
+  (add-hook 'prog-mode-hook #'highlight-symbol-nav-mode))
+
 
 (setq calendar-week-start-day 1)
 (setq async-shell-command-buffer 'new-buffer)
