@@ -41,7 +41,7 @@
     (insert contents)
     (when mode
       (funcall mode))
-    (local-set-key (kbd "C-x C-s") #'ext-edit-save-to-origin)
+    (local-set-key (kbd "C-c C-c") #'ext-edit-save-to-origin)
     (setq ext-edit-origin-overlay overlay)))
 
 
