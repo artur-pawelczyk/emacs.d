@@ -48,6 +48,7 @@
 ;; Global keys
 (global-set-key (kbd "C-w") #'kill-word-or-region)
 (define-key key-translation-map (kbd "C-;") (kbd "C-SPC"))
+(define-key key-translation-map (kbd "C-M-;") (kbd "C-M-SPC"))
 (define-key key-translation-map [?\C-h] [?\C-?])
 (global-set-key (kbd "<f5>") #'magit-status)
 (global-set-key (kbd "M-z") #'zap-to-char-exclusive)
@@ -68,5 +69,9 @@
 (with-package 'ace-window
   (global-set-key (kbd "M-o") #'ace-window)
   (setq aw-scope 'frame))
+
+;; Expand-region
+(with-package 'expand-region
+  (global-set-key (kbd "C-M-SPC") #'er/expand-region))
 
 (provide 'conf/main)
