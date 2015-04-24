@@ -18,6 +18,7 @@
 (windmove-default-keybindings)
 (setq save-interprogram-paste-before-kill t)
 (require 'linum-relative nil :noerror)
+(fset 'yes-or-no-p #'y-or-n-p)
 
 (with-package 'undo-tree
     (global-undo-tree-mode)
