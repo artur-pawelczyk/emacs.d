@@ -27,6 +27,7 @@
 (require 'conf/mode-line)
 (require 'conf/clojure)
 (require 'conf/projects)
+(require 'conf/sql)
 
 (when (eq system-type 'cygwin)
   (require 'conf/cygwin))
