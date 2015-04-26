@@ -15,7 +15,6 @@
 (show-paren-mode)
 (setq ido-enable-flex-matching t)
 (winner-mode t)
-(windmove-default-keybindings)
 (setq save-interprogram-paste-before-kill t)
 (require 'linum-relative nil :noerror)
 (fset 'yes-or-no-p #'y-or-n-p)
@@ -69,7 +68,8 @@
 
 ;; Ace-window
 (with-package 'ace-window
-  (global-set-key (kbd "M-o") #'ace-window)
+  (require 'ace-window-relative)
+  (global-set-key (kbd "M-o") #'ace-window-relative)
   (setq aw-scope 'frame))
 
 ;; Expand-region
