@@ -28,6 +28,16 @@
         (delete-overlay overlay))))
     (kill-buffer)))
 
+(defvar ext-edit-mode-map (make-sparse-keymap))
+
+(define-minor-mode ext-edit-mode
+  "Minor mode for editor temporary buffer.  It is always set up
+automatically"
+  nil
+  "Ext edit"
+  ext-edit-mode-map)
+
+(define-key ext-edit-mode-map (kbd "C-c C-c") #'ext-edit-save-to-origin)
 
 (defun ext-edit-region (&optional mode)
   "Edit the region in a tempoaray buffer using the MODE."
@@ -41,7 +51,7 @@
     (insert contents)
     (when mode
       (funcall mode))
-    (local-set-key (kbd "C-c C-c") #'ext-edit-save-to-origin)
+    (ext-edit-mode)
     (setq ext-edit-origin-overlay overlay)))
 
 
