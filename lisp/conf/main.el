@@ -16,7 +16,6 @@
 (setq ido-enable-flex-matching t)
 (winner-mode t)
 (setq save-interprogram-paste-before-kill t)
-(require 'linum-relative nil :noerror)
 (fset 'yes-or-no-p #'y-or-n-p)
 
 (with-package 'undo-tree
@@ -67,13 +66,17 @@
 (setq split-width-threshold 300)
 
 ;; Ace-window
-(with-package 'ace-window
-  (require 'ace-window-relative)
+(autoload 'ace-window-relative "ace-window-relative")
+(when (package-installed-p 'ace-window)
   (global-set-key (kbd "M-o") #'ace-window-relative)
   (setq aw-scope 'frame))
 
 ;; Expand-region
-(with-package 'expand-region
+(when (package-installed-p 'expand-region)
   (global-set-key (kbd "C-M-SPC") #'er/expand-region))
+
+;; Linum-relative
+(with-package-lazy 'linum
+  (require 'linum-relative nil :noerror))
 
 (provide 'conf/main)
