@@ -22,8 +22,9 @@
   (interactive)
   (call-interactively conf/imenu-function))
 
-(eval-after-load "auto-complete-config" #'ac-config-default)
-(require 'auto-complete-config nil 'noerror)
+(with-package-lazy 'auto-complete-mode
+  (require 'auto-complete-config)
+  (ac-config-default))
 
 (recentf-mode t)
 (setq helm-ff-file-name-history-use-recentf t
