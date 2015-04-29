@@ -10,6 +10,7 @@
 (require 'java-import)
 (require 'semantic)
 (require 'semantic/tag)
+(require 'projectile)
 
 ;;; Code:
 
@@ -42,7 +43,8 @@
   "Add new entries to the `ji-db' database by extracting
 information from the current Java buffer"
   (interactive)
-  (setq ji-db (-concat (ji-find-current-entries) ji-db)))
+  (when (eq major-mode 'java-mode)
+    (setq ji-db (-concat (ji-find-current-entries) ji-db))))
 
 (defun ji-clear-database ()
   (interactive)
@@ -67,6 +69,16 @@ import statements if a new entry was added."
   (let ((name (symbol-name (symbol-at-point))))
     (when (not (ji-currently-imported? name))
       (ji-insert-import-stmt (ji-db-find-first name)))))
+
+(defun ji-projectile-java-files ()
+  (-filter (-partial #'s-matches? ".java$") (projectile-current-project-files)))
+
+(defun ji-projectile-build-database ()
+  (interactive)
+  (dolist (file (ji-projectile-java-files))
+    (let ((path (expand-file-name file (projectile-project-root))))
+      (with-current-buffer (find-file-noselect path)
+        (ji-build-database)))))
 
 (provide 'java-import-db)
 ;;; java-import-db.el ends here
