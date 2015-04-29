@@ -11,6 +11,10 @@
     (packages-update))
 
 (require 'tools)
+(require 'git-timemachine-fix)
+(autoload 'ji-add "java-import-db" nil :interactive)
+(autoload 'ji-build-database "java-import-db" nil :interactive)
+(autoload 'ext-edit-region "ext-edit" nil :interactive)
 
 (require 'conf/main)
 (require 'conf/dired)
