@@ -53,6 +53,13 @@ information from the current Java buffer"
 (defun ji-db-find-first (name)
   (ji-entry->identifier (assoc name ji-db)))
 
+(defun ji-db-find-all (name)
+  (mapcar #'ji-entry->identifier
+          (-filter (lambda (e) (equal name (car e))) ji-db)))
+
+(defun ji-wildcard-imports ()
+  (ji-db-find-all "*"))
+
 (defun ji-insert-import-stmt (name)
   (save-excursion
     (jdl/goto-first-import)
@@ -63,12 +70,13 @@ information from the current Java buffer"
   (assoc name (ji-find-current-entries)))
 
 (defun ji-add ()
-  "Try to add an import statement for a symbol at point.  Sort
-import statements if a new entry was added."
+  "Try to find symbol at point in the database."
   (interactive)
   (let ((name (symbol-name (symbol-at-point))))
-    (when (not (ji-currently-imported? name))
-      (ji-insert-import-stmt (ji-db-find-first name)))))
+    (if (ji-currently-imported? name)
+        (message "Already imported")
+      (ji-insert-import-stmt
+       (completing-read "Package: " (-concat (ji-db-find-all name) (ji-wildcard-imports)))))))
 
 (defun ji-projectile-java-files ()
   (-filter (-partial #'s-matches? ".java$") (projectile-current-project-files)))
