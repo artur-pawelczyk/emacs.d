@@ -1,16 +1,13 @@
-(add-hook 'dired-load-hook
-	  (lambda ()
-	    (load "dired-x")))
-
-(require 'dired)
-(require 'dired-x)
+(with-package-lazy 'dired
+  (require 'dired-x))
 
 (setq dired-listing-switches "-hlDa")
 (setq dired-dwim-target t)
 
-(when (fboundp 'dired-hide-details-mode)
+(with-package-lazy 'dired
+  (when (fboundp 'dired-hide-details-mode)
     (add-hook 'dired-mode-hook 'dired-hide-details-mode)
-    (define-key dired-mode-map (kbd "C-x M-h") 'dired-hide-details-mode))
+    (define-key dired-mode-map (kbd "C-x M-h") 'dired-hide-details-mode)))
 
 (add-hook 'dired-mode-hook
 	  (lambda ()
