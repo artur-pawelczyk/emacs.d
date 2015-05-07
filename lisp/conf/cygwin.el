@@ -27,7 +27,7 @@
   (define-key sp-keymap (kbd "C-c )") #'conf/forward-slurp)
   (define-key sp-keymap (kbd "C-c (") #'sp-backward-slurp-sexp))
 
-(with-package 'dired
+(with-package-lazy 'dired
   (define-key dired-mode-map (kbd "b") 'browse-url-of-dired-file))
 
 
