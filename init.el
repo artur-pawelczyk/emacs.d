@@ -2,6 +2,7 @@
   (expand-file-name name user-emacs-directory))
 
 (add-to-list 'load-path (user-file "lisp"))
+(add-to-list 'load-path (user-file "site-lisp"))
 
 (setq custom-file (user-file "custom.el"))
 
@@ -16,6 +17,10 @@
 (autoload 'ji-build-database "java-import-db" nil :interactive)
 (autoload 'ji-projectile-build-database "java-import-db" nil :interactive)
 (autoload 'ext-edit-region "ext-edit" nil :interactive)
+
+
+(autoload 'scilab-mode "scilab" nil :interactive)
+(autoload 'scilab-shell "scilab" nil :interactive)
 
 (require 'conf/main)
 (require 'conf/dired)
