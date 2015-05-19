@@ -58,10 +58,9 @@
   "Add new entries to the `ji-db' database by extracting
 information from the current Java buffer"
   (interactive)
-  (when (eq major-mode 'java-mode)
-    (setq ji-db (-concat (ji-find-current-entries) ji-db))
-    (unless (ji-timer-running ji-save-timer)
-      (setq ji-save-timer (run-at-time "5 sec" nil #'ji-save-database)))))
+  (setq ji-db (-concat (ji-find-current-entries) ji-db))
+  (unless (ji-timer-running ji-save-timer)
+    (setq ji-save-timer (run-at-time "5 sec" nil #'ji-save-database))))
 
 (defun ji-clear-database ()
   (interactive)
@@ -102,8 +101,8 @@ information from the current Java buffer"
   (interactive)
   (dolist (file (ji-projectile-java-files))
     (let ((path (expand-file-name file (projectile-project-root))))
-      (with-current-buffer (find-file-noselect path)
-        (ji-build-database)))))
+      (with-temp-buffer (insert-file-contents path)
+                        (ji-build-database)))))
 
 (defun ji-load-database ()
   (interactive)
