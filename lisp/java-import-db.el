@@ -8,8 +8,6 @@
 (require 'dash)
 (require 's)
 (require 'java-import)
-(require 'semantic)
-(require 'semantic/tag)
 (require 'projectile)
 
 ;;; Code:
@@ -25,12 +23,8 @@
 (defun ji-timer-running (timer)
   (memql timer timer-list))
 
-(defun ji-import-tag? (semantic-tag)
-  "Is SEMANTIC-TAG a Java import statement?"
-  (equal 'include (semantic-tag-class semantic-tag)))
-
-(defun ji-extract-imports (semantic-tags)
-  (mapcar #'semantic-tag-name (-filter #'ji-import-tag? semantic-tags)))
+(defun ji-entry->identifier (entry)
+  (s-join "." (list (cdr entry) (car entry))))
 
 (defun ji-identifier->entry (identifier)
   (let* ((parts (s-split "\\." identifier))
@@ -38,16 +32,27 @@
        (package (s-join "." (butlast parts))))
     (cons symbol package)))
 
-(defun ji-entry->identifier (entry)
-  (s-join "." (list (cdr entry) (car entry))))
+(defun ji-identifier-at-point ()
+  (save-excursion
+    (end-of-line)
+    (backward-char)
+    (let ((name-end (point)))
+      (beginning-of-line)
+      (search-forward-regexp "import " nil :noerror)
+      (buffer-substring-no-properties (point) name-end))))
+
+(defun ji-find-imports-impl ()
+  (when (search-forward-regexp "^import [a-zA-z.]+;$" nil :noerror)
+    (cons (ji-identifier-at-point) (ji-find-imports-impl))))
+
+(defun ji-find-imports ()
+  (save-excursion
+    (goto-char (point-min))
+    (ji-find-imports-impl)))
 
 (defun ji-find-current-entries (&optional buffer)
   (with-current-buffer (or buffer (current-buffer))
-    (unless semantic-mode
-      (semantic-mode 1))
-    (->> (semantic-fetch-tags)
-         ji-extract-imports
-         (mapcar #'ji-identifier->entry))))
+    (mapcar #'ji-identifier->entry (ji-find-imports))))
 
 (defun ji-build-database ()
   "Add new entries to the `ji-db' database by extracting
