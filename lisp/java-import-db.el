@@ -17,6 +17,14 @@
 (defvar ji-db '()
   "Association list: symbol name => list of packages containing the symbol")
 
+(defvar ji-db-file (expand-file-name "ji-db" user-emacs-directory)
+  "Path to a file to store the database for use in another session.")
+
+(defvar ji-save-timer nil)
+
+(defun ji-timer-running (timer)
+  (memql timer timer-list))
+
 (defun ji-import-tag? (semantic-tag)
   "Is SEMANTIC-TAG a Java import statement?"
   (equal 'include (semantic-tag-class semantic-tag)))
@@ -46,7 +54,9 @@
 information from the current Java buffer"
   (interactive)
   (when (eq major-mode 'java-mode)
-    (setq ji-db (-concat (ji-find-current-entries) ji-db))))
+    (setq ji-db (-concat (ji-find-current-entries) ji-db))
+    (unless (ji-timer-running ji-save-timer)
+      (setq ji-save-timer (run-at-time "5 sec" nil #'ji-save-database)))))
 
 (defun ji-clear-database ()
   (interactive)
@@ -89,6 +99,19 @@ information from the current Java buffer"
     (let ((path (expand-file-name file (projectile-project-root))))
       (with-current-buffer (find-file-noselect path)
         (ji-build-database)))))
+
+(defun ji-load-database ()
+  (interactive)
+  (load-file ji-db-file))
+
+(defun ji-save-database ()
+  "Save the database to a file at `ji-db-file' path.  Discards
+  previous contens of the file."
+  (interactive)
+  (with-temp-file ji-db-file
+    (erase-buffer)
+    (prin1 `(setq ji-db (quote ,ji-db)) (current-buffer)))
+  (message "Java import database saved."))
 
 (provide 'java-import-db)
 ;;; java-import-db.el ends here
