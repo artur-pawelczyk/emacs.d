@@ -35,9 +35,11 @@
 
 (defun ji-find-current-entries (&optional buffer)
   (with-current-buffer (or buffer (current-buffer))
+    (unless semantic-mode
+      (semantic-mode 1))
     (->> (semantic-fetch-tags)
-      ji-extract-imports
-      (mapcar #'ji-identifier->entry))))
+         ji-extract-imports
+         (mapcar #'ji-identifier->entry))))
 
 (defun ji-build-database ()
   "Add new entries to the `ji-db' database by extracting
