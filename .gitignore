@@ -7,6 +7,7 @@
 /history
 /url
 /custom.el
+/before-init.el
 /semanticdb
 /bookmarks
 /image-dired

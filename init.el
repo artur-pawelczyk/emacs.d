@@ -6,6 +6,9 @@
 
 (setq custom-file (user-file "custom.el"))
 
+(when (file-exists-p (user-file "before-init.el"))
+  (load-file (user-file "before-init.el")))
+
 (require 'packages)
 (require 'conf/packages)
 (if (not (file-exists-p package-user-dir))
