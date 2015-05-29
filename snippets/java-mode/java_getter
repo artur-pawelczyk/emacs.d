@@ -1,0 +1,8 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: java getter
+# key: get
+# binding: direct-keybinding
+# --
+public ${1:String} get${2:Value}() {
+    return ${2:$(downcase-first-char yas-text)};
+}

@@ -1,0 +1,10 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: Guava function
+# key: fun
+# binding: direct-keybinding
+# --
+public static final Function<${1:Object}, ${2:Object}> ${3:name} = new Function<$1, $2> () {
+        public $2 apply($1 o) {
+            $0
+        }
+    };
