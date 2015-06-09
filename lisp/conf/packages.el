@@ -23,6 +23,7 @@
         markdown-mode
         helm
         helm-projectile
+        helm-swoop
         ggtags
         flycheck
         javadoc-lookup

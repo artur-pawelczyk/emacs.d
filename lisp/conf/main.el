@@ -79,4 +79,10 @@
 (with-package-lazy 'linum
   (require 'linum-relative nil :noerror))
 
+;; Helm swoop
+(when (package-installed-p 'helm-swoop)
+  ;; Bind in place of `isearch-forward-regexp'.  Use `C-u C-s' to
+  ;; toggle regexp isearch.
+  (global-set-key (kbd "C-M-s") #'helm-swoop))
+
 (provide 'conf/main)
