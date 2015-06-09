@@ -14,7 +14,6 @@
 (prefer-coding-system 'utf-8-unix)
 (show-paren-mode)
 (setq ido-enable-flex-matching t)
-(winner-mode t)
 (setq save-interprogram-paste-before-kill t)
 (fset 'yes-or-no-p #'y-or-n-p)
 
@@ -84,5 +83,10 @@
   ;; Bind in place of `isearch-forward-regexp'.  Use `C-u C-s' to
   ;; toggle regexp isearch.
   (global-set-key (kbd "C-M-s") #'helm-swoop))
+
+;; Winner mode
+(winner-mode t)
+(global-set-key (kbd "C-x ,") #'winner-undo)
+(global-set-key (kbd "C-x .") #'winner-redo)
 
 (provide 'conf/main)
