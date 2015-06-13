@@ -1,4 +1,4 @@
-(with-package-lazy 'jedi
+(with-package-lazy (jedi)
   (setq jedi:setup-keys t)
   (setq jedi:complete-on-dot t)
   (setq jedi:environment-virtualenv

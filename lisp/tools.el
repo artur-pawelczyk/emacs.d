@@ -86,21 +86,27 @@
       (append-to-buffer buffer-b (region-beginning) (region-end))
       (ediff-buffers buffer-a buffer-b))))
 
-(defmacro with-package-lazy (package &rest body)
-  "Eval BODY after PAKCAGE is loaded.  Doesn't load package.
+(defmacro with-package-lazy (packages &rest body)
+  "Eval BODY after PACKAGES are loaded.  Don't load the packages.
 See `with-package'"
   (declare (indent 1))
-  `(eval-after-load ,package
-     (lambda () (progn
-                  ,@body))))
+  (assert (and (listp packages) (not (eq (car packages) 'quote))))
+  (let ((after-load (if (cdr packages)
+                        (list `(with-package-lazy ,(cdr packages) ,@body))
+                       body)))
+    `(eval-after-load ',(car packages)
+       (lambda () (progn
+                    ,@after-load)))))
 
-(defmacro with-package (package &rest body)
-  "Load PACKAGE and then eval BODY.
+(defmacro with-package (packages &rest body)
+  "Load PACKAGES and then eval BODY.
 See `with-package-lazy'"
   (declare (indent 1))
-  `(progn
-     (with-package-lazy ,package ,@body)
-     (require ,package nil :noerror)))
+  (let ((require-stmt (mapcar (lambda (p)
+                                `(require ',p nil :noerror)) packages)))
+    `(progn
+       (with-package-lazy ,packages ,@body)
+       ,@require-stmt)))
 
 (defun conf/open-block (id action context)
   "Function to be used as a hook for Smartparens"

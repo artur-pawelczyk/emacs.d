@@ -23,7 +23,7 @@
   (interactive)
   (call-interactively conf/imenu-function))
 
-(with-package-lazy 'auto-complete-mode
+(with-package-lazy (auto-complete-mode)
   (require 'auto-complete-config)
   (ac-config-default))
 

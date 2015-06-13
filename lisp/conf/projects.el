@@ -1,9 +1,9 @@
 (setq projectile-indexing-method 'alien)
 
-(with-package 'projectile
+(with-package (projectile)
   (projectile-global-mode))
 
-(with-package 'helm-projectile
+(with-package (helm-projectile)
   (helm-projectile-on))
 
 (provide 'conf/projects)

@@ -17,12 +17,12 @@
 (setq save-interprogram-paste-before-kill t)
 (fset 'yes-or-no-p #'y-or-n-p)
 
-(with-package 'undo-tree
+(with-package (undo-tree)
     (global-undo-tree-mode)
     (setq undo-tree-auto-save-history t))
 
 (require 'hybrid-exp)
-(with-package 'smartparens
+(with-package (smartparens)
   (define-key sp-keymap (kbd "C-M-f") #'sp-forward-sexp)
   (define-key sp-keymap (kbd "C-M-b") #'sp-backward-sexp)
   (define-key sp-keymap (kbd "C-M-u") #'sp-backward-up-sexp)
@@ -36,7 +36,7 @@
   (define-key sp-keymap (kbd "C-{") #'sp-backward-barf-sexp)
   (smartparens-global-mode 1))
 
-(with-package 'highlight-symbol
+(with-package (highlight-symbol)
   (add-hook 'prog-mode-hook #'highlight-symbol-nav-mode))
 
 
@@ -75,7 +75,7 @@
   (global-set-key (kbd "C-M-SPC") #'er/expand-region))
 
 ;; Linum-relative
-(with-package-lazy 'linum
+(with-package-lazy (linum)
   (require 'linum-relative nil :noerror))
 
 ;; Helm swoop

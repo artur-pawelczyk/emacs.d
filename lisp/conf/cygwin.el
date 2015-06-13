@@ -23,15 +23,15 @@
 (advice-add #'org-babel-process-file-name :around #'org-babel-process-file-name--dos-path)
 
 ;; `C-(' and `C-)' don't work on Windows
-(with-package-lazy 'smartparens
+(with-package-lazy (smartparens)
   (define-key sp-keymap (kbd "C-c )") #'conf/forward-slurp)
   (define-key sp-keymap (kbd "C-c (") #'sp-backward-slurp-sexp))
 
-(with-package-lazy 'dired
+(with-package-lazy (dired)
   (define-key dired-mode-map (kbd "b") 'browse-url-of-dired-file))
 
 
-(with-package-lazy 'flycheck
+(with-package-lazy (flycheck)
   (defun flycheck-fix-error-filename (err buffer-files)
     "Fix the file name of ERR from BUFFER-FILES.
 
