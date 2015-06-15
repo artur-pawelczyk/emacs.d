@@ -41,6 +41,7 @@
 (require 'conf/clojure)
 (require 'conf/projects)
 (require 'conf/sql)
+(require 'conf/emms)
 
 (when (eq system-type 'cygwin)
   (require 'conf/cygwin))
