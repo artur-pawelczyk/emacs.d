@@ -1,4 +1,5 @@
 (require 'subword)
+(require 'cl)
 
 (defun kill-word-or-region (arg)
   (interactive "p")
