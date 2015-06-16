@@ -7,7 +7,16 @@
       (kill-region (point) (mark))
     (if subword-mode
         (subword-backward-kill (or arg 1))
-        (backward-kill-word (or arg 1)))))
+      (backward-kill-word (or arg 1)))))
+
+(defun eshell-copy-output ()
+  "Kill all output from interpreter since last input.
+Does not delete the prompt."
+  (interactive)
+  (save-excursion
+    (goto-char (eshell-beginning-of-output))
+    (insert "*** output flushed ***\n")
+    (kill-region (point) (eshell-end-of-output))))
 
 (defun load-custom-file-if-exists ()
   (if (file-exists-p custom-file)
