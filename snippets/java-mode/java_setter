@@ -1,0 +1,8 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: java setter
+# key: set
+# binding: direct-keybinding
+# --
+public void set${1:Value}(${2:String} value) {
+    this.${1:$(downcase-first-char yas-text)} = value;
+}
