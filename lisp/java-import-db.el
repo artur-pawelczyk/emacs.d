@@ -7,7 +7,6 @@
 
 (require 'dash)
 (require 's)
-(require 'java-import)
 (require 'projectile)
 
 ;;; Code:
@@ -19,6 +18,10 @@
   "Path to a file to store the database for use in another session.")
 
 (defvar ji-save-timer nil)
+
+(defconst ji-package-stmt-pattern "^package [a-zA-z.]+;$")
+
+(defconst ji-import-stmt-pattern "^import [a-zA-z.]+;$")
 
 (defun ji-timer-running (timer)
   (memql timer timer-list))
@@ -42,7 +45,7 @@
       (buffer-substring-no-properties (point) name-end))))
 
 (defun ji-find-imports-impl ()
-  (when (search-forward-regexp "^import [a-zA-z.]+;$" nil :noerror)
+  (when (search-forward-regexp ji-import-stmt-pattern nil :noerror)
     (cons (ji-identifier-at-point) (ji-find-imports-impl))))
 
 (defun ji-find-imports ()
@@ -76,11 +79,51 @@ information from the current Java buffer"
 (defun ji-wildcard-imports ()
   (ji-db-find-all "*"))
 
+(defun ji-search-forward-in-place (pattern)
+  "Search PATTERN from current positoin using
+  `search-forward-regexp' and return the position of the first
+  match or nil if none."
+  (save-excursion
+    (when (search-forward-regexp pattern nil :noerror)
+      (beginning-of-line)
+      (point))))
+
+(defun ji-search-backward-in-place (pattern)
+  "Search PATTERN from current positoin using
+  `search-backward-regexp' and return the position of the first
+  match or nil if none."
+  (save-excursion
+    (when (search-backward-regexp pattern nil :noerror)
+      (beginning-of-line)
+      (point))))
+
+(defun ji-import-region-start ()
+  (save-excursion
+    (goto-char (point-min))
+    (-when-let (pos (ji-search-forward-in-place ji-import-stmt-pattern))
+      (goto-char pos))
+    (beginning-of-line)
+    (point)))
+
+(defun ji-import-region-end ()
+  (save-excursion
+    (goto-char (point-max))
+    (-when-let (pos (or (ji-search-backward-in-place ji-import-stmt-pattern)
+                        (ji-search-backward-in-place ji-package-stmt-pattern)
+                        (point-min)))
+      (goto-char pos))
+    (end-of-line)
+    (point)))
+
+(defun ji-sort-import-stmts ()
+  (interactive)
+  (sort-lines nil (ji-import-region-start) (1+ (ji-import-region-end))))
+
 (defun ji-insert-import-stmt (name)
   (save-excursion
-    (jdl/goto-first-import)
+    (goto-char (ji-import-region-start))
     (insert "import " name ";\n")
-    (sort-java-imports)))
+    (ji-sort-import-stmts)))
 
 (defun ji-currently-imported? (name)
   (assoc name (ji-find-current-entries)))
