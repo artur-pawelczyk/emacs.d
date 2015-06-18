@@ -61,6 +61,7 @@
   (cons
    (let* ((package-name (car package))
           (symbols (cdr package))
+          ;; FIXME: hot spot
           (old-package (assoc package-name list)))
      (if old-package
          (remove-duplicates (append old-package symbols))
