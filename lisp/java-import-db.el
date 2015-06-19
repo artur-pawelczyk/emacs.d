@@ -13,7 +13,7 @@
 
 ;;; Code:
 
-(defvar ji-db '())
+(defvar ji-db (make-hash-table))
 
 (defvar ji-db-file (expand-file-name "ji-db" user-emacs-directory)
   "Path to a file to store the database for use in another session.")
@@ -64,7 +64,7 @@
           ;; FIXME: hot spot
           (old-package (assoc package-name list)))
      (if old-package
-         (remove-duplicates (append old-package symbols))
+         (cl-remove-duplicates (append old-package symbols))
        (cons package-name symbols)))
    list))
 
@@ -109,15 +109,15 @@
 information from the current Java buffer.  The buffer is *not*
 required to be in java-mode"
   (interactive)
-  (setq ji-db (cl-reduce (lambda (db package)
-                        (ji-packages-list-add-package db package))
-                      (cons ji-db (ji-find-current-packages))))
+    (dolist (package (ji-find-current-packages))
+    (let ((old-symbols (gethash (car package) ji-db)))
+      (puthash (car package) (cl-remove-duplicates (append (cdr package) old-symbols)) ji-db)))
   (unless (ji-timer-running ji-save-timer)
     (setq ji-save-timer (run-at-time "5 sec" nil #'ji-save-database))))
 
 (defun ji-clear-database ()
   (interactive)
-  (setq ji-db '()))
+  (setq ji-db (make-hash-table)))
 
 (defun ji-projectile-java-files ()
   (-filter (-partial #'s-matches? ".java$") (projectile-current-project-files)))
@@ -147,11 +147,6 @@ required to be in java-mode"
                (member symbol (cdr package)))
              (ji-find-current-packages))
       t nil))
-
-(defun ji-packages-for-symbol (db symbol)
-  (-filter (lambda (package)
-             (member symbol (cdr package)))
-           db))
 
 (defun ji-search-forward-in-place (pattern)
   "Search PATTERN from current positoin using
@@ -199,6 +194,20 @@ required to be in java-mode"
     (insert "import " name ";\n")
     (ji-sort-import-stmts)))
 
+(defun ji-hash-table-filter (db predicate)
+  "Filter hash table DB with PREDICATE accepting a value.
+  Returns (KEY . VALUE)."
+  (let ((found-keys (-filter (lambda (key)
+                            (funcall predicate (gethash key db)))
+                          (hash-table-keys db))))
+    (mapcar (lambda (key)
+              (cons key (gethash key db)))
+            found-keys)))
+
+(defun ji-db-find-packages-with-symbol (db symbol)
+  (ji-hash-table-filter db (lambda (symbols)
+                             (member symbol symbols))))
+
 (defun ji-add (symbol)
   (interactive (list (symbol-name (symbol-at-point))))
   (if (ji-symbol-imported? symbol)
@@ -206,7 +215,7 @@ required to be in java-mode"
     (ji-insert-import-stmt
      (completing-read "Package: " (mapcar (lambda (package)
                                             (concat (car package) "." symbol))
-                                          (ji-packages-for-symbol ji-db symbol))))))
+                                          (ji-db-find-packages-with-symbol ji-db symbol))))))
 
 (provide 'java-import-db)
 ;;; java-import-db.el ends here
