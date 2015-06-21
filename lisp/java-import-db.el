@@ -7,6 +7,7 @@
 
 (eval-when-compile
   '(require 'cl-lib))
+(require 'subr-x)
 (require 'dash)
 (require 's)
 (require 'projectile)
@@ -37,7 +38,8 @@
   (let* ((parts (s-split "\\." full-symbol))
          (symbol (car (last parts)))
          (package (s-join "." (butlast parts))))
-    (list package symbol)))
+    (list (intern package)
+          (intern symbol))))
 
 (defun ji-full-symbol-at-point ()
   (save-excursion
@@ -82,7 +84,7 @@
           (let ((name-end (point)))
             (beginning-of-line)
             (search-forward "package ")
-            (buffer-substring-no-properties (point) name-end)))
+            (intern (buffer-substring-no-properties (point) name-end))))
       "")))
 
 (defun ji-class-name ()
@@ -93,7 +95,7 @@
       (if name-start
           (progn
             (goto-char name-start)
-            (symbol-name (symbol-at-point)))
+            (symbol-at-point))
         ""))))
 
 (defun ji-package-from-current-class ()
@@ -209,12 +211,12 @@ required to be in java-mode"
                              (member symbol symbols))))
 
 (defun ji-add (symbol)
-  (interactive (list (symbol-name (symbol-at-point))))
+  (interactive (list (symbol-at-point)))
   (if (ji-symbol-imported? symbol)
       (message "Already imported.")
     (ji-insert-import-stmt
      (completing-read "Package: " (mapcar (lambda (package)
-                                            (concat (car package) "." symbol))
+                                            (concat (symbol-name (car package)) "." (symbol-name symbol)))
                                           (ji-db-find-packages-with-symbol ji-db symbol))))))
 
 (provide 'java-import-db)
