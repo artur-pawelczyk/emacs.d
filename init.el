@@ -43,6 +43,7 @@
 (require 'conf/sql)
 (require 'conf/emms)
 (require 'conf/scilab)
+(require 'conf/vc)
 
 (when (eq system-type 'cygwin)
   (require 'conf/cygwin))
