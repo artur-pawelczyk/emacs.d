@@ -37,4 +37,7 @@
       helm-buffers-fuzzy-matching t
       helm-split-window-in-side-p t)
 
+(with-package-lazy (helm)
+  (define-key helm-map (kbd "C-w") #'kill-word-or-region))
+
 (provide 'conf/completion)

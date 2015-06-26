@@ -1,3 +1,3 @@
-(add-to-list 'auto-mode-alist '("\\.jsp\\'" . nxml-mode))
+(add-to-list 'auto-mode-alist '("\\.jsp\\'" . web-mode))
 
 (provide 'conf/jsp)

@@ -34,6 +34,7 @@
   (define-key sp-keymap (kbd "C-}") #'sp-forward-barf-sexp)
   (define-key sp-keymap (kbd "C-(") #'sp-backward-slurp-sexp)
   (define-key sp-keymap (kbd "C-{") #'sp-backward-barf-sexp)
+  (require 'smartparens-config nil :noerror)
   (smartparens-global-mode 1))
 
 (with-package (highlight-symbol)
@@ -83,6 +84,11 @@
   ;; Bind in place of `isearch-forward-regexp'.  Use `C-u C-s' to
   ;; toggle regexp isearch.
   (global-set-key (kbd "C-M-s") #'helm-swoop))
+
+;; Helm menubar
+(when (package-installed-p 'lacarte)
+  (menu-bar-mode -1)
+  (global-set-key (kbd "<f10>") #'helm-browse-menubar))
 
 ;; Winner mode
 (winner-mode t)
