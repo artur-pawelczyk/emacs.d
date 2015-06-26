@@ -46,6 +46,7 @@ automatically"
          (editor-buffer-name (format "*%s-part*" origin-buffer-name))
          (contents (buffer-substring (mark) (point)))
          (overlay (make-overlay (mark) (point))))
+    (deactivate-mark)
     (overlay-put overlay 'ext-edit editor-buffer-name)
     (switch-to-buffer-other-window (get-buffer-create editor-buffer-name))
     (insert contents)
