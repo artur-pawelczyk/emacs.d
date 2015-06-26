@@ -20,7 +20,7 @@
 
 (defun ace-window-relative (arg)
   "Wraps call to `ace-window' so when key other than digit is
-used, it calls `windmove-select-by-key'"
+used, it performs the action on window returned by `windmove-find-by-key'."
   (interactive "p")
   (condition-case err
       (ace-window arg)
