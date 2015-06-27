@@ -130,4 +130,17 @@ See `with-package-lazy'"
     (apply #'call-process cmd nil t nil args)
     (buffer-substring (point-min) (1- (point-max)))))
 
+(defun buffer-major-mode (buffer-or-name)
+  (with-current-buffer buffer-or-name
+    major-mode))
+
+(defun shell-cleaup-dead-buffers ()
+  "Kill all shell buffers that have no process running."
+  (interactive)
+  (mapcar (lambda (buffer)
+            (when (and (eq 'shell-mode (buffer-major-mode buffer))
+                       (not (get-buffer-process buffer)))
+              (kill-buffer buffer)))
+          (buffer-list)))
+
 (provide 'tools)
