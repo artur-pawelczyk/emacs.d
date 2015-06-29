@@ -7,4 +7,8 @@
 (with-package-lazy (org helm)
   (define-key org-mode-map (kbd "C-c C-j") #'helm-org-headlines))
 
+(add-hook 'ediff-prepare-buffer-hook (lambda ()
+                                       (when (eq major-mode 'org-mode)
+                                         (visible-mode 1))))
+
 (provide 'conf/org)
