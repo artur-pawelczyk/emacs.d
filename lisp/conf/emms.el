@@ -1,5 +1,6 @@
 (with-package (emms-setup emms-info-metaflac)
   (emms-all)
+  (emms-mode-line -1)
   (setq emms-player-list '(emms-player-mpg321 emms-player-ogg123 emms-player-mplayer-playlist emms-player-mplayer emms-player-vlc))
   (setq emms-source-file-default-directory "~/Music/")
   (setq emms-info-functions (append emms-info-functions '(emms-info-metaflac))))
