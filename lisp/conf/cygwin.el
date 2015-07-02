@@ -51,4 +51,16 @@ compilation output."
         (setf (flycheck-error-filename err) filename)))
     err))
 
+
+(defvar linum-mode-suppress-update nil
+  "If non-nil, prevents linum-mode from updating.  Meant to be
+  used while `hydra-splitter' (resizing windows) is active to make it work faster.")
+
+(defun linum-update-current--maybe-suppress (orig-fun &rest args)
+  (unless linum-mode-suppress-update
+    (apply orig-fun args)))
+
+(advice-add #'linum-update-current :around #'linum-update-current--maybe-suppress)
+
 (provide 'conf/cygwin)
+
