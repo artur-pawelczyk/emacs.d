@@ -27,9 +27,12 @@
 (define-key frames-map (kbd "C-p") #'frames-prev)
 (define-key frames-map (kbd "c") #'make-frame-command)
 (define-key frames-map (kbd "C-z") #'other-frame)
+(define-key frames-map (kbd "k") #'delete-frame)
 
 (eval-after-load 'avoid
-  '(define-key frames-map (kbd "C-b")  (lambda () (interactive) (mouse-avoidance-banish))))
+  '(progn
+     (define-key frames-map (kbd "C-b")  (lambda () (interactive) (mouse-avoidance-banish)))
+     (define-key frames-map (kbd "C-b")  (lambda () (interactive) (mouse-avoidance-banish)))))
 
 
 (provide 'frames)
