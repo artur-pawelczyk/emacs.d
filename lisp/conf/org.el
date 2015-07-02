@@ -13,7 +13,9 @@
                                        (when (eq major-mode 'org-mode)
                                          (visible-mode 1))))
 
-
+(add-hook 'ediff-cleanup-hook (lambda ()
+                                (with-current-buffer ediff-buffer-A (visible-mode -1))
+                                (with-current-buffer ediff-buffer-B (visible-mode -1))))
 
 ;; org-crypt
 (with-package-lazy (org org-crypt)
