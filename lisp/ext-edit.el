@@ -9,12 +9,12 @@
 (require 'dash)
 
 (defvar ext-edit-origin-overlay nil
-  "Overlay poining to the edited text.")
+  "Overlay poining to the text being edited.")
 (make-local-variable 'ext-edit-origin-overlay)
 
 
-(defun ext-edit-save-to-origin ()
-  "Finish editing in the temporary buffer."
+(defun ext-edit-transfer-to-origin ()
+  "Move contents of the temporary buffer to the original buffer."
   (interactive)
   (let ((new-contents (buffer-substring (point-min) (point-max)))
         (overlay ext-edit-origin-overlay))
@@ -22,11 +22,26 @@
       (save-excursion
         (let ((start (overlay-start overlay))
               (end (overlay-end overlay)))
-        (delete-region start end)
-        (goto-char start)
-        (insert new-contents)
-        (delete-overlay overlay))))
-    (kill-buffer)))
+          (delete-region start end)
+          (delete-overlay overlay)
+          (goto-char start)
+          (insert new-contents)
+          (setq ext-edit-origin-overlay (make-overlay start (point))))))))
+
+(defun ext-edit-commit ()
+  "Finish editing in the temporary buffer."
+  (interactive)
+  (ext-edit-transfer-to-origin)
+  (delete-overlay ext-edit-origin-overlay)
+  (kill-buffer))
+
+(defun ext-edit-save ()
+  "Move the contents and save the original buffer."
+  (interactive)
+  (ext-edit-transfer-to-origin)
+  (with-current-buffer (overlay-buffer ext-edit-origin-overlay)
+    (save-buffer))
+  (set-buffer-modified-p nil))
 
 (defvar ext-edit-mode-map (make-sparse-keymap))
 
@@ -37,7 +52,8 @@ automatically"
   "Ext edit"
   ext-edit-mode-map)
 
-(define-key ext-edit-mode-map (kbd "C-c C-c") #'ext-edit-save-to-origin)
+(define-key ext-edit-mode-map (kbd "C-c C-c") #'ext-edit-commit)
+(define-key ext-edit-mode-map (kbd "C-x C-s") #'ext-edit-save)
 
 (defun ext-edit-region (&optional mode)
   "Edit the region in a tempoaray buffer using the MODE."
