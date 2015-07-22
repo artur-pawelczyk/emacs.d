@@ -4,7 +4,7 @@
 (defun kill-word-or-region (arg)
   (interactive "p")
   (if mark-active
-      (kill-region (point) (mark))
+      (call-interactively #'kill-region (list (point) (mark)))
     (if subword-mode
         (subword-backward-kill (or arg 1))
       (backward-kill-word (or arg 1)))))
