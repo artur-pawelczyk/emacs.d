@@ -7,8 +7,8 @@
 
 (with-package (smartparens)
   (sp-local-pair 'java-mode "{" "}" :post-handlers '(:add conf/open-block) :unless '(sp-in-string-p))
-  (sp-local-pair 'java-mode "\"" "\"" :actions '(insert wrap) :unless '(sp-in-string-p))
-  (sp-local-pair 'java-mode "\"" nil :actions '(wrap))
+  (sp-local-pair 'java-mode "\"" "\"" :unless '(sp-in-string-p))
+  (sp-local-pair 'java-mode "/*" "*/")
   (add-hook 'java-mode-hook #'conf/enable-hybrid-exp))
 
 
