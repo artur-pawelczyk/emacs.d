@@ -12,9 +12,8 @@
   (vc-call-backend (vc-responsible-backend default-directory) 'retrieve-tag default-directory name nil)
   (message "Switching done"))
 
-(with-package-lazy (vc)
-  (define-key vc-prefix-map "e" #'vc-ediff)
-  (define-key vc-prefix-map "r" #'conf/vc-switch-branch))
+(define-key vc-prefix-map "e" #'vc-ediff)
+(define-key vc-prefix-map "r" #'conf/vc-switch-branch)
 
 (with-package-lazy (vc-dir)
   (define-key vc-dir-mode-map "e" #'vc-ediff))
