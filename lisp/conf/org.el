@@ -9,14 +9,6 @@
 (with-package-lazy (org helm)
   (define-key org-mode-map (kbd "C-c C-j") #'helm-org-headlines))
 
-(add-hook 'ediff-prepare-buffer-hook (lambda ()
-                                       (when (eq major-mode 'org-mode)
-                                         (visible-mode 1))))
-
-(add-hook 'ediff-cleanup-hook (lambda ()
-                                (with-current-buffer ediff-buffer-A (visible-mode -1))
-                                (with-current-buffer ediff-buffer-B (visible-mode -1))))
-
 ;; org-crypt
 (with-package-lazy (org org-crypt)
   (org-crypt-use-before-save-magic)
