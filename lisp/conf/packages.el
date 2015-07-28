@@ -4,8 +4,6 @@
         bbdb
         auto-complete
         cider
-        git-commit-mode
-        gitignore-mode
         jedi
         js2-mode
         magit
@@ -15,7 +13,6 @@
         solarized-theme
         web-mode
         yasnippet
-        java-snippets
         undo-tree
         smart-mode-line
         smartparens
@@ -24,6 +21,7 @@
         helm
         helm-projectile
         helm-swoop
+        helm-c-yasnippet
         ggtags
         flycheck
         javadoc-lookup
@@ -31,6 +29,10 @@
         lacarte
         sql-indent
         s
+        dash
+        emms
+        expand-region
+        macrostep
         linum-relative))
 
 
