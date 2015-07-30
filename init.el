@@ -31,7 +31,7 @@
 (require 'conf/completion)
 (require 'conf/python)
 (require 'conf/java)
-(require 'conf/jsp)
+(require 'conf/web)
 (require 'conf/javascript)
 (require 'conf/ediff)
 (require 'conf/lisp)
