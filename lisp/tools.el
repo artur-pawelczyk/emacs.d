@@ -134,7 +134,7 @@ See `with-package-lazy'"
   (with-current-buffer buffer-or-name
     major-mode))
 
-(defun shell-cleaup-dead-buffers ()
+(defun shell-cleanup-dead-buffers ()
   "Kill all shell buffers that have no process running."
   (interactive)
   (mapcar (lambda (buffer)
