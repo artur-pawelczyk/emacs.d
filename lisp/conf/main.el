@@ -66,10 +66,11 @@
 (setq split-width-threshold 300)
 
 ;; Ace-window
-(autoload 'ace-window-relative "ace-window-relative")
 (when (package-installed-p 'ace-window)
-  (global-set-key (kbd "M-o") #'ace-window-relative)
+  (global-set-key (kbd "M-o") #'ace-window)
   (setq aw-scope 'frame))
+(with-package-lazy (ace-window)
+  (require 'ace-window-relative nil :noerror))
 
 ;; Expand-region
 (when (package-installed-p 'expand-region)
