@@ -22,4 +22,12 @@
 (with-package (emms)
   (advice-add #'find-file-noselect :around #'conf/find-file-noselect--audio-file))
 
+(defun emms-add-dired-and-show ()
+  (interactive)
+  (emms-add-dired)
+  (emms))
+
+(with-package-lazy (dired)
+  (define-key dired-mode-map "E" #'emms-add-dired-and-show))
+
 (provide 'conf/emms)

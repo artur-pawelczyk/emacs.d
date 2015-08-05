@@ -26,4 +26,7 @@
   (define-key vc-dir-mode-map ":" #'magit-git-command)
   (define-key vc-dir-mode-map "$" #'magit-process))
 
+(with-package-lazy (magit)
+  (define-key magit-status-mode-map (kbd "M-u") #'magit-section-up))
+
 (provide 'conf/vc)
