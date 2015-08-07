@@ -1,0 +1,8 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: java getter
+# key: is
+# binding: direct-keybinding
+# --
+public ${1:boolean} is${2:Value}() {
+    return ${2:$(downcase-first-char yas-text)};
+}
