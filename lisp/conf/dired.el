@@ -13,7 +13,19 @@
 	  (lambda ()
 	    (setq dired-omit-files
 		  (concat dired-omit-files "\\|^\\..+$"))))
-(add-hook 'dired-mode-hook (lambda () (dired-omit-mode 1)))
+
+(defvar conf/dired-omit-mode t
+  "Use an .dir-locals.el file to override dired-omit-mode for a
+  directory.")
+
+(add-to-list 'safe-local-variable-values '(conf/dired-omit-mode . nil))
+(add-to-list 'safe-local-variable-values '(conf/dired-omit-mode . t))
+
+(defun conf/dired-maybe-enable-omit-mode ()
+  (when conf/dired-omit-mode
+    (dired-omit-mode 1)))
+
+(add-hook 'dired-mode-hook #'conf/dired-maybe-enable-omit-mode)
 
 (defvar conf/video-player "smplayer")
 (defvar conf/pdf-viewer "mupdf")
