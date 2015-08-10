@@ -21,8 +21,11 @@
     (global-undo-tree-mode)
     (setq undo-tree-auto-save-history t))
 
+(when (package-installed-p 'smartparens)
+  (add-hook 'prog-mode-hook #'smartparens-mode))
+
 (require 'hybrid-exp)
-(with-package (smartparens)
+(with-package-lazy (smartparens)
   (define-key sp-keymap (kbd "C-M-f") #'sp-forward-sexp)
   (define-key sp-keymap (kbd "C-M-b") #'sp-backward-sexp)
   (define-key sp-keymap (kbd "C-M-u") #'sp-backward-up-sexp)
@@ -34,8 +37,7 @@
   (define-key sp-keymap (kbd "C-}") #'sp-forward-barf-sexp)
   (define-key sp-keymap (kbd "C-(") #'sp-backward-slurp-sexp)
   (define-key sp-keymap (kbd "C-{") #'sp-backward-barf-sexp)
-  (require 'smartparens-config nil :noerror)
-  (smartparens-global-mode 1))
+  (require 'smartparens-config nil :noerror))
 
 (with-package (highlight-symbol)
   (add-hook 'prog-mode-hook #'highlight-symbol-nav-mode))
