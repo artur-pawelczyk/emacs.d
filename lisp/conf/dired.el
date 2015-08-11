@@ -16,8 +16,9 @@
 (add-hook 'dired-mode-hook (lambda () (dired-omit-mode 1)))
 
 (defvar conf/video-player "smplayer")
+(defvar conf/pdf-viewer "mupdf")
 (setq dired-guess-shell-alist-user
-      '(("\\.pdf\\'" "mupdf")
+      '(("\\.pdf\\'" conf/pdf-viewer)
 	("\\.avi\\'" conf/video-player)
 	("\\.flv\\'" conf/video-player)
 	("\\.webm\\'" conf/video-player)
@@ -25,6 +26,6 @@
         ("\\.mp4.part\\'" conf/video-player)
 	("\\.mov\\'" conf/video-player)
         ("\\.mkv\\'" conf/video-player)
-	))
+        ("\\.m4v\\'" conf/video-player)))
 
 (provide 'conf/dired)
