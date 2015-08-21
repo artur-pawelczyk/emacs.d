@@ -1,0 +1,16 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: ListController column
+# key: column
+# binding: direct-keybinding
+# --
+<c:if test="\${col.name eq '${1:name}'}">
+        <h:column>
+            <f:facet name="header">
+                <t:commandSortHeader columnName="${2:c.name}" immediate="false">
+                    <c:import url="commandLinkParams.jsp" />
+                    <h:outputText value="${3:Name}" />
+                </t:commandSortHeader>
+            </f:facet>
+            <h:outputText value="#{elem.$1}" />
+        </h:column>
+</c:if>

@@ -36,4 +36,11 @@ source information if available in jdb process."
   (interactive (cl-assert (eq major-mode 'java-mode)))
   (gud-call (format "stop at %s:%s" (conf/current-java-full-class-name) (line-number-at-pos))))
 
+(defun conf/file-name->package (file-name)
+  (string-join (->> (split-string file-name "/")
+                    (-drop-while (lambda (e) (not (equal "java" e))))
+                    cdr
+                    (-take (- (length))))
+               "."))
+
 (provide 'conf/java)

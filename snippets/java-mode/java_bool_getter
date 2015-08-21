@@ -1,5 +1,5 @@
 # -*- mode: snippet; require-final-newline: nil -*-
-# name: java getter
+# name: java bool getter
 # key: is
 # binding: direct-keybinding
 # --

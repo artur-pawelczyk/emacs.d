@@ -4,7 +4,7 @@
 # --
 
 <managed-bean>
-    <managed-bean-name></managed-bean-name>
-    <managed-bean-class></managed-bean-class>
+    <managed-bean-name>${1:$(car (last (s-split "[.]" yas-text)))}</managed-bean-name>
+    <managed-bean-class>${1:class}</managed-bean-class>
     <managed-bean-scope>request</managed-bean-scope>
 </managed-bean>

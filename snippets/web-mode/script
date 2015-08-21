@@ -1,6 +1,6 @@
 # -*- mode: snippet; require-final-newline: nil -*-
-# name: local variable
-# key: var
+# name: <script>
+# key: scr
 # binding: direct-keybinding
 # --
-${1:var} ${2:${1:$(downcase-first-char yas-text)}}
+<script src="${1:path}"></script>
