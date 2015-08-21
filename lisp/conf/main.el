@@ -55,7 +55,11 @@
 (global-set-key (kbd "M-z") #'zap-to-char-exclusive)
 (global-set-key (kbd "M-/") #'hippie-expand)
 (global-set-key (kbd "M-SPC") #'cycle-spacing)
-(global-set-key (kbd "C-x c") #'calendar)
+
+;; This key binding gets overwritten by some package if set here.  Set
+;; it after init.
+(add-hook 'after-init-hook (lambda ()
+                             (global-set-key (kbd "C-x c") #'calendar)))
 
 ;; Enable `view-mode' when showing function definition from help buffer.
 (defun help-do-xref--enable-view-mode (&rest args)
