@@ -52,4 +52,11 @@
   (define-key helm-map (kbd "<f11>") nil)
   (define-key helm-map (kbd "<f12>") nil))
 
+(with-package-lazy (ido)
+  (when (package-installed-p 'ido-vertical-mode)
+    (setq ido-vertical-define-keys t)
+     (ido-vertical-mode)))
+
+(setq ido-case-fold t)
+
 (provide 'conf/completion)
