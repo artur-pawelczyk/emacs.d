@@ -14,6 +14,19 @@
   (global-set-key (kbd "M-x") 'helm-M-x)
   (global-set-key (kbd "C-x C-f") 'helm-find-files))
 
+(defun conf/ido-helm-hybrid-setup ()
+  "Use helm as main completion method and Ido for choosing
+buffers and files."
+  (interactive)
+  (ido-mode) ;; Documentation of `helm-completing-read-handlers-alist'
+             ;; claims that `ido-mode' does not need to be enabled,
+             ;; although `ido-make-buffer-list-hook' is not applied
+             ;; the mode is disabled.
+  (add-to-list 'helm-completing-read-handlers-alist '(find-file . ido))
+  (add-to-list 'helm-completing-read-handlers-alist '(switch-to-buffer . ido))
+  (global-set-key (kbd "C-x b") #'switch-to-buffer)
+  (global-set-key (kbd "C-x C-f") #'find-file))
+
 (eval-after-load "helm" #'conf/helm-setup-keys)
 
 (if (require 'helm nil 'noerror)
