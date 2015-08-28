@@ -25,7 +25,6 @@
         ggtags
         flycheck
         javadoc-lookup
-        skewer
         lacarte
         sql-indent
         s
