@@ -23,6 +23,7 @@ buffers and files."
              ;; although `ido-make-buffer-list-hook' is not applied
              ;; the mode is disabled.
   (add-to-list 'helm-completing-read-handlers-alist '(find-file . ido))
+  (add-to-list 'helm-completing-read-handlers-alist '(find-file-other-window . ido))
   (add-to-list 'helm-completing-read-handlers-alist '(switch-to-buffer . ido))
   (global-set-key (kbd "C-x b") #'switch-to-buffer)
   (global-set-key (kbd "C-x C-f") #'find-file))
