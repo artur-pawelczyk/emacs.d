@@ -79,4 +79,9 @@ buffers and files."
 
 (add-hook 'ido-make-buffer-list-hook #'ido-move-dired-buffers-last)
 
+(defun conf/ido-keys ()
+  (define-key ido-file-dir-completion-map (kbd "C-l") #'ido-up-directory))
+
+(add-hook 'ido-setup-hook #'conf/ido-keys)
+
 (provide 'conf/completion)
