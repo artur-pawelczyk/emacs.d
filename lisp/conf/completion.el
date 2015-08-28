@@ -59,4 +59,11 @@
 
 (setq ido-case-fold t)
 
+(defun ido-move-dired-buffers-last ()
+  (setq ido-temp-list (let* ((first (-filter (lambda (b) (not (dired-buffer? b))) ido-temp-list))
+                             (last (-filter (lambda (b) (dired-buffer? b)) ido-temp-list)))
+                        (append first last))))
+
+(add-hook 'ido-make-buffer-list-hook #'ido-move-dired-buffers-last)
+
 (provide 'conf/completion)

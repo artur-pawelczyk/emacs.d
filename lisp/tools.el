@@ -143,4 +143,11 @@ See `with-package-lazy'"
               (kill-buffer buffer)))
           (buffer-list)))
 
+(defun buffer-major-mode (buffer-or-name)
+  (with-current-buffer buffer-or-name
+    major-mode))
+
+(defun dired-buffer? (buffer-or-name)
+  (eq 'dired-mode (buffer-major-mode buffer-or-name)))
+
 (provide 'tools)
