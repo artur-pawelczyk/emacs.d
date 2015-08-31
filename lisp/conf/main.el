@@ -102,4 +102,9 @@
 (global-set-key (kbd "C-x ,") #'winner-undo)
 (global-set-key (kbd "C-x .") #'winner-redo)
 
+;; Calc
+
+(with-package-lazy (calc-mode)
+    (calc-group-char (aref " " 0)))
+
 (provide 'conf/main)
