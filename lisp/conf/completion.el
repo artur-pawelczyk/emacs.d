@@ -72,6 +72,7 @@ buffers and files."
      (ido-vertical-mode)))
 
 (setq ido-case-fold t)
+(setq ido-enable-regexp t)
 
 (defun ido-move-dired-buffers-last ()
   (setq ido-temp-list (let* ((first (-filter (lambda (b) (not (dired-buffer? b))) ido-temp-list))
