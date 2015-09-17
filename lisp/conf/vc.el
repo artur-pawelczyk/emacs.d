@@ -29,4 +29,7 @@
 (with-package-lazy (magit)
   (define-key magit-status-mode-map (kbd "M-u") #'magit-section-up))
 
+(with-package-lazy (magit-diff)
+  (define-key magit-revision-mode-map (kbd "M-u") #'magit-section-up))
+
 (provide 'conf/vc)
