@@ -1,0 +1,6 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: c:url
+# key: c:url
+# binding: direct-keybinding
+# --
+<c:url var="${2:${1:$(car (last (split-string yas-text "/")))}}" value="$1" />
