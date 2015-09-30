@@ -1,5 +1,8 @@
+;; -*- mode: emacs-lisp; lexical-binding: t
+
 (require 'subword)
 (require 'cl)
+(require 's)
 
 (defun kill-word-or-region (arg)
   (interactive "p")
@@ -149,5 +152,30 @@ See `with-package-lazy'"
 
 (defun dired-buffer? (buffer-or-name)
   (eq 'dired-mode (buffer-major-mode buffer-or-name)))
+
+(defun update (what to e)
+  "To be used with `mapcar'.
+
+(mapcar (-partial #'update :b :x) '(:a :b :c)) => '(:a :x :c)"
+  (if (eq e what)
+      to
+    e))
+
+(defun comp (a b)
+  "Function composition."
+  (lambda (&rest args) (funcall a (apply b args))))
+
+(defun constantly (value)
+  "Always return VALUE."
+  (lambda (&rest args) value))
+
+(defun return-ordered (&rest values)
+  "Return function that takes n and gives (nth n VALUES)."
+  (lambda (n)
+    (nth n values)))
+
+(defun conf/format-simple (format &rest values)
+  "Replace $0...$n with VALUES."
+  (s-format format (apply #'return-ordered values)))
 
 (provide 'tools)
