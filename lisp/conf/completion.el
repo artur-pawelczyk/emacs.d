@@ -49,7 +49,8 @@ buffers and files."
 (recentf-mode t)
 (setq helm-ff-file-name-history-use-recentf t
       helm-buffers-fuzzy-matching t
-      helm-split-window-in-side-p t)
+      helm-split-window-in-side-p t
+      helm-ag-base-command "ag --nocolor --nogroup --ignore-case")
 
 (with-package-lazy (helm)
   (define-key helm-map (kbd "C-w") #'kill-word-or-region)

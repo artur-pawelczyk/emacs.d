@@ -10,9 +10,6 @@
   (when (package-installed-p 'helm-projectile)
     (conf/projectile-helm-functionality)))
 
-(with-package (helm-projectile)
-  (helm-projectile-on))
-
 (defvar helm-projectile-hook nil)
 
 (defun helm-projectile--after-toggle (toggle &rest other)
