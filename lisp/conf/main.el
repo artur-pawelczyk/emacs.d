@@ -56,6 +56,7 @@
 (global-set-key (kbd "M-/") #'hippie-expand)
 (global-set-key (kbd "M-SPC") #'cycle-spacing)
 (global-set-key (kbd "C-x C-d") #'dired)
+(global-set-key (kbd "M-o") #'other-window)
 
 ;; This key binding gets overwritten by some package if set here.  Set
 ;; it after init.
