@@ -1,6 +1,6 @@
 (setq sml/theme 'respectful)
 (with-package (smart-mode-line)
-  (add-hook 'after-init-hook #'sml/setup))
+  (sml/setup))
 
 (setq rm-blacklist '(" MRev" " Helm" " AC"
                      " Undo-Tree" " Abbrev" " SP"
