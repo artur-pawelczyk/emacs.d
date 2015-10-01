@@ -107,6 +107,17 @@
 ;; Calc
 
 (with-package-lazy (calc-mode)
-    (calc-group-char (aref " " 0)))
+  (calc-group-char (aref " " 0)))
+
+;; EWW
+(defun eww-open-relative ()
+  (interactive)
+  (if (eq major-mode 'eww-mode)
+      (eww (read-from-minibuffer "Url: " eww-current-url))
+    (user-error "Not in an eww buffer")))
+
+(with-package-lazy (eww)
+  (define-key eww-mode-map (kbd "o") #'eww)
+  (define-key eww-mode-map (kbd "O") #'eww-open-relative))
 
 (provide 'conf/main)
