@@ -112,6 +112,11 @@ buffers and files."
 
 (add-hook 'ido-setup-hook #'conf/ido-keys)
 
+(defun ido-add-dot-file ()
+  (setq ido-temp-list (cons "." ido-temp-list)))
+
+(add-hook 'ido-make-file-list-hook #'ido-add-dot-file)
+
 
 ;; Auto-complete is currenty used only for Jedi
 (with-package-lazy (auto-complete-mode)
