@@ -1,40 +1,66 @@
 (defun conf/enable-ido ()
+  (interactive)
   (require 'ido)
   (ido-mode 1)
-  (ido-everywhere 1))
+  (ido-everywhere 1)
+  (global-set-key (kbd "C-x b") #'ido-switch-buffer)
+  (global-set-key (kbd "C-x 4 b") #'ido-switch-buffer-other-window)
+  (global-set-key (kbd "C-x 5 b") #'ido-switch-buffer-other-frame)
+  (global-set-key (kbd "C-x C-f") #'ido-find-file)
+  (global-set-key (kbd "C-x 4 C-f") #'ido-find-file-other-window)
+  (global-set-key (kbd "C-x C-4 C-f") #'ido-find-file-other-window))
 
 (defun conf/enable-helm ()
+  (interactive)
   (require 'helm)
-  (helm-mode t)
-  (helm-adaptive-mode t))
-
-(defun conf/helm-setup-keys ()
   (require 'helm-config)
+  (helm-mode 1)
+  (helm-adaptive-mode 1)
   (global-set-key (kbd "C-x b") 'helm-buffers-list)
   (global-set-key (kbd "M-x") 'helm-M-x)
   (global-set-key (kbd "C-x C-f") 'helm-find-files))
+
+(defun conf/completion-default-keys ()
+  (global-set-key (kbd "M-x") #'execute-extended-command)
+  (global-set-key (kbd "C-x b") #'switch-to-buffer)
+  (global-set-key (kbd "C-x 4 b") #'switch-to-buffer-other-window)
+  (global-set-key (kbd "C-x 5 b") #'switch-to-buffer-other-frame)
+  (global-set-key (kbd "C-x C-f") #'find-file)
+  (global-set-key (kbd "C-x 4 C-f") #'find-file-other-window)
+  (global-set-key (kbd "C-x C-4 C-f") #'find-file-other-window))
+
+(defun conf/disable-ido ()
+  (interactive)
+  (ido-mode -1)
+  (conf/completion-default-keys))
+
+(defun conf/disable-helm ()
+  (interactive)
+  (helm-mode -1)
+  (conf/completion-default-keys))
 
 (defun conf/ido-helm-hybrid-setup ()
   "Use helm as main completion method and Ido for choosing
 buffers and files."
   (interactive)
+  (conf/enable-helm)
   (ido-mode) ;; Documentation of `helm-completing-read-handlers-alist'
              ;; claims that `ido-mode' does not need to be enabled,
              ;; although `ido-make-buffer-list-hook' is not applied
-             ;; the mode is disabled.
+             ;; when the mode is disabled.
   (add-to-list 'helm-completing-read-handlers-alist '(find-file . ido))
   (add-to-list 'helm-completing-read-handlers-alist '(find-file-other-window . ido))
   (add-to-list 'helm-completing-read-handlers-alist '(switch-to-buffer . ido))
   (global-set-key (kbd "C-x b") #'switch-to-buffer)
   (global-set-key (kbd "C-x C-f") #'find-file))
 
-(eval-after-load "helm" #'conf/helm-setup-keys)
-
 (if (require 'helm nil 'noerror)
-    (conf/enable-helm)
+    (conf/ido-helm-hybrid-setup)
   (conf/enable-ido))
 
-(defvar conf/imenu-function (if (require 'helm nil 'noerror)
+
+;; helm-imenu
+(defvar conf/imenu-function (if (package-installed-p 'helm)
                                 #'helm-imenu
                               #'imenu))
 
@@ -42,11 +68,8 @@ buffers and files."
   (interactive)
   (call-interactively conf/imenu-function))
 
-(with-package-lazy (auto-complete-mode)
-  (require 'auto-complete-config)
-  (ac-config-default))
-
-(recentf-mode t)
+
+;; Helm configuration
 (setq helm-ff-file-name-history-use-recentf t
       helm-buffers-fuzzy-matching t
       helm-split-window-in-side-p t
@@ -67,6 +90,8 @@ buffers and files."
   (define-key helm-map (kbd "<f11>") nil)
   (define-key helm-map (kbd "<f12>") nil))
 
+
+;; Ido
 (with-package-lazy (ido)
   (when (package-installed-p 'ido-vertical-mode)
     (setq ido-vertical-define-keys t)
@@ -86,5 +111,14 @@ buffers and files."
   (define-key ido-file-dir-completion-map (kbd "C-l") #'ido-up-directory))
 
 (add-hook 'ido-setup-hook #'conf/ido-keys)
+
+
+;; Auto-complete is currenty used only for Jedi
+(with-package-lazy (auto-complete-mode)
+  (require 'auto-complete-config)
+  (ac-config-default))
+
+
+(recentf-mode t)
 
 (provide 'conf/completion)
