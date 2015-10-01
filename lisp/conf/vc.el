@@ -26,11 +26,17 @@
   (define-key vc-dir-mode-map ":" #'magit-git-command)
   (define-key vc-dir-mode-map "$" #'magit-process))
 
+
+;; Magit key bindings
 (with-package-lazy (magit)
   (define-key magit-status-mode-map (kbd "M-u") #'magit-section-up))
 
 (with-package-lazy (magit-diff)
   (define-key magit-revision-mode-map (kbd "M-u") #'magit-section-up))
+
+;; Change hard to type `=p' binding to `=g':
+(with-package-lazy (magit-log)
+    (setq magit-log-popup (-tree-map (-partial #'update ?p ?g) magit-log-popup)))
 
 
 (with-package-lazy (magit)
