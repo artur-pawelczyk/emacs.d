@@ -55,6 +55,7 @@
 (global-set-key (kbd "M-z") #'zap-to-char-exclusive)
 (global-set-key (kbd "M-/") #'hippie-expand)
 (global-set-key (kbd "M-SPC") #'cycle-spacing)
+(global-set-key (kbd "C-x C-d") #'dired)
 
 ;; This key binding gets overwritten by some package if set here.  Set
 ;; it after init.
