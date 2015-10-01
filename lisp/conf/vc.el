@@ -32,4 +32,10 @@
 (with-package-lazy (magit-diff)
   (define-key magit-revision-mode-map (kbd "M-u") #'magit-section-up))
 
+
+(with-package-lazy (magit)
+  (magit-wip-after-save-mode 1)
+  (magit-wip-before-change-mode 1))
+
+
 (provide 'conf/vc)
