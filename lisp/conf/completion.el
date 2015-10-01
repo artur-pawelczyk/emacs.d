@@ -99,6 +99,7 @@ buffers and files."
 
 (setq ido-case-fold t)
 (setq ido-enable-regexp t)
+(setq ido-default-buffer-method 'selected-window) 
 
 (defun ido-move-dired-buffers-last ()
   (setq ido-temp-list (let* ((first (-filter (lambda (b) (not (dired-buffer? b))) ido-temp-list))
