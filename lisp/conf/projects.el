@@ -1,6 +1,7 @@
 (setq projectile-indexing-method 'alien)
 (setq projectile-switch-project-action #'projectile-dired)
 
+
 (defun conf/projectile-helm-functionality ()
   "Use some functions for `helm-projectile' even if it is not enabled."
   (define-key projectile-command-map (kbd "s s") #'helm-projectile-ag))
@@ -21,5 +22,11 @@
                                   (setq projectile-switch-project-action #'projectile-dired)))
 
 (add-hook 'helm-projectile-hook #'conf/projectile-helm-functionality)
+
+
+(defun display-startup-screen--enable-projectile (&rest args)
+  (projectile-mode t))
+
+(advice-add #'display-startup-screen :after #'display-startup-screen--enable-projectile)
 
 (provide 'conf/projects)
