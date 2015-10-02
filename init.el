@@ -25,6 +25,7 @@
 (autoload 'scilab-mode "scilab" nil :interactive)
 (autoload 'scilab-shell "scilab" nil :interactive)
 
+(load-custom-file-if-exists)
 (require 'conf/main)
 (require 'conf/dired)
 (require 'conf/buffer-list)
@@ -51,8 +52,6 @@
 (require 'server)
 (unless (server-running-p)
   (server-start))
-
-(load-custom-file-if-exists)
 
 (when (file-exists-p (user-file "after-init.el"))
   (load-file (user-file "after-init.el")))
