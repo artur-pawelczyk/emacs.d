@@ -54,9 +54,14 @@ buffers and files."
   (global-set-key (kbd "C-x b") #'switch-to-buffer)
   (global-set-key (kbd "C-x C-f") #'find-file))
 
-(if (require 'helm nil 'noerror)
-    (conf/ido-helm-hybrid-setup)
-  (conf/enable-ido))
+(after-init
+    (cond
+     ((require 'ivy nil :noerror)
+      (ivy-mode 1)
+      (conf/enable-ido))
+     ((require 'helm nil :noerror)
+      (conf/ido-helm-hybrid-setup))
+     (t (conf/enable-ido))))
 
 
 ;; helm-imenu

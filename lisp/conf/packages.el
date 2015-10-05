@@ -22,6 +22,7 @@
         helm-projectile
         helm-swoop
         helm-c-yasnippet
+        swiper ;; provides ivy-mode
         ggtags
         flycheck
         javadoc-lookup
