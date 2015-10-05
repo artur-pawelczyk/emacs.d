@@ -121,6 +121,10 @@ See `with-package-lazy'"
        (with-package-lazy ,packages ,@body)
        ,@require-stmt)))
 
+(defmacro after-init (&rest body)
+  "Evaluate body on `after-init-hook'."
+  `(add-hook 'after-init-hook (lambda () (progn ,@body))))
+
 (defun conf/open-block (id action context)
   "Function to be used as a hook for Smartparens"
   (when (eq action 'insert)
