@@ -85,7 +85,7 @@
             (beginning-of-line)
             (search-forward "package ")
             (intern (buffer-substring-no-properties (point) name-end))))
-      "")))
+      nil)))
 
 (defun ji-class-name ()
   (save-excursion
