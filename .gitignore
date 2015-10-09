@@ -29,3 +29,5 @@
 /ji-db
 /helm-adaptive-history
 after-init.el
+/abbrev_defs
+/smex-items
