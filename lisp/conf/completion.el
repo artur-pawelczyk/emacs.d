@@ -1,3 +1,6 @@
+;; Loads the aliases
+(require 'helm-config nil :noerror)
+
 (defun conf/enable-ido ()
   (interactive)
   (require 'ido)
@@ -13,7 +16,6 @@
 (defun conf/enable-helm ()
   (interactive)
   (require 'helm)
-  (require 'helm-config)
   (helm-mode 1)
   (helm-adaptive-mode 1)
   (global-set-key (kbd "C-x b") 'helm-buffers-list)

@@ -6,7 +6,7 @@
 
 (setq org-src-fontify-natively t)
 
-(with-package-lazy (org helm)
+(with-package-lazy (org)
   (define-key org-mode-map (kbd "C-c C-j") #'helm-org-in-buffer-headings))
 
 ;; org-crypt
