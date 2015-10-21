@@ -42,8 +42,7 @@
 
 
 (with-package-lazy (magit)
-  (magit-wip-after-save-mode 1)
-  (magit-wip-before-change-mode 1))
+  (magit-wip-after-save-mode 1))
 
 
 (provide 'conf/vc)
