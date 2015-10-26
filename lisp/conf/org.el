@@ -9,6 +9,13 @@
 (with-package-lazy (org)
   (define-key org-mode-map (kbd "C-c C-j") #'helm-org-in-buffer-headings))
 
+(defun conf/org-goto-map--add-custom-keys ()
+  (define-key org-goto-map (kbd "C-n") #'next-line)
+  (define-key org-goto-map (kbd "C-p") #'previous-line))
+
+(with-package-lazy (org)
+  (advice-add 'org-goto-map :after #'conf/org-goto-map--add-custom-keys))
+
 ;; org-crypt
 (with-package-lazy (org org-crypt)
   (org-crypt-use-before-save-magic)
