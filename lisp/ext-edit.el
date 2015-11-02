@@ -18,15 +18,15 @@
   (interactive)
   (let ((new-contents (buffer-substring (point-min) (point-max)))
         (overlay ext-edit-origin-overlay))
-    (with-current-buffer (overlay-buffer overlay)
-      (save-excursion
-        (let ((start (overlay-start overlay))
-              (end (overlay-end overlay)))
-          (delete-region start end)
-          (delete-overlay overlay)
-          (goto-char start)
-          (insert new-contents)
-          (setq ext-edit-origin-overlay (make-overlay start (point))))))))
+    (setq ext-edit-origin-overlay (with-current-buffer (overlay-buffer overlay)
+                                    (save-excursion
+                                      (let ((start (overlay-start overlay))
+                                            (end (overlay-end overlay)))
+                                        (delete-region start end)
+                                        (delete-overlay overlay)
+                                        (goto-char start)
+                                        (insert new-contents)
+                                        (make-overlay start (point))))))))
 
 (defun ext-edit-commit ()
   "Finish editing in the temporary buffer."
