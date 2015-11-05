@@ -8,6 +8,7 @@
         js2-mode
         magit
         org
+        org-bullets
         php-mode
         projectile
         solarized-theme
@@ -19,6 +20,7 @@
         slime
         markdown-mode
         helm
+        helm-ag
         helm-projectile
         helm-swoop
         helm-c-yasnippet
@@ -33,7 +35,8 @@
         emms
         expand-region
         macrostep
-        linum-relative))
+        linum-relative
+        ido-vertical-mode))
 
 
 (add-to-list 'package-archives '("mepla" . "http://melpa.milkbox.net/packages/"))
