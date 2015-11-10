@@ -1,0 +1,6 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: new variable
+# key: new
+# binding: direct-keybinding
+# --
+${1:Type} ${2:${1:$(downcase-first-char yas-text)}} = new ${3:$1}
