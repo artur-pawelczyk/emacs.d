@@ -30,4 +30,9 @@
 (with-package-lazy (dired)
   (define-key dired-mode-map "E" #'emms-add-dired-and-show))
 
+(autoload 'emms-volume-minor-mode "emms-volume" nil t nil)
+
+(with-package-lazy (emms)
+  (add-hook 'emms-playlist-mode-hook #'emms-volume-minor-mode))
+
 (provide 'conf/emms)
