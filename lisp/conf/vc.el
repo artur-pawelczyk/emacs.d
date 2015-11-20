@@ -40,6 +40,11 @@
 (with-package-lazy (magit-log)
     (setq magit-log-popup (-tree-map (-partial #'update ?p ?g) magit-log-popup)))
 
+(with-package-lazy (magit-log)
+  (let* ((new-entry '(?d "Sort by date" "--date-order"))
+         (new-list (cons new-entry (plist-get magit-log-popup :switches))))
+    (setq magit-log-popup (plist-put magit-log-popup :switches new-list))))
+
 
 (with-package-lazy (magit)
   (magit-wip-after-save-mode 1))
