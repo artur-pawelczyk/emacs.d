@@ -30,4 +30,9 @@
 (with-package-lazy (dired)
   (define-key dired-mode-map "E" #'emms-add-dired-and-show))
 
+(with-package-lazy (emms-playlist-mode)
+  (define-key emms-playlist-mode-map (kbd "-") #'emms-volume-lower)
+  (define-key emms-playlist-mode-map (kbd "=") #'emms-volume-raise)
+  (define-key emms-playlist-mode-map (kbd "+") #'emms-volume-raise))
+
 (provide 'conf/emms)
