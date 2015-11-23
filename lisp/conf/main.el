@@ -86,7 +86,8 @@
 
 ;; Linum-relative
 (with-package-lazy (linum)
-  (require 'linum-relative nil :noerror))
+  (with-package (linum-relative)
+    (linum-relative-toggle)))
 
 ;; Helm swoop
 (when (package-installed-p 'helm-swoop)
