@@ -8,6 +8,7 @@
 
 (with-package (projectile)
   (projectile-global-mode)
+  (global-set-key (kbd "C-x p") projectile-command-map)
   (when (package-installed-p 'helm-projectile)
     (conf/projectile-helm-functionality)))
 
