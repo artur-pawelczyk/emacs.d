@@ -1,4 +1,5 @@
 (setq ediff-window-setup-function 'ediff-setup-windows-plain)
+(setq ediff-grab-mouse nil)
 
 (add-hook 'ediff-prepare-buffer-hook (lambda ()
                                        (visible-mode 1)
