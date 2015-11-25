@@ -135,4 +135,14 @@
   (define-key ag-mode-map (kbd "n") #'next-error-no-select)
   (define-key ag-mode-map (kbd "p") #'previous-error-no-select))
 
+;; Rename the shell buffers.
+(defun async-shell-command--set-buffer-name (orig-fun command &optional orig-buffer error-buffer)
+  (let* ((command-name (nth 0 (s-split " " command)))
+         (buffer-name (concat "*" command-name ": shell command*")))
+    (if orig-buffer
+        (apply orig-fun command orig-buffer args)
+      (funcall orig-fun command buffer-name buffer-name))))
+
+(advice-add 'shell-command :around #'async-shell-command--set-buffer-name)
+
 (provide 'conf/main)
