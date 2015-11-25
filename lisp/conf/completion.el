@@ -82,9 +82,10 @@ buffers and files."
       helm-split-window-in-side-p t
       helm-ag-base-command "ag --nocolor --nogroup --ignore-case")
 
-;; Customizing `helm-command-prefix-key' triggers come code that would
-;; not run if set by `setq'.
-(custom-set-variables '(helm-command-prefix-key "C-c h"))
+;; Customizing some helm options triggers come code that would not
+;; run if set by `setq'.
+(custom-set-variables '(helm-command-prefix-key "C-c h")
+                      '(helm-minibuffer-history-key "M-r"))
 
 (with-package-lazy (helm)
   (define-key helm-map (kbd "C-w") #'kill-word-or-region)
