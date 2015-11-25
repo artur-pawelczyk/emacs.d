@@ -19,7 +19,9 @@
 
 (with-package (undo-tree)
     (global-undo-tree-mode)
-    (setq undo-tree-auto-save-history t))
+    (setq undo-tree-auto-save-history t)
+    (setq undo-tree-history-directory-alist
+      `((".*" . ,(expand-file-name "auto-save/" user-emacs-directory)))))
 
 (when (package-installed-p 'smartparens)
   (add-hook 'prog-mode-hook #'smartparens-mode))
@@ -120,5 +122,12 @@
 (with-package-lazy (eww)
   (define-key eww-mode-map (kbd "o") #'eww)
   (define-key eww-mode-map (kbd "O") #'eww-open-relative))
+
+;; Auto save
+(setq backup-directory-alist
+      `(("." . ,(expand-file-name "auto-save/" user-emacs-directory))))
+
+(setq auto-save-file-name-transforms
+      `((".*" ,(expand-file-name "auto-save/" user-emacs-directory) t)))
 
 (provide 'conf/main)
