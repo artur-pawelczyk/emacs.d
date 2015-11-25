@@ -130,4 +130,9 @@
 (setq auto-save-file-name-transforms
       `((".*" ,(expand-file-name "auto-save/" user-emacs-directory) t)))
 
+;; The silver searcher
+(with-package-lazy (ag)
+  (define-key ag-mode-map (kbd "n") #'next-error-no-select)
+  (define-key ag-mode-map (kbd "p") #'previous-error-no-select))
+
 (provide 'conf/main)

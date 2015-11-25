@@ -2,16 +2,17 @@
 (setq projectile-switch-project-action #'projectile-dired)
 
 
-(defun conf/projectile-helm-functionality ()
-  "Use some functions for `helm-projectile' even if it is not enabled."
-  (define-key projectile-command-map (kbd "s s") #'helm-projectile-ag))
+(defun projectile-ag-regex ()
+    (interactive)
+    (let ((current-prefix-arg t))
+      (call-interactively #'projectile-ag)))
 
 (with-package (projectile)
   (projectile-global-mode)
   (global-set-key (kbd "C-x p") projectile-command-map)
-  (when (package-installed-p 'helm-projectile)
-    (conf/projectile-helm-functionality)))
+  (define-key projectile-command-map (kbd "s s") #'projectile-ag-regex))
 
+
 (defvar helm-projectile-hook nil)
 
 (defun helm-projectile--after-toggle (toggle &rest other)
