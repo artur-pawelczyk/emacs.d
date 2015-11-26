@@ -55,6 +55,12 @@ automatically"
 (define-key ext-edit-mode-map (kbd "C-c C-c") #'ext-edit-commit)
 (define-key ext-edit-mode-map (kbd "C-x C-s") #'ext-edit-save)
 
+(defun ext-edit-erase-insert (&rest args)
+  (erase-buffer)
+  (apply #'insert args)
+  (set-buffer-modified-p nil)
+  (setq buffer-undo-list nil))
+
 (defun ext-edit-region (&optional mode)
   "Edit the region in a tempoaray buffer using the MODE."
   (interactive "CMajor mode: ")
@@ -65,7 +71,7 @@ automatically"
     (deactivate-mark)
     (overlay-put overlay 'ext-edit editor-buffer-name)
     (switch-to-buffer-other-window (generate-new-buffer editor-buffer-name))
-    (insert contents)
+    (ext-edit-erase-insert contents)
     (when mode
       (funcall mode))
     (ext-edit-mode)
