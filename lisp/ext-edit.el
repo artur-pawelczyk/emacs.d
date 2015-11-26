@@ -64,7 +64,7 @@ automatically"
          (overlay (make-overlay (mark) (point))))
     (deactivate-mark)
     (overlay-put overlay 'ext-edit editor-buffer-name)
-    (switch-to-buffer-other-window (get-buffer-create editor-buffer-name))
+    (switch-to-buffer-other-window (generate-new-buffer editor-buffer-name))
     (insert contents)
     (when mode
       (funcall mode))
