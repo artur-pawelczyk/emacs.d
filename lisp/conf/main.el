@@ -140,7 +140,7 @@
   (let* ((command-name (nth 0 (s-split " " command)))
          (buffer-name (concat "*" command-name ": shell command*")))
     (if orig-buffer
-        (apply orig-fun command orig-buffer args)
+        (apply orig-fun command orig-buffer error-buffer)
       (funcall orig-fun command buffer-name buffer-name))))
 
 (advice-add 'shell-command :around #'async-shell-command--set-buffer-name)
