@@ -27,6 +27,7 @@
 
 (load-custom-file-if-exists)
 (require 'conf/main)
+(require 'conf/basic-editing)
 (require 'conf/dired)
 (require 'conf/buffer-list)
 (require 'conf/completion)
