@@ -28,12 +28,18 @@
                                         (insert new-contents)
                                         (make-overlay start (point))))))))
 
+(defun ext-edit-kill ()
+  (interactive)
+  (let ((origin (overlay-buffer ext-edit-origin-overlay)))
+    (delete-overlay ext-edit-origin-overlay)
+    (kill-buffer)
+    (switch-to-buffer origin)))
+
 (defun ext-edit-commit ()
   "Finish editing in the temporary buffer."
   (interactive)
   (ext-edit-transfer-to-origin)
-  (delete-overlay ext-edit-origin-overlay)
-  (kill-buffer))
+  (ext-edit-kill))
 
 (defun ext-edit-save ()
   "Move the contents and save the original buffer."
@@ -54,6 +60,7 @@ automatically"
 
 (define-key ext-edit-mode-map (kbd "C-c C-c") #'ext-edit-commit)
 (define-key ext-edit-mode-map (kbd "C-x C-s") #'ext-edit-save)
+(define-key ext-edit-mode-map (kbd "C-c C-k") #'ext-edit-kill)
 
 (defun ext-edit-erase-insert (&rest args)
   (erase-buffer)
