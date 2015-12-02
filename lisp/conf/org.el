@@ -36,4 +36,7 @@
 (global-set-key (kbd "C-c a") #'org-agenda)
 (global-set-key (kbd "C-c c") #'org-capture)
 
+(with-package-lazy (org)
+  (add-to-list 'org-show-siblings '(org-goto . t)))
+
 (provide 'conf/org)
