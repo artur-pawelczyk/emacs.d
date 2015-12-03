@@ -71,6 +71,13 @@ Does not delete the prompt."
           (rest (substring str 1)))
       (concat (downcase first) rest))))
 
+(defun upcase-first-char (str)
+  (if (= (length str) 0)
+      str
+    (let ((first (substring str 0 1))
+          (rest (substring str 1)))
+      (concat (upcase first) rest))))
+
 (defun javadoc-at-point ()
   (interactive)
   (let ((name-to-find (projectile-symbol-at-point)))
@@ -181,5 +188,9 @@ See `with-package-lazy'"
 (defun conf/format-simple (format &rest values)
   "Replace $0...$n with VALUES."
   (s-format format (apply #'return-ordered values)))
+
+(defun match-all-in-buffer (pattern buffer)
+  (with-current-buffer buffer)
+  (s-match-strings-all pattern (buffer-substring (point-min) (point-max))))
 
 (provide 'tools)
