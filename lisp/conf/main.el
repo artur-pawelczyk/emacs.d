@@ -145,4 +145,15 @@
 
 (advice-add 'shell-command :around #'async-shell-command--set-buffer-name)
 
+
+(defvar linum-mode-suppress-update nil
+  "If non-nil, prevents linum-mode from updating.  Meant to make
+  resizing windows work faster.")
+
+(defun linum-update-current--maybe-suppress (orig-fun &rest args)
+  (unless linum-mode-suppress-update
+    (apply orig-fun args)))
+
+(advice-add #'linum-update-current :around #'linum-update-current--maybe-suppress)
+
 (provide 'conf/main)
