@@ -45,6 +45,11 @@
          (new-list (cons new-entry (plist-get magit-log-popup :switches))))
     (setq magit-log-popup (plist-put magit-log-popup :switches new-list))))
 
+(with-package-lazy (magit-log)
+  (let* ((new-entry '(?m "No merges" "--no-merges"))
+         (new-list (cons new-entry (plist-get magit-log-popup :switches))))
+    (setq magit-log-popup (plist-put magit-log-popup :switches new-list))))
+
 
 (with-package-lazy (magit)
   (magit-wip-after-save-mode 1))
