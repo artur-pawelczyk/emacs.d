@@ -40,7 +40,7 @@ source information if available in jdb process."
   (string-join (->> (split-string file-name "/")
                     (-drop-while (lambda (e) (not (equal "java" e))))
                     cdr
-                    (-take (- (length))))
+                    -butlast)
                "."))
 
 (provide 'conf/java)
