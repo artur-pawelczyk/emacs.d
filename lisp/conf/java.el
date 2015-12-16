@@ -1,6 +1,8 @@
 (add-hook 'java-mode-hook #'subword-mode)
-(add-hook 'java-mode-hook #'ggtags-mode)
 (add-hook 'java-mode-hook #'semantic-mode)
+
+(when (package-installed-p 'ggtags)
+  (add-hook 'java-mode-hook #'ggtags-mode))
 
 (with-package-lazy (cc-mode)
   (define-key java-mode-map (kbd "C-c .") #'semantic-ia-fast-jump))
