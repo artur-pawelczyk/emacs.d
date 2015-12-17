@@ -32,6 +32,7 @@
         sql-indent
         s
         dash
+        dash-functional
         emms
         expand-region
         macrostep
