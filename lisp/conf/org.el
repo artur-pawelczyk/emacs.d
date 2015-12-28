@@ -37,6 +37,7 @@
 (global-set-key (kbd "C-c c") #'org-capture)
 
 (with-package-lazy (org)
-  (add-to-list 'org-show-siblings '(org-goto . t)))
+  (when (boundp 'org-show-siblings)
+    (add-to-list 'org-show-siblings '(org-goto . t))))
 
 (provide 'conf/org)
