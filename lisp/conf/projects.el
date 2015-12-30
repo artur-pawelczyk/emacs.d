@@ -1,5 +1,5 @@
 (setq projectile-indexing-method 'alien)
-(setq projectile-switch-project-action #'projectile-dired)
+(setq projectile-switch-project-action #'projectile-commander)
 
 
 (defun projectile-ag-regex ()
@@ -21,7 +21,7 @@
 (advice-add 'helm-projectile-toggle :after #'helm-projectile--after-toggle)
 
 (add-hook 'helm-projectile-hook (lambda ()
-                                  (setq projectile-switch-project-action #'projectile-dired)))
+                                  (setq projectile-switch-project-action #'projectile-commander)))
 
 (add-hook 'helm-projectile-hook #'conf/projectile-helm-functionality)
 
