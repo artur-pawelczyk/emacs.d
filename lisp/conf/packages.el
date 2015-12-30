@@ -14,16 +14,12 @@
         solarized-theme
         web-mode
         yasnippet
-        undo-tree
         smart-mode-line
         smartparens
         slime
         markdown-mode
         helm
-        helm-ag
         helm-projectile
-        helm-swoop
-        helm-c-yasnippet
         swiper ;; provides ivy-mode
         ggtags
         flycheck

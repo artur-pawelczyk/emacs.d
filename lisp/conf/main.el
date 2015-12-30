@@ -41,10 +41,6 @@
   (define-key smartparens-mode-map (kbd "C-{") #'sp-backward-barf-sexp)
   (require 'smartparens-config nil :noerror))
 
-(with-package (highlight-symbol)
-  (add-hook 'prog-mode-hook #'highlight-symbol-nav-mode))
-
-
 (setq calendar-week-start-day 1)
 (setq async-shell-command-buffer 'new-buffer)
 
@@ -90,12 +86,6 @@
 (with-package-lazy (linum)
   (with-package (linum-relative)
     (linum-relative-toggle)))
-
-;; Helm swoop
-(when (package-installed-p 'helm-swoop)
-  ;; Bind in place of `isearch-forward-regexp'.  Use `C-u C-s' to
-  ;; toggle regexp isearch.
-  (global-set-key (kbd "C-M-s") #'helm-swoop))
 
 ;; Helm menubar
 (when (package-installed-p 'lacarte)
