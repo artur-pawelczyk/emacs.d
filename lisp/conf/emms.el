@@ -1,4 +1,4 @@
-(with-package (emms-setup emms-info-metaflac)
+(with-package-lazy (emms)
   (emms-all)
   (emms-mode-line -1)
   (setq emms-player-list '(emms-player-mplayer))
@@ -7,8 +7,7 @@
   (setq emms-playlist-buffer-name "*EMMS Playlist*"))
 
 (defvar conf/add-to-playlist-function (lambda (&rest args) (message "No music player installed")))
-
-(with-package (emms)
+(when (package-installed-p 'emms)
   (setq conf/add-to-playlist-function #'emms-add-file))
 
 (defun emms-add-dired-and-show ()
