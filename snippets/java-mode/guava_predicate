@@ -1,0 +1,10 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: Guava function
+# key: pred
+# binding: direct-keybinding
+# --
+public static final Predicate<${1:Object}> ${3:name} = new Predicate<$1> () {
+        public boolean apply($1 o) {
+            $0
+        }
+    };
