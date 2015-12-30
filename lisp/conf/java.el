@@ -1,5 +1,4 @@
 (add-hook 'java-mode-hook #'subword-mode)
-(add-hook 'java-mode-hook #'semantic-mode)
 
 (when (package-installed-p 'ggtags)
   (add-hook 'java-mode-hook #'ggtags-mode))
@@ -7,12 +6,15 @@
 (with-package-lazy (cc-mode)
   (define-key java-mode-map (kbd "C-c .") #'semantic-ia-fast-jump))
 
+
 (with-package-lazy (smartparens)
   (sp-local-pair 'java-mode "{" "}" :post-handlers '(:add conf/open-block) :unless '(sp-in-string-p))
   (sp-local-pair 'java-mode "\"" "\"" :unless '(sp-in-string-p))
   (sp-local-pair 'java-mode "/*" "*/")
   (add-hook 'java-mode-hook #'conf/enable-hybrid-exp))
 
+
+;; JDB
 (defun conf/current-java-package-name ()
   (semantic-tag-name (-find (lambda (tag)
                               (eq 'package (semantic-tag-class tag)))

@@ -32,6 +32,7 @@
 (require 'conf/buffer-list)
 (require 'conf/completion)
 (require 'conf/python)
+(require 'conf/cc)
 (require 'conf/java)
 (require 'conf/web)
 (require 'conf/javascript)
