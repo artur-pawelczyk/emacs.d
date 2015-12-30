@@ -32,3 +32,4 @@ after-init.el
 /abbrev_defs
 /smex-items
 /auto-save
+/request
