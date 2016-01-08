@@ -1,3 +1,6 @@
+(autoload 'emms "emms" nil :interactive)
+(autoload 'emms-info-metaflac "emms-info-metaflac")
+
 (with-package-lazy (emms)
   (emms-all)
   (emms-mode-line -1)
