@@ -3,6 +3,8 @@
 
 (with-package-lazy (emms)
   (emms-all)
+  (require 'emms-history)
+  (emms-history-load)
   (emms-mode-line -1)
   (setq emms-player-list '(emms-player-mplayer))
   (setq emms-source-file-default-directory "~/Music/")
