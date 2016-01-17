@@ -18,12 +18,11 @@
 (defun helm-projectile--after-toggle (toggle &rest other)
   (run-hooks 'helm-projectile-hook))
 
-(advice-add 'helm-projectile-toggle :after #'helm-projectile--after-toggle)
-
-(add-hook 'helm-projectile-hook (lambda ()
-                                  (setq projectile-switch-project-action #'projectile-commander)))
-
-(add-hook 'helm-projectile-hook #'conf/projectile-helm-functionality)
+(with-package-lazy (helm-projectile)
+  (advice-add 'helm-projectile-toggle :after #'helm-projectile--after-toggle)
+  (add-hook 'helm-projectile-hook (lambda ()
+                                    (setq projectile-switch-project-action #'projectile-commander)))
+  (add-hook 'helm-projectile-hook #'conf/projectile-helm-functionality))
 
 
 (defun display-startup-screen--enable-projectile (&rest args)

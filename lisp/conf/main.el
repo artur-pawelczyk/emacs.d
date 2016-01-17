@@ -87,10 +87,13 @@
   (with-package (linum-relative)
     (linum-relative-toggle)))
 
-;; Helm menubar
+;; Menubar
 (when (package-installed-p 'lacarte)
   (menu-bar-mode -1)
-  (global-set-key (kbd "<f10>") #'helm-browse-menubar))
+  (let ((menubar-function (if (package-installed-p 'helm)
+                              #'helm-browse-menubar
+                            #'lacarte-execute-menu-command)))
+    (global-set-key (kbd "<f10>") menubar-function)))
 
 ;; Winner mode
 (winner-mode t)

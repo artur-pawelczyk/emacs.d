@@ -7,7 +7,8 @@
 (setq org-src-fontify-natively t)
 
 (with-package-lazy (org)
-  (define-key org-mode-map (kbd "C-c C-j") #'helm-org-in-buffer-headings))
+  (when (package-installed-p 'helm)
+    (define-key org-mode-map (kbd "C-c C-j") #'helm-org-in-buffer-headings)))
 
 (defun conf/org-goto-map--add-custom-keys ()
   (define-key org-goto-map (kbd "C-n") #'next-line)
