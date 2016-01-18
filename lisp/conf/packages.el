@@ -2,9 +2,7 @@
       '(ace-window
         auctex
         bbdb
-        auto-complete
         cider
-        jedi
         js2-mode
         magit
         org
@@ -18,12 +16,9 @@
         smartparens
         slime
         markdown-mode
-        helm
-        helm-projectile
         swiper ;; provides ivy-mode
         ggtags
         flycheck
-        javadoc-lookup
         lacarte
         sql-indent
         s
