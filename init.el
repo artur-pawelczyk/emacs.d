@@ -1,5 +1,4 @@
-(defun user-file (name)
-  (expand-file-name name user-emacs-directory))
+(load (expand-file-name "lisp/boot.el" user-emacs-directory))
 
 (add-to-list 'load-path (user-file "lisp"))
 (load-file (user-file "lisp/autoloads.el"))
@@ -16,6 +15,7 @@
 (if (not (file-exists-p package-user-dir))
     (packages-update))
 
+(require 'boot)
 (require 'tools)
 
 (load-custom-file-if-exists)

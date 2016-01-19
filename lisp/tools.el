@@ -21,10 +21,6 @@ Does not delete the prompt."
     (insert "*** output flushed ***\n")
     (kill-region (point) (eshell-end-of-output))))
 
-(defun load-custom-file-if-exists ()
-  (if (file-exists-p custom-file)
-      (load custom-file)))
-
 (defun kill-temp-buffer-current ()
   (interactive)
   (save-buffer)
@@ -51,32 +47,6 @@ Does not delete the prompt."
     (let ((first (substring str 0 1))
           (rest (substring str 1)))
       (concat (upcase first) rest))))
-
-(defmacro with-package-lazy (packages &rest body)
-  "Eval BODY after PACKAGES are loaded.  Don't load the packages.
-See `with-package'"
-  (declare (indent 1))
-  (assert (and (listp packages) (not (eq (car packages) 'quote))))
-  (let ((after-load (if (cdr packages)
-                        (list `(with-package-lazy ,(cdr packages) ,@body))
-                       body)))
-    `(eval-after-load ',(car packages)
-       (lambda () (progn
-                    ,@after-load)))))
-
-(defmacro with-package (packages &rest body)
-  "Load PACKAGES and then eval BODY.
-See `with-package-lazy'"
-  (declare (indent 1))
-  (let ((require-stmt (mapcar (lambda (p)
-                                `(require ',p nil :noerror)) packages)))
-    `(progn
-       (with-package-lazy ,packages ,@body)
-       ,@require-stmt)))
-
-(defmacro after-init (&rest body)
-  "Evaluate body on `after-init-hook'."
-  `(add-hook 'after-init-hook (lambda () (progn ,@body))))
 
 (defun conf/open-block (id action context)
   "Function to be used as a hook for Smartparens"
