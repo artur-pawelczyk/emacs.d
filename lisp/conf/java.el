@@ -2,7 +2,7 @@
 
 (add-hook 'java-mode-hook #'subword-mode)
 
-(when (package-installed-p 'ggtags)
+(when (conf/installed-p 'ggtags)
   (add-hook 'java-mode-hook #'ggtags-mode))
 
 (with-package-lazy (cc-mode)

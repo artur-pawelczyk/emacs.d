@@ -1,3 +1,7 @@
+(require 'cl-lib)
+
+(defvar conf/installed-packages '() "Packages installed outside `package.el'")
+
 (defun user-file (name)
   (expand-file-name name user-emacs-directory))
 
@@ -9,7 +13,7 @@
   "Eval BODY after PACKAGES are loaded.  Don't load the packages.
 See `with-package'"
   (declare (indent 1))
-  (assert (and (listp packages) (not (eq (car packages) 'quote))))
+  (cl-assert (and (listp packages) (not (eq (car packages) 'quote))))
   (let ((after-load (if (cdr packages)
                         (list `(with-package-lazy ,(cdr packages) ,@body))
                        body)))
@@ -30,5 +34,9 @@ See `with-package-lazy'"
 (defmacro after-init (&rest body)
   "Evaluate body on `after-init-hook'."
   `(add-hook 'after-init-hook (lambda () (progn ,@body))))
+
+(defun conf/installed-p (package)
+  (or (memq package conf/installed-packages)
+      (package-installed-p package)))
 
 (provide 'boot)

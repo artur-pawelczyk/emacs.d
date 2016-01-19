@@ -3,7 +3,7 @@
 
 (defun packages-install (package)
   "Install PACKAGE if not installed."
-  (when (and package (not (package-installed-p package)))
+  (when (and package (not (conf/installed-p package)))
     (package-install package)))
 
 (defun packages-update ()
