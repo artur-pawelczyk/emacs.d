@@ -1,3 +1,5 @@
+(require 'dash)
+
 (add-hook 'java-mode-hook #'subword-mode)
 
 (when (package-installed-p 'ggtags)

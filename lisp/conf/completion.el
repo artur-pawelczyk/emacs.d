@@ -1,3 +1,5 @@
+(require 'dash)
+
 ;; Loads the aliases
 (require 'helm-config nil :noerror)
 
