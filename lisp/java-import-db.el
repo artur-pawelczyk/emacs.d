@@ -21,9 +21,9 @@
 
 (defvar ji-save-timer nil)
 
-(defconst ji-package-stmt-pattern "^package [a-zA-z.]+;$")
+(defconst ji-package-stmt-pattern "^package [a-zA-z0-9.]+;$")
 
-(defconst ji-import-stmt-pattern "^import [a-zA-z.]+;$")
+(defconst ji-import-stmt-pattern "^import [a-zA-z0-9.]+;$")
 
 (defun ji-timer-running (timer)
   (memql timer timer-list))
