@@ -50,7 +50,6 @@
 (define-key key-translation-map (kbd "C-M-;") (kbd "C-M-SPC"))
 (define-key key-translation-map [?\C-h] [?\C-?])
 (global-set-key (kbd "<f5>") #'magit-status)
-(global-set-key (kbd "M-z") #'zap-to-char-exclusive)
 (global-set-key (kbd "M-/") #'hippie-expand)
 (global-set-key (kbd "M-SPC") #'cycle-spacing)
 (global-set-key (kbd "C-x C-d") #'dired)
