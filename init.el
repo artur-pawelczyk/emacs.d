@@ -15,13 +15,6 @@
     (packages-update))
 
 (require 'tools)
-(autoload 'ji-add "java-import-db" nil :interactive)
-(autoload 'ji-build-database "java-import-db" nil :interactive)
-(autoload 'ji-projectile-build-database "java-import-db" nil :interactive)
-(autoload 'ext-edit-region "ext-edit" nil :interactive)
-
-(autoload 'scilab-mode "scilab" nil :interactive)
-(autoload 'scilab-shell "scilab" nil :interactive)
 
 (load-custom-file-if-exists)
 (require 'conf/main)
