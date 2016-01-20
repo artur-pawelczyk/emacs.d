@@ -8,4 +8,7 @@
 (advice-add 'query-replace :around #'query-replace--act-on-all)
 (advice-add 'query-replace-regexp :around #'query-replace--act-on-all)
 
+(with-package-lazy (elec-pair)
+  (make-variable-buffer-local 'electric-pair-mode))
+
 (provide 'conf/basic-editing)
