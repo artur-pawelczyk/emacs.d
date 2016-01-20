@@ -7,4 +7,4 @@
   (add-to-list 'conf/installed-packages 'magit))
 
 (with-package-lazy (info)
-  (add-to-list 'Info-directory-list (user-file "site-lisp/magit/Documentation/")))
+  (add-to-list 'Info-additional-directory-list (user-file "site-lisp/magit/Documentation/")))
