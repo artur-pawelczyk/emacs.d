@@ -23,8 +23,12 @@
     (setq undo-tree-history-directory-alist
       `((".*" . ,(expand-file-name "auto-save/" user-emacs-directory)))))
 
+(defun maybe-enable-smartparens-mode ()
+  (unless (eq major-mode 'java-mode)
+    (smartparens-mode 1)))
+
 (when (conf/installed-p 'smartparens)
-  (add-hook 'prog-mode-hook #'smartparens-mode))
+  (add-hook 'prog-mode-hook #'maybe-enable-smartparens-mode))
 
 (require 'hybrid-exp)
 (with-package-lazy (smartparens)

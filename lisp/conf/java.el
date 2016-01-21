@@ -1,6 +1,7 @@
 (require 'dash)
 
 (add-hook 'java-mode-hook #'subword-mode)
+(add-hook 'java-mode-hook #'electric-pair-mode)
 
 (when (conf/installed-p 'ggtags)
   (add-hook 'java-mode-hook #'ggtags-mode))
@@ -12,8 +13,7 @@
 (with-package-lazy (smartparens)
   (sp-local-pair 'java-mode "{" "}" :post-handlers '(:add conf/open-block) :unless '(sp-in-string-p))
   (sp-local-pair 'java-mode "\"" "\"" :unless '(sp-in-string-p))
-  (sp-local-pair 'java-mode "/*" "*/")
-  (add-hook 'java-mode-hook #'conf/enable-hybrid-exp))
+  (sp-local-pair 'java-mode "/*" "*/"))
 
 
 ;; JDB
