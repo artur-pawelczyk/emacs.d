@@ -7,7 +7,7 @@
 (setq org-src-fontify-natively t)
 
 (with-package-lazy (org)
-  (when (package-installed-p 'helm)
+  (when (conf/installed-p 'helm)
     (define-key org-mode-map (kbd "C-c C-j") #'helm-org-in-buffer-headings)))
 
 (defun conf/org-goto-map--add-custom-keys ()
@@ -27,7 +27,7 @@
   (add-to-list 'org-tags-exclude-from-inheritance "crypt"))
 
 (with-package-lazy (org)
-    (when (package-installed-p 'org-bullets)
+    (when (conf/installed-p 'org-bullets)
       (add-hook 'org-mode-hook #'org-bullets-mode)))
 
 (with-package-lazy (org)

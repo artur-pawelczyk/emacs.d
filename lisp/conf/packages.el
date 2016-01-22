@@ -4,7 +4,6 @@
         bbdb
         cider
         js2-mode
-        magit
         org
         org-bullets
         php-mode

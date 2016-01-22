@@ -4,7 +4,7 @@
   ;; Semantic is a global mode.
   (semantic-mode 1))
 
-(when (package-installed-p 'ggtags)
+(when (conf/installed-p 'ggtags)
   (add-hook 'c-mode-hook #'ggtags-mode))
 
 (provide 'conf/cc)

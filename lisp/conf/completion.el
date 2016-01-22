@@ -1,3 +1,5 @@
+(require 'dash)
+
 ;; Loads the aliases
 (require 'helm-config nil :noerror)
 
@@ -67,7 +69,7 @@ buffers and files."
 
 
 ;; helm-imenu
-(defvar conf/imenu-function (if (package-installed-p 'helm)
+(defvar conf/imenu-function (if (conf/installed-p 'helm)
                                 #'helm-imenu
                               #'imenu))
 
@@ -105,7 +107,7 @@ buffers and files."
 
 ;; Ido
 (with-package-lazy (ido)
-  (when (package-installed-p 'ido-vertical-mode)
+  (when (conf/installed-p 'ido-vertical-mode)
     (setq ido-vertical-define-keys t)
      (ido-vertical-mode)))
 

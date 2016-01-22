@@ -23,7 +23,7 @@
     (setq undo-tree-history-directory-alist
       `((".*" . ,(expand-file-name "auto-save/" user-emacs-directory)))))
 
-(when (package-installed-p 'smartparens)
+(when (conf/installed-p 'smartparens)
   (add-hook 'prog-mode-hook #'smartparens-mode))
 
 (require 'hybrid-exp)
@@ -71,14 +71,14 @@
 (setq split-width-threshold 300)
 
 ;; Ace-window
-(when (package-installed-p 'ace-window)
+(when (conf/installed-p 'ace-window)
   (global-set-key (kbd "M-o") #'ace-window)
   (setq aw-scope 'frame))
 (with-package-lazy (ace-window)
   (require 'ace-window-relative nil :noerror))
 
 ;; Expand-region
-(when (package-installed-p 'expand-region)
+(when (conf/installed-p 'expand-region)
   (global-set-key (kbd "C-M-SPC") #'er/expand-region))
 
 ;; Linum-relative
@@ -87,9 +87,9 @@
     (linum-relative-toggle)))
 
 ;; Menubar
-(when (package-installed-p 'lacarte)
+(when (conf/installed-p 'lacarte)
   (menu-bar-mode -1)
-  (let ((menubar-function (if (package-installed-p 'helm)
+  (let ((menubar-function (if (conf/installed-p 'helm)
                               #'helm-browse-menubar
                             #'lacarte-execute-menu-command)))
     (global-set-key (kbd "<f10>") menubar-function)))

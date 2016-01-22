@@ -1,3 +1,5 @@
+(require 'dash)
+
 (defun conf/vc-read-rev ()
   (let* ((backed (vc-responsible-backend default-directory))
          (current-rev (vc-working-revision default-directory backed))
