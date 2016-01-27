@@ -1,3 +1,5 @@
+(require 'dash)
+
 (when (fboundp 'tool-bar-mode)
       (tool-bar-mode 0))
 (when (fboundp 'scroll-bar-mode)
@@ -132,8 +134,15 @@
   (define-key ag-mode-map (kbd "p") #'previous-error-no-select))
 
 ;; Rename the shell buffers.
+(defun conf/shell-boring-program? (name)
+  (member name '("nohup")))
+
+(defun conf/shell-command-unique-name (command)
+  (or (car (-drop-while (-partial #'conf/shell-boring-program?) (split-string command " ")))
+      command))
+
 (defun async-shell-command--set-buffer-name (orig-fun command &optional orig-buffer error-buffer)
-  (let* ((command-name (nth 0 (s-split " " command)))
+  (let* ((command-name (conf/shell-command-unique-name command))
          (buffer-name (concat "*" command-name ": shell command*")))
     (if orig-buffer
         (apply orig-fun command orig-buffer error-buffer)
