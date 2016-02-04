@@ -14,7 +14,7 @@
 (require 'packages)
 (require 'conf/packages)
 (if (not (file-exists-p package-user-dir))
-    (packages-update))
+    (conf/install-selected-packages))
 
 (require 'boot)
 (require 'tools)

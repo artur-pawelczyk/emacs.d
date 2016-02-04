@@ -1,3 +1,5 @@
+(require 'dash)
+
 (defvar user-package-list
       '(ace-window
         auctex
@@ -31,6 +33,7 @@
         linum-relative
         ido-vertical-mode))
 
+(setq package-selected-packages (-distinct (append user-package-list package-selected-packages)))
 
 (add-to-list 'package-archives '("mepla" . "http://melpa.milkbox.net/packages/"))
 (add-to-list 'package-archives '("org" . "http://orgmode.org/elpa/"))

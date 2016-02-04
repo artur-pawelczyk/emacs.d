@@ -1,20 +1,16 @@
 (require 'package)
 (package-initialize)
 
-(defun packages-install (package)
+(defun conf/install-package (package)
   "Install PACKAGE if not installed."
   (when (and package (not (conf/installed-p package)))
     (package-install package)))
 
-(defun packages-update ()
-  "Update package list and install packages spefified by `user-package-list'"
+(defun conf/install-selected-packages ()
   (interactive)
-  (condition-case nil
-      (mapcar 'packages-install user-package-list)
-    (error
-     (package-refresh-contents)
-     (mapcar 'packages-install user-package-list))))
-
-
+  (package-refresh-contents)
+  (if (fboundp 'package-install-selected-packages)
+      (package-install-selected-packages)
+    (mapcar 'conf/install-package user-package-list)))
 
 (provide 'packages)
