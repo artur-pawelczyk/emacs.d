@@ -26,7 +26,8 @@
 
 
 (defun display-startup-screen--enable-projectile (&rest args)
-  (projectile-mode t))
+  (when (conf/installed-p 'projectile)
+    (projectile-mode t)))
 
 (advice-add #'display-startup-screen :after #'display-startup-screen--enable-projectile)
 
