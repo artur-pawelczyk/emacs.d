@@ -141,9 +141,12 @@
   (or (car (-drop-while (-partial #'conf/shell-boring-program?) (split-string command " ")))
       command))
 
+(defun conf/shell-new-buffer-name (command)
+  (let ((base-name (format "*%s: shell-command*" (conf/shell-command-unique-name command))))
+    (generate-new-buffer-name base-name)))
+
 (defun async-shell-command--set-buffer-name (orig-fun command &optional orig-buffer error-buffer)
-  (let* ((command-name (conf/shell-command-unique-name command))
-         (buffer-name (concat "*" command-name ": shell command*")))
+  (let ((buffer-name (conf/shell-new-buffer-name command)))
     (if orig-buffer
         (apply orig-fun command orig-buffer error-buffer)
       (funcall orig-fun command buffer-name buffer-name))))
