@@ -116,8 +116,8 @@ buffers and files."
 (setq ido-default-buffer-method 'selected-window) 
 
 (defun ido-move-dired-buffers-last ()
-  (setq ido-temp-list (let* ((first (-filter (lambda (b) (not (dired-buffer? b))) ido-temp-list))
-                             (last (-filter (lambda (b) (dired-buffer? b)) ido-temp-list)))
+  (setq ido-temp-list (let* ((first (-filter (-not #'dired-buffer?) ido-temp-list))
+                             (last (-filter #'dired-buffer? ido-temp-list)))
                         (append first last))))
 
 (add-hook 'ido-make-buffer-list-hook #'ido-move-dired-buffers-last)

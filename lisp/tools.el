@@ -78,7 +78,8 @@ Does not delete the prompt."
     major-mode))
 
 (defun dired-buffer? (buffer-or-name)
-  (eq 'dired-mode (buffer-major-mode buffer-or-name)))
+  (when (get-buffer buffer-or-name)
+    (eq 'dired-mode (buffer-major-mode buffer-or-name))))
 
 (defun update (what to e)
   "To be used with `mapcar'.
