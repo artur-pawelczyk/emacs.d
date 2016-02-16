@@ -114,7 +114,8 @@ buffers and files."
 
 (setq ido-case-fold t)
 (setq ido-enable-regexp t)
-(setq ido-default-buffer-method 'selected-window) 
+(setq ido-default-buffer-method 'selected-window)
+(setq ido-default-file-method 'selected-window)
 
 (defun ido-move-dired-buffers-last ()
   (setq ido-temp-list (let* ((first (-filter (-not #'dired-buffer?) ido-temp-list))
