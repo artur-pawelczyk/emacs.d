@@ -30,7 +30,8 @@
     (smartparens-mode 1)))
 
 (when (conf/installed-p 'smartparens)
-  (add-hook 'prog-mode-hook #'maybe-enable-smartparens-mode))
+  (add-hook 'prog-mode-hook #'maybe-enable-smartparens-mode)
+  (add-hook 'ielm-mode-hook #'smartparens-mode))
 
 (require 'hybrid-exp)
 (with-package-lazy (smartparens)
