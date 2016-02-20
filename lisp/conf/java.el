@@ -16,32 +16,6 @@
   (sp-local-pair 'java-mode "/*" "*/"))
 
 
-;; JDB
-(defun conf/current-java-package-name ()
-  (semantic-tag-name (-find (lambda (tag)
-                              (eq 'package (semantic-tag-class tag)))
-                            (semantic-fetch-tags))))
-
-(defun conf/current-java-full-class-name ()
-  (let ((package-name (conf/current-java-package-name))
-        (class-name (semantic-tag-name (semantic-current-tag-parent))))
-    (concat package-name "." class-name)))
-
-(defun conf/current-java-method-name ()
-  (let ((full-class-name (conf/current-java-full-class-name))
-        (method-name (semantic-tag-name (semantic-current-tag))))
-    (concat full-class-name "." method-name)))
-
-(defun conf/jdb-stop-in-method ()
-  (interactive (cl-assert (eq major-mode 'java-mode)))
-  (gud-call (format "stop in %s" (conf/current-java-method-name))))
-
-(defun conf/jdb-stop-at-point ()
-  "Set a breakpoint at current location in jdb.  Use when no
-source information if available in jdb process."
-  (interactive (cl-assert (eq major-mode 'java-mode)))
-  (gud-call (format "stop at %s:%s" (conf/current-java-full-class-name) (line-number-at-pos))))
-
 (defun conf/file-name->package (file-name)
   (string-join (->> (split-string file-name "/")
                     (-drop-while (lambda (e) (not (equal "java" e))))
