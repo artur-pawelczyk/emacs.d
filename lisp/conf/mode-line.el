@@ -5,7 +5,8 @@
 (setq rm-blacklist '(" MRev" " Helm" " AC"
                      " Undo-Tree" " Abbrev" " SP"
                      " SP/s" " yas" " GG"
-                     " cWip" " sWip" " ivy"))
+                     " cWip" " sWip" " ivy"
+                     " ElDoc"))
 
 (with-package (projectile)
   (setq projectile-mode-line nil))

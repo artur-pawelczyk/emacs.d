@@ -1,6 +1,6 @@
 (add-hook 'emacs-lisp-mode-hook (lambda ()
                                   (local-set-key (kbd "M-.") #'find-function-at-point)))
 
-(add-hook 'emacs-lisp-mode-hook #'eldoc-mode)
+(global-eldoc-mode 1)
 
 (provide 'conf/lisp)
