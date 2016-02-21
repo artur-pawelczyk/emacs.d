@@ -1,32 +1,9 @@
 (require 'dash)
 
-(defun conf/vc-read-rev ()
-  (let* ((backed (vc-responsible-backend default-directory))
-         (current-rev (vc-working-revision default-directory backed))
-         (message (format "Swith from '%s' to: " current-rev)))
-    (if (and (eq backed 'Git) (fboundp 'magit-read-other-branch-or-commit))
-        (magit-read-other-branch-or-commit message)
-      (read-string message))))
-
-(defun conf/vc-switch-branch (name)
-  (interactive (list (conf/vc-read-rev)))
-  (message "Switching to another branch")
-  (vc-call-backend (vc-responsible-backend default-directory) 'retrieve-tag default-directory name nil)
-  (message "Switching done"))
-
 (define-key vc-prefix-map "e" #'vc-ediff)
-(define-key vc-prefix-map "r" #'conf/vc-switch-branch)
 
 (with-package-lazy (vc-dir)
   (define-key vc-dir-mode-map "e" #'vc-ediff))
-
-(with-package-lazy (vc-dir magit)
-  (define-key vc-dir-mode-map "l" #'magit-log-popup)
-  (define-key vc-dir-mode-map "P" #'magit-push-popup)
-  (define-key vc-dir-mode-map "b" #'magit-branch-popup)
-  (define-key vc-dir-mode-map "d" #'magit-diff-working-tree)
-  (define-key vc-dir-mode-map ":" #'magit-git-command)
-  (define-key vc-dir-mode-map "$" #'magit-process))
 
 
 ;; Magit key bindings
