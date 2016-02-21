@@ -7,7 +7,8 @@
   (add-hook 'java-mode-hook #'ggtags-mode))
 
 (with-package-lazy (cc-mode)
-  (define-key java-mode-map (kbd "C-c .") #'semantic-ia-fast-jump))
+  (define-key java-mode-map (kbd "C-c .") #'semantic-ia-fast-jump)
+  (define-key java-mode-map (kbd "C-c i") #'ji-add))
 
 
 (with-package-lazy (smartparens)
