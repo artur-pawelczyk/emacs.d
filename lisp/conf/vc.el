@@ -38,5 +38,7 @@
 
 (setq magit-display-buffer-function #'conf/magit-switch-to-buffer)
 (setq magit-display-buffer-noselect nil)
+
+(add-to-list 'savehist-additional-variables 'log-edit-comment-ring)
 
 (provide 'conf/vc)
