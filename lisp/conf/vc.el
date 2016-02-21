@@ -13,12 +13,6 @@
 (with-package-lazy (magit-diff)
   (define-key magit-revision-mode-map (kbd "M-u") #'magit-section-up))
 
-;; Change hard to type `=p' binding to `=g':
-;; FIXME: No longer necessary after version from Oct 1 2015 (commit
-;; 47594337880049531a5471f463f116ca24e65cf6 in magit repo)
-(with-package-lazy (magit-log)
-    (setq magit-log-popup (-tree-map (-partial #'update ?p ?g) magit-log-popup)))
-
 (with-package-lazy (magit-log)
   (let* ((new-entry '(?d "Sort by date" "--date-order"))
          (new-list (cons new-entry (plist-get magit-log-popup :switches))))
