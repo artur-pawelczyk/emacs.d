@@ -133,7 +133,8 @@ required to be in java-mode"
 
 (defun ji-load-database ()
   (interactive)
-  (load-file ji-db-file))
+  (load-file ji-db-file)
+  ji-db)
 
 (defun ji-save-database ()
   "Save the database to a file at `ji-db-file' path.  Discards
@@ -214,10 +215,11 @@ required to be in java-mode"
   (interactive (list (symbol-at-point)))
   (if (ji-symbol-imported? symbol)
       (message "Already imported.")
-    (ji-insert-import-stmt
-     (completing-read "Package: " (mapcar (lambda (package)
-                                            (concat (symbol-name (car package)) "." (symbol-name symbol)))
-                                          (ji-db-find-packages-with-symbol ji-db symbol))))))
+    (let ((db (or ji-db (ji-load-database))))
+      (ji-insert-import-stmt
+       (completing-read "Package: " (mapcar (lambda (package)
+                                              (concat (symbol-name (car package)) "." (symbol-name symbol)))
+                                            (ji-db-find-packages-with-symbol db symbol)))))))
 
 (provide 'java-import-db)
 ;;; java-import-db.el ends here
