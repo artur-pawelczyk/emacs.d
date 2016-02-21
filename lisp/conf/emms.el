@@ -1,4 +1,5 @@
 (autoload 'emms "emms" nil :interactive)
+(autoload 'emms-pause "emms" nil :interactive)
 (autoload 'emms-info-metaflac "emms-info-metaflac")
 
 (with-package-lazy (emms)
@@ -27,5 +28,8 @@
   (define-key emms-playlist-mode-map (kbd "-") #'emms-volume-lower)
   (define-key emms-playlist-mode-map (kbd "=") #'emms-volume-raise)
   (define-key emms-playlist-mode-map (kbd "+") #'emms-volume-raise))
+
+(when (conf/installed-p 'emms)
+  (global-set-key (kbd "<XF86AudioPlay>") #'emms-pause))
 
 (provide 'conf/emms)
