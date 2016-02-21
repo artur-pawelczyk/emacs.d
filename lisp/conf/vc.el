@@ -27,5 +27,16 @@
 (with-package-lazy (magit)
   (magit-wip-after-save-mode 1))
 
+
+(defun conf/magit-switch-to-buffer (buffer)
+  "Display Magit status buffer in the same window"
+  (if (eq (with-current-buffer buffer major-mode) 'magit-status-mode)
+      (progn
+        (switch-to-buffer buffer)
+        (selected-window))
+    (magit-display-buffer-traditional buffer)))
+
+(setq magit-display-buffer-function #'conf/magit-switch-to-buffer)
+(setq magit-display-buffer-noselect nil)
 
 (provide 'conf/vc)
