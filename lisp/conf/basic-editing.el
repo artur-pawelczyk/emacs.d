@@ -18,4 +18,12 @@
       (electric-pair-local-mode 1)
     (electric-pair-mode 1)))
 
+
+(defun isearch-symbol-case-sensitive ()
+  (interactive)
+  (let ((case-fold-search nil))
+    (isearch-forward-symbol-at-point)))
+
+(global-set-key (kbd "M-s .") #'isearch-symbol-case-sensitive)
+
 (provide 'conf/basic-editing)
