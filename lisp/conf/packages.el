@@ -33,7 +33,9 @@
         linum-relative
         ido-vertical-mode))
 
-(setq package-selected-packages (-distinct (append user-package-list package-selected-packages)))
+(setq package-selected-packages
+      (when (boundp 'package-selected-packages)
+        (-distinct (append user-package-list package-selected-packages))))
 
 (add-to-list 'package-archives '("mepla" . "http://melpa.milkbox.net/packages/"))
 (add-to-list 'package-archives '("org" . "http://orgmode.org/elpa/"))
