@@ -17,6 +17,7 @@
 
 (defun jdb-current-method ()
   (let ((tags (semantic-find-tag-by-overlay)))
+    (unless tags (error "No semantic information in the buffer."))
     (concat (jdb-tag-package tags)
              "."
              (jdb-tag-class tags)
@@ -25,6 +26,7 @@
 
 (defun jdb-current-class ()
   (let ((tags (semantic-find-tag-by-overlay)))
+    (unless tags (error "No semantic information in the buffer."))
     (concat (jdb-tag-package tags)
             "."
             (jdb-tag-class tags))))
