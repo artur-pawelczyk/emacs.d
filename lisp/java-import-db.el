@@ -14,7 +14,7 @@
 
 ;;; Code:
 
-(defvar ji-db (make-hash-table))
+(defvar ji-db nil)
 
 (defvar ji-db-file (expand-file-name "ji-db" user-emacs-directory)
   "Path to a file to store the database for use in another session.")
@@ -133,7 +133,9 @@ required to be in java-mode"
 
 (defun ji-load-database ()
   (interactive)
-  (load-file ji-db-file)
+  (if (file-exists-p ji-db-file)
+      (load-file ji-db-file)
+    (setq ji-db (make-hash-table)))
   ji-db)
 
 (defun ji-save-database ()
