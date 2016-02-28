@@ -118,9 +118,15 @@ buffers and files."
 (setq ido-default-file-method 'selected-window)
 
 (defun ido-move-dired-buffers-last ()
-  (setq ido-temp-list (let* ((first (-filter (-not #'dired-buffer?) ido-temp-list))
-                             (last (-filter #'dired-buffer? ido-temp-list)))
-                        (append first last))))
+  (let ((omit-first? (eq this-command 'ido-kill-buffer)))
+    (setq ido-temp-list (if omit-first?
+                            (cons (car ido-temp-list) (conf/ido-sort-buffers (cdr ido-temp-list)))
+                          (conf/ido-sort-buffers ido-temp-list)))))
+
+(defun conf/ido-sort-buffers (buffers)
+  (let ((first (-filter (-not #'dired-buffer?) ido-temp-list))
+        (last (-filter #'dired-buffer? ido-temp-list)))
+    (append first last)))
 
 (add-hook 'ido-make-buffer-list-hook #'ido-move-dired-buffers-last)
 
