@@ -2,11 +2,8 @@
 (with-package (smart-mode-line)
   (sml/setup))
 
-(setq rm-blacklist '(" MRev" " Helm" " AC"
-                     " Undo-Tree" " Abbrev" " SP"
-                     " SP/s" " yas" " GG"
-                     " cWip" " sWip" " ivy"
-                     " ElDoc"))
+(setq rm-blacklist nil)
+(setq rm-whitelist (mapconcat 'identity '(" View" " Narrow" " sWip" " cider\\[.*\\]" " Compiling" " FlyC.*") "\\|"))
 
 (with-package (projectile)
   (setq projectile-mode-line nil))
