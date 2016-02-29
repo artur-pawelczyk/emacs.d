@@ -33,3 +33,4 @@ after-init.el
 /smex-items
 /auto-save
 /request
+/after-init.d/

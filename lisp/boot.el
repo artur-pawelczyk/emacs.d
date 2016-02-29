@@ -39,4 +39,9 @@ See `with-package-lazy'"
   (or (memq package conf/installed-packages)
       (package-installed-p package)))
 
+(defun conf/load-directory (directory)
+  "Load config files from DIRECTORY."
+  (mapc #'load-file (when (file-exists-p directory)
+                      (directory-files directory :full "\\..*el\\'"))))
+
 (provide 'boot)
