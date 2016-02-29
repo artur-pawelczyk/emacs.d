@@ -9,8 +9,9 @@
   (semantic-tag-full-package (car tags)))
 
 (defun jdb-tag-class (tags)
-  (let ((hierarchy (mapcar #'semantic-tag-name (butlast tags))))
-    (string-join hierarchy "$")))
+  (let* ((classes (-filter (lambda (tag) (equal "class" (semantic-tag-type tag))) tags))
+         (names (mapcar #'semantic-tag-name classes)))
+    (string-join (seq-uniq names) "$")))
 
 (defun jdb-tag-method (tags)
   (semantic-tag-name (car (last tags))))
