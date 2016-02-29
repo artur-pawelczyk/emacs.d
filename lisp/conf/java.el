@@ -1,6 +1,5 @@
 (require 'dash)
 
-(add-hook 'java-mode-hook #'subword-mode)
 (add-hook 'java-mode-hook #'conf/enable-electric-pair)
 
 (when (conf/installed-p 'ggtags)

@@ -26,4 +26,8 @@
 
 (global-set-key (kbd "M-s .") #'isearch-symbol-case-sensitive)
 
+
+(with-package (subword)
+  (global-subword-mode))
+
 (provide 'conf/basic-editing)
