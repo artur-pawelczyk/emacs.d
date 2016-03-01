@@ -9,6 +9,7 @@
 
 (with-package (projectile)
   (projectile-global-mode)
+  (global-set-key (kbd "C-c p") projectile-command-map)
   (global-set-key (kbd "C-x p") projectile-command-map)
   (define-key projectile-command-map (kbd "s s") #'projectile-ag-regex))
 
