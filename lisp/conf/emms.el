@@ -12,6 +12,12 @@
   (setq emms-info-functions (append emms-info-functions '(emms-info-metaflac)))
   (setq emms-playlist-buffer-name "*EMMS Playlist*"))
 
+(with-package-lazy (emms-player-mplayer)
+  (let ((new-formats (list "opus")))
+    (emms-player-set emms-player-mplayer 'regex (concat "\\`\\(http[s]?\\|mms\\)://\\|"
+                                                        (apply #'emms-player-simple-regexp
+                                                               (append emms-player-base-format-list new-formats))))))
+
 (defvar conf/add-to-playlist-function (lambda (&rest args) (message "No music player installed")))
 (when (conf/installed-p 'emms)
   (setq conf/add-to-playlist-function #'emms-add-file))
