@@ -136,7 +136,8 @@
 
 ;; Rename the shell buffers.
 (defun conf/shell-boring-program? (name)
-  (member name '("nohup")))
+  (and (or (member name '("nohup"))
+          (string-match-p "^[A-Z]+=.+$" name)) t))
 
 (defun conf/shell-command-unique-name (command)
   (or (car (-drop-while (-partial #'conf/shell-boring-program?) (split-string command " ")))
