@@ -1,3 +1,5 @@
+(setq cider-repl-pop-to-buffer-on-connect nil)
+
 (defun conf/push-mark-before-jump (&rest args)
   (push-mark))
 
