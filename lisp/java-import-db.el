@@ -213,8 +213,14 @@ required to be in java-mode"
   (ji-hash-table-filter db (lambda (symbols)
                              (member symbol symbols))))
 
+(defun ji-symbol-at-point ()
+  (let ((symbol (symbol-at-point)))
+    (if (string-prefix-p "@" (symbol-name symbol))
+        (intern (substring (symbol-name symbol) 1))
+      symbol)))
+
 (defun ji-add (symbol)
-  (interactive (list (symbol-at-point)))
+  (interactive (list (ji-symbol-at-point)))
   (if (ji-symbol-imported? symbol)
       (message "Already imported.")
     (let ((db (or ji-db (ji-load-database))))
