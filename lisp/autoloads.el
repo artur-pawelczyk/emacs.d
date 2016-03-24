@@ -9,3 +9,4 @@
 (autoload 'walk-undo "walk-undo" nil :interactive)
 
 (autoload 'hydras-magit/body "hydras" nil :interactive)
+(autoload 'hydra-resize-window/body "hydra-resize-window" nil :interactive)

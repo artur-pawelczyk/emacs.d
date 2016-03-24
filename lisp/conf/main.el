@@ -62,6 +62,7 @@
 (global-set-key (kbd "C-x C-d") #'dired)
 (global-set-key (kbd "M-o") #'other-window)
 (global-set-key (kbd "C-c m") #'hydras-magit/body)
+(global-set-key (kbd "C-x ^") #'hydra-resize-window/body)
 
 ;; This key binding gets overwritten by some package if set here.  Set
 ;; it after init.
