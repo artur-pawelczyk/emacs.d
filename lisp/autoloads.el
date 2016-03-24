@@ -5,3 +5,5 @@
 
 (autoload 'jdb-stop-in-method "jdb" nil :interactive)
 (autoload 'jdb-stop-at-point "jdb" nil :interactive)
+
+(autoload 'walk-undo "walk-undo" nil :interactive)
