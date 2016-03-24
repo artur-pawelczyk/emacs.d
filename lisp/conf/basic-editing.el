@@ -12,6 +12,7 @@
   (unless (fboundp 'electric-pair-local-mode)
     (make-variable-buffer-local 'electric-pair-mode)))
 
+
 (defun conf/enable-electric-pair ()
   (interactive)
   (if (fboundp 'electric-pair-local-mode)
@@ -29,5 +30,9 @@
 
 (with-package (subword)
   (global-subword-mode))
+
+
+(define-key occur-mode-map (kbd "n") #'next-error-no-select)
+(define-key occur-mode-map (kbd "p") #'previous-error-no-select)
 
 (provide 'conf/basic-editing)
