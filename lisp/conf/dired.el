@@ -40,4 +40,12 @@
         ("\\.mkv\\'" conf/video-player)
         ("\\.m4v\\'" conf/video-player)))
 
+
+(defun find-dired-current (find-args)
+  (interactive (list (read-string "Run find: " "-iname ")))
+  (find-dired default-directory find-args))
+
+(with-package-lazy (dired)
+  (define-key dired-mode-map (kbd "C-c f") #'find-dired-current))
+
 (provide 'conf/dired)
