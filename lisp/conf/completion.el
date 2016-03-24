@@ -141,6 +141,30 @@ buffers and files."
 (add-hook 'ido-make-file-list-hook #'ido-add-dot-file)
 
 
+;; Ivy
+(with-package-lazy (ivy)
+  (setq ivy-initial-inputs-alist
+        (-filter (-not (-compose (-partial #'equal "^") #'cdr))
+                 ivy-initial-inputs-alist)))
+
+
+;; M-x
+(defvar conf/extended-command-function (if (conf/installed-p 'counsel)
+                                           #'counsel-M-x
+                                         #'execute-extended-command))
+
+(defun conf/extended-command ()
+  "Run the simple `execute-extended-command' while defining a
+keyboard macro.  Otherwise use function defined by `conf/extended-command-function'"
+  (interactive)
+  (if (or defining-kbd-macro executing-kbd-macro)
+      (let ((completing-read-function #'completing-read-default))
+        (call-interactively #'execute-extended-command))
+    (call-interactively conf/extended-command-function)))
+
+(global-set-key (kbd "M-x") #'conf/extended-command)
+
+
 ;; Auto-complete is currenty used only for Jedi
 (with-package-lazy (auto-complete-mode)
   (require 'auto-complete-config)
