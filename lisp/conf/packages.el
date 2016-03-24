@@ -28,7 +28,7 @@
         dash
         dash-functional
         emms
-        expand-region
+        easy-kill
         macrostep
         linum-relative
         ido-vertical-mode

@@ -84,9 +84,10 @@
 (with-package-lazy (ace-window)
   (require 'ace-window-relative nil :noerror))
 
-;; Expand-region
-(when (conf/installed-p 'expand-region)
-  (global-set-key (kbd "C-M-SPC") #'er/expand-region))
+;; easy-kill
+(when (conf/installed-p 'easy-kill)
+  (global-set-key (kbd "M-w") #'easy-kill)
+  (global-set-key (kbd "C-M-SPC") #'easy-mark))
 
 ;; Linum-relative
 (with-package-lazy (linum)
