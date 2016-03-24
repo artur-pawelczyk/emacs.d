@@ -7,3 +7,5 @@
 (autoload 'jdb-stop-at-point "jdb" nil :interactive)
 
 (autoload 'walk-undo "walk-undo" nil :interactive)
+
+(autoload 'hydras-magit/body "hydras" nil :interactive)

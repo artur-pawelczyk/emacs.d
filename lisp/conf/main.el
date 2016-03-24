@@ -61,6 +61,7 @@
 (global-set-key (kbd "M-SPC") #'cycle-spacing)
 (global-set-key (kbd "C-x C-d") #'dired)
 (global-set-key (kbd "M-o") #'other-window)
+(global-set-key (kbd "C-c m") #'hydras-magit/body)
 
 ;; This key binding gets overwritten by some package if set here.  Set
 ;; it after init.
