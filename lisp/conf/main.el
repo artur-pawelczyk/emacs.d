@@ -166,4 +166,8 @@
 
 (advice-add #'linum-update-current :around #'linum-update-current--maybe-suppress)
 
+
+(when (package-installed-p 'pdf-tools)
+  (eval-after-load 'doc-view #'pdf-tools-install))
+
 (provide 'conf/main)

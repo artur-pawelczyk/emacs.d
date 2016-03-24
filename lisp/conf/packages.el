@@ -31,7 +31,8 @@
         expand-region
         macrostep
         linum-relative
-        ido-vertical-mode))
+        ido-vertical-mode
+        pdf-tools))
 
 (setq package-selected-packages
       (when (boundp 'package-selected-packages)
