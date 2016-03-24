@@ -1,6 +1,5 @@
 ;; -*- mode: emacs-lisp; lexical-binding: t
 
-(require 'subword)
 (require 'cl)
 (require 's)
 
@@ -8,9 +7,7 @@
   (interactive "p")
   (if mark-active
       (call-interactively #'kill-region (list (point) (mark)))
-    (if subword-mode
-        (subword-backward-kill (or arg 1))
-      (backward-kill-word (or arg 1)))))
+    (backward-kill-word (or arg 1))))
 
 (defun eshell-copy-output ()
   "Kill all output from interpreter since last input.
