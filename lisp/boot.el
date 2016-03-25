@@ -39,4 +39,15 @@ See `with-package-lazy'"
   (or (memq package conf/installed-packages)
       (package-installed-p package)))
 
+(defun conf/load-once (file)
+  (unless (load-history-filename-element file)
+    (load-file file)))
+
+(defun conf/load-directory (directory &optional force)
+  "Load Lisp files from DIRECTORY.
+Every file is loaded only once, unless FORCE is non-nil."
+  (let ((files (when (file-exists-p directory)
+                      (directory-files directory :full "\\..*el\\'"))))
+    (mapcar (if force #'load-file #'conf/load-once) files)))
+
 (provide 'boot)
