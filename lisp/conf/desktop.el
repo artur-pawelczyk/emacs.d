@@ -15,5 +15,3 @@
 (add-hook 'lisp-interaction-mode-hook (lambda ()
                                         (when (equal (buffer-name) "*scratch*")
                                           (setq-local desktop-save-buffer #'scratch-save-desktop))))
-
-(provide 'conf/desktop)

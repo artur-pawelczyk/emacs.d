@@ -34,5 +34,3 @@
 
 (define-key occur-mode-map (kbd "n") #'next-error-no-select)
 (define-key occur-mode-map (kbd "p") #'previous-error-no-select)
-
-(provide 'conf/basic-editing)

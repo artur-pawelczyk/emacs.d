@@ -31,5 +31,3 @@
     (projectile-mode t)))
 
 (advice-add #'display-startup-screen :after #'display-startup-screen--enable-projectile)
-
-(provide 'conf/projects)

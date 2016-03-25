@@ -18,5 +18,3 @@
   (define-key ibuffer-mode-map (kbd "M-o") (if (featurep 'ace-window)
                                                #'ace-window
                                              #'other-window)))
-
-(provide 'conf/buffer-list)

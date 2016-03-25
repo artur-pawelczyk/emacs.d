@@ -16,6 +16,3 @@
 
 (with-package-lazy (dired)
   (define-key dired-mode-map (kbd "b") 'browse-url-of-dired-file))
-
-(provide 'conf/cygwin)
-

@@ -172,5 +172,3 @@ keyboard macro.  Otherwise use function defined by `conf/extended-command-functi
 
 
 (recentf-mode t)
-
-(provide 'conf/completion)

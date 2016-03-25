@@ -37,5 +37,3 @@
 
 (when (conf/installed-p 'emms)
   (global-set-key (kbd "<XF86AudioPlay>") #'emms-pause))
-
-(provide 'conf/emms)

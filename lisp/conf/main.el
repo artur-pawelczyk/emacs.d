@@ -172,5 +172,3 @@
 
 (when (package-installed-p 'pdf-tools)
   (eval-after-load 'doc-view #'pdf-tools-install))
-
-(provide 'conf/main)

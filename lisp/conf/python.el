@@ -11,5 +11,3 @@
 (add-hook 'python-mode-hook (lambda ()
 			      (setq show-trailing-whitespace t)
 			      (set-fill-column 80)))
-
-(provide 'conf/python)

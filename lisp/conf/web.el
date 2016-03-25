@@ -4,5 +4,3 @@
 (setq web-mode-enable-auto-opening nil)
 (setq web-mode-enable-auto-pairing nil)
 (setq web-mode-enable-auto-quoting nil)
-
-(provide 'conf/web)

@@ -1,5 +1,3 @@
-(provide 'conf/yasnippet)
-
 (setq yas-prompt-functions  '(yas-completing-prompt))
 
 ;; Use only local snippets.  The variable is set always while loading the

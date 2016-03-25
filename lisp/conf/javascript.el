@@ -6,5 +6,3 @@
 (with-package-lazy (smartparens js2-mode)
   (sp-local-pair 'js2-mode "{" "}" :post-handlers '(:add conf/open-block))
   (add-hook 'js2-mode-hook #'conf/enable-hybrid-exp))
-
-(provide 'conf/javascript)

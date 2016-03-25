@@ -47,5 +47,3 @@
 
 (with-package-lazy (dired)
   (define-key dired-mode-map (kbd "C-c f") #'find-dired-current))
-
-(provide 'conf/dired)

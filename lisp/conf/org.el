@@ -40,5 +40,3 @@
 (with-package-lazy (org)
   (when (boundp 'org-show-siblings)
     (add-to-list 'org-show-siblings '(org-goto . t))))
-
-(provide 'conf/org)

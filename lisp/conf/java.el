@@ -22,5 +22,3 @@
                     cdr
                     -butlast)
                "."))
-
-(provide 'conf/java)

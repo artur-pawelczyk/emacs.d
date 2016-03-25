@@ -3,5 +3,3 @@
 
 (when (fboundp 'global-eldoc-mode)
   (global-eldoc-mode 1))
-
-(provide 'conf/lisp)

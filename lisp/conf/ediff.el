@@ -12,6 +12,3 @@
                                 (with-current-buffer ediff-buffer-B
                                   (visible-mode -1)
                                   (setq show-trailing-whitespace nil))))
-
-
-(provide 'conf/ediff)

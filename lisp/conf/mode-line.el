@@ -7,5 +7,3 @@
 
 (with-package (projectile)
   (setq projectile-mode-line nil))
-
-(provide 'conf/mode-line)

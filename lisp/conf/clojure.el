@@ -9,5 +9,3 @@
 
 (with-package-lazy (cider-repl smartparens)
   (add-hook 'cider-repl-mode-hook #'smartparens-mode))
-
-(provide 'conf/clojure)
