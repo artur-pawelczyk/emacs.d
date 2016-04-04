@@ -42,4 +42,9 @@
   (jdb-ensure-mode)
   (gud-call (format "stop at %s:%s" (jdb-current-class) (line-number-at-pos))))
 
+(defun jdb-watch-field-at-point ()
+  (interactive)
+  (jdb-ensure-mode)
+  (gud-call (format "watch %s" (jdb-current-method))))
+
 (provide 'jdb)
