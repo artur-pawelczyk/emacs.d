@@ -17,7 +17,7 @@
 	    (setq dired-omit-files
 		  (concat dired-omit-files "\\|^\\..+$"))))
 
-(defvar conf/dired-omit-mode t
+(defvar-local conf/dired-omit-mode t
   "Use an .dir-locals.el file to override dired-omit-mode for a
   directory.")
 
@@ -50,3 +50,7 @@
 
 (with-package-lazy (dired)
   (define-key dired-mode-map (kbd "C-c f") #'find-dired-current))
+
+
+(with-package-lazy (locate)
+  (add-hook 'locate-mode-hook (-partial #'set 'conf/dired-omit-mode nil)))
