@@ -7,7 +7,11 @@
     (let ((current-prefix-arg t))
       (call-interactively #'projectile-ag)))
 
+(defun conf/projectile-relevant-known-projects ()
+    projectile-known-projects)
+
 (with-package (projectile)
+  (fset 'projectile-relevant-known-projects #'conf/projectile-relevant-known-projects)
   (projectile-global-mode)
   (global-set-key (kbd "C-c p") projectile-command-map)
   (global-set-key (kbd "C-x p") projectile-command-map)
