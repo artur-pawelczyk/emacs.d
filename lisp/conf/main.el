@@ -19,6 +19,7 @@
 (setq save-interprogram-paste-before-kill t)
 (fset 'yes-or-no-p #'y-or-n-p)
 (setq visual-line-fringe-indicators '(left-curly-arrow right-curly-arrow))
+(setq enable-recursive-minibuffers t)
 
 (with-package (undo-tree)
     (global-undo-tree-mode)
