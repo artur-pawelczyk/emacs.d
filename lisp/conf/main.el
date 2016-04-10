@@ -58,12 +58,14 @@
 (define-key key-translation-map (kbd "C-M-;") (kbd "C-M-SPC"))
 (define-key key-translation-map [?\C-h] [?\C-?])
 (global-set-key (kbd "<f5>") #'magit-status)
+(global-set-key (kbd "<f6>") #'recompile)
 (global-set-key (kbd "M-/") #'hippie-expand)
 (global-set-key (kbd "M-SPC") #'cycle-spacing)
 (global-set-key (kbd "C-x C-d") #'dired)
 (global-set-key (kbd "M-o") #'other-window)
 (global-set-key (kbd "C-c m") #'hydras-magit/body)
 (global-set-key (kbd "C-x ^") #'hydra-resize-window/body)
+(global-unset-key (kbd "C-z"))
 
 ;; This key binding gets overwritten by some package if set here.  Set
 ;; it after init.
