@@ -3,7 +3,14 @@
   (sml/setup))
 
 (setq rm-blacklist nil)
-(setq rm-whitelist (mapconcat 'identity '(" View" " Narrow" " sWip" " cider\\[.*\\]" " Compiling" " FlyC.*") "\\|"))
+(let ((whitelist '(" View"
+                   " Narrow"
+                   " sWip"
+                   " cider\\[.*\\]"
+                   " Compiling"
+                   " FlyC.*"
+                   " Wrap")))
+  (setq rm-whitelist (mapconcat 'identity whitelist "\\|")))
 
 (with-package (projectile)
   (setq projectile-mode-line nil))
