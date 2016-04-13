@@ -32,4 +32,4 @@
 (when (file-exists-p (user-file "after-init.el"))
   (load-file (user-file "after-init.el")))
 
-(conf/load-directory (user-file "after-init.d"))
+(conf/load-directory (user-file "after-init"))
