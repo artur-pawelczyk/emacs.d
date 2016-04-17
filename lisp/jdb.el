@@ -1,6 +1,24 @@
 (require 'semantic)
 (require 'subr-x)
+(require 'cl-lib)
 
+(require 'jdb-filters)
+(require 'jdb-breakpoint)
+
+(defvar jdb-pending-commands '())
+
+(defun jdb-call (command)
+  (if (get-buffer-process gud-comint-buffer)
+      (gud-call command)
+    (setq jdb-pending-commands (cons command jdb-pending-commands))))
+
+(defun jdb-send-pending-commands ()
+  (mapc #'gud-call jdb-pending-commands)
+  (setq jdb-pending-commands '()))
+
+(add-hook 'jdb-filters-ready-hook #'jdb-send-pending-commands)
+
+
 (defun jdb-ensure-mode ()
   (cl-assert (eq major-mode 'java-mode))
   (semantic-mode 1))
@@ -35,16 +53,25 @@
 (defun jdb-stop-in-method ()
   (interactive)
   (jdb-ensure-mode)
-  (gud-call (format "stop in %s" (jdb-current-method))))
+  (jdb-call (format "stop in %s" (jdb-current-method))))
 
 (defun jdb-stop-at-point ()
   (interactive)
   (jdb-ensure-mode)
-  (gud-call (format "stop at %s:%s" (jdb-current-class) (line-number-at-pos))))
+  (jdb-call (format "stop at %s:%s" (jdb-current-class) (line-number-at-pos))))
 
 (defun jdb-watch-field-at-point ()
   (interactive)
   (jdb-ensure-mode)
-  (gud-call (format "watch %s" (jdb-current-method))))
+  (jdb-call (format "watch %s" (jdb-current-method))))
+
+(defun jdb-clear-breakpoint (breakpoint)
+  (interactive (list (completing-read "Breakpoint: " jdb-breakpoint-list)))
+  (jdb-call (format "clear %s" breakpoint))
+  (jdb-call "clear"))
+
+(defun jdb-clear-all-breakpoints ()
+  (interactive)
+  (mapc #'jdb-clear-breakpoint jdb-filters-breakpoint-list))
 
 (provide 'jdb)
