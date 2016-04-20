@@ -35,3 +35,20 @@
     (projectile-mode t)))
 
 (advice-add #'display-startup-screen :after #'display-startup-screen--enable-projectile)
+
+
+;; Compilation
+(defun conf/projectile-compilation-name (default)
+  (let ((project-name (projectile-project-name)))
+    (if (equal project-name "-")
+        (format "*%s*" default)
+      (format "*%s: %s*" default project-name))))
+
+(defun conf/projectile-run-compilation (cmd)
+  "Run external or Elisp compilation command CMD."
+  (if (functionp cmd)
+      (funcall cmd)
+    (compilation-start cmd nil #'conf/projectile-compilation-name)))
+
+(with-package-lazy (projectile)
+  (fset 'projectile-run-compilation 'conf/projectile-run-compilation))
