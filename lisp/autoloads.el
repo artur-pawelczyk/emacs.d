@@ -5,6 +5,9 @@
 
 (autoload 'jdb-stop-in-method "jdb" nil :interactive)
 (autoload 'jdb-stop-at-point "jdb" nil :interactive)
+(autoload 'jdb-watch-field-at-point "jdb" nil :interactive)
+(autoload 'jdb-clear-breakpoint "jdb" nil :interactive)
+(autoload 'jdb-clear-all-breakpoints "jdb" nil :interactive)
 
 (autoload 'walk-undo "walk-undo" nil :interactive)
 
