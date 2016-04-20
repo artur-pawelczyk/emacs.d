@@ -2,7 +2,6 @@
 (require 'dash)
 
 (require 'jdb-filters)
-(require 'jdb)
 
 (defconst jdb-filters-breakpoint-pattern "breakpoint[[:space:]]+\\([.:A-z0-9$()]+\\)")
 
