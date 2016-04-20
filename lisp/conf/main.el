@@ -178,5 +178,8 @@
   (eval-after-load 'doc-view #'pdf-tools-install))
 
 
+(when (conf/installed-p 'flycheck)
+  (global-set-key (kbd "C-c !") #'flycheck-mode))
+
 (with-package-lazy (flycheck)
   (require 'flycheck-java nil :noerror))
