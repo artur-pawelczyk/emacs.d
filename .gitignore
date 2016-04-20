@@ -34,3 +34,5 @@ after-init.el
 /auto-save
 /request
 /after-init/*
+/network-security.data
+/places
