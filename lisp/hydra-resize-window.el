@@ -5,7 +5,7 @@
 
 (defun conf/find-window-no-minibuf (dir)
   (let ((wind (windmove-find-other-window dir)))
-    (if (eq (active-minibuffer-window) wind)
+    (if (window-minibuffer-p wind)
         nil
       wind)))
 
