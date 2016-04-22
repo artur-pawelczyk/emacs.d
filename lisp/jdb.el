@@ -72,6 +72,6 @@
 
 (defun jdb-clear-all-breakpoints ()
   (interactive)
-  (mapc #'jdb-clear-breakpoint jdb-filters-breakpoint-list))
+  (mapc #'jdb-clear-breakpoint jdb-breakpoint-list))
 
 (provide 'jdb)
