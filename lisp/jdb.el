@@ -23,6 +23,13 @@
   (cl-assert (eq major-mode 'java-mode))
   (semantic-mode 1))
 
+(defun jdb-tag-at-point (&optional force-refresh)
+  (when force-refresh
+    (semantic-force-refresh))
+  (or (semantic-find-tag-by-overlay)
+      (when (y-or-n-p "Semantic information for found. Refresh?")
+        (jdb-tag-at-point :force-refresh))))
+
 (defun jdb-tag-package (tags)
   (semantic-tag-full-package (car tags)))
 
@@ -35,7 +42,7 @@
   (semantic-tag-name (car (last tags))))
 
 (defun jdb-current-method ()
-  (let ((tags (semantic-find-tag-by-overlay)))
+  (let ((tags (jdb-tag-at-point)))
     (unless tags (error "No semantic information in the buffer."))
     (concat (jdb-tag-package tags)
              "."
@@ -44,7 +51,7 @@
              (jdb-tag-method tags))))
 
 (defun jdb-current-class ()
-  (let ((tags (semantic-find-tag-by-overlay)))
+  (let ((tags (jdb-tag-at-point)))
     (unless tags (error "No semantic information in the buffer."))
     (concat (jdb-tag-package tags)
             "."
