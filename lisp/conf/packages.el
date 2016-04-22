@@ -32,6 +32,7 @@
         macrostep
         linum-relative
         ido-vertical-mode
+        with-editor ;; Required by Magit
         pdf-tools))
 
 (setq package-selected-packages
