@@ -9,7 +9,8 @@
                    " cider\\[.*\\]"
                    " Compiling"
                    " FlyC.*"
-                   " Wrap")))
+                   " Wrap"
+                   " Vis")))
   (setq rm-whitelist (mapconcat 'identity whitelist "\\|")))
 
 (with-package (projectile)
