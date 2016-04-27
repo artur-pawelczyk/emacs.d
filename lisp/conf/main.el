@@ -159,7 +159,7 @@
 (defun async-shell-command--set-buffer-name (orig-fun command &optional orig-buffer error-buffer)
   (let ((buffer-name (conf/shell-new-buffer-name command)))
     (if orig-buffer
-        (apply orig-fun command orig-buffer error-buffer)
+        (funcall orig-fun command orig-buffer error-buffer)
       (funcall orig-fun command buffer-name buffer-name))))
 
 (advice-add 'shell-command :around #'async-shell-command--set-buffer-name)
