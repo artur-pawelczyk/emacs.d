@@ -13,3 +13,6 @@
 
 (autoload 'hydras-magit/body "hydras" nil :interactive)
 (autoload 'hydra-resize-window/body "hydra-resize-window" nil :interactive)
+
+(autoload 'umessage "umessage")
+(autoload 'umessage-mode "umessage" nil :interactive)
