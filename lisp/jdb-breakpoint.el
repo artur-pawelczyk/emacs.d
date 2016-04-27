@@ -3,7 +3,7 @@
 
 (require 'jdb-filters)
 
-(defconst jdb-filters-breakpoint-pattern "breakpoint[[:space:]]+\\([.:A-z0-9$()]+\\)")
+(defconst jdb-filters-breakpoint-pattern "breakpoint[[:space:]]+\\([.:A-z0-9$()<>, ]+\\)")
 
 (defvar jdb-breakpoint-list nil)
 
