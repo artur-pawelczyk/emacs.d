@@ -17,7 +17,6 @@
         smartparens
         slime
         markdown-mode
-        swiper ;; provides ivy-mode
         counsel
         smex
         ggtags
