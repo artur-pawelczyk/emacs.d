@@ -111,9 +111,10 @@
 information from the current Java buffer.  The buffer is *not*
 required to be in java-mode"
   (interactive)
-    (dolist (package (ji-find-current-packages))
-    (let ((old-symbols (gethash (car package) ji-db)))
-      (puthash (car package) (cl-remove-duplicates (append (cdr package) old-symbols)) ji-db)))
+  (dolist (package (ji-find-current-packages))
+    (let* ((db (or ji-db (ji-load-database)))
+           (old-symbols (gethash (car package) db)))
+      (puthash (car package) (cl-remove-duplicates (append (cdr package) old-symbols)) db)))
   (unless (ji-timer-running ji-save-timer)
     (setq ji-save-timer (run-at-time "5 sec" nil #'ji-save-database))))
 
