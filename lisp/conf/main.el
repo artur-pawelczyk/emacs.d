@@ -68,6 +68,10 @@
 (global-set-key (kbd "C-x ^") #'hydra-resize-window/body)
 (global-unset-key (kbd "C-z"))
 
+(when (conf/installed-p 'hydra)
+  (global-set-key (kbd "C-x [") #'hydras-forward-page)
+  (global-set-key (kbd "C-x ]") #'hydras-backward-page))
+
 ;; This key binding gets overwritten by some package if set here.  Set
 ;; it after init.
 (add-hook 'after-init-hook (lambda ()

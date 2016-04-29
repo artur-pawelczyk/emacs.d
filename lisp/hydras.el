@@ -13,4 +13,20 @@
   ("w" magit-wip-log-current)
   ("W" magit-wip-commit))
 
+(defhydra hydras-page-movement
+  (:hint nil)
+  "Page movement"
+  ("[" backward-page)
+  ("]" forward-page))
+
+(defun hydras-backward-page ()
+  (interactive)
+  (backward-page)
+  (hydras-page-movement/body))
+
+(defun hydras-forward-page ()
+  (interactive)
+  (forward-page)
+  (hydras-page-movement/body))
+
 (provide 'hydras)
