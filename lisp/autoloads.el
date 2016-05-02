@@ -8,6 +8,7 @@
 (autoload 'jdb-watch-field-at-point "jdb" nil :interactive)
 (autoload 'jdb-clear-breakpoint "jdb" nil :interactive)
 (autoload 'jdb-clear-all-breakpoints "jdb" nil :interactive)
+(autoload 'jdb-classes-completion-mode "jdb-classes" nil :interactive)
 
 (autoload 'walk-undo "walk-undo" nil :interactive)
 
