@@ -2,6 +2,7 @@
 
 (require 'cl)
 (require 's)
+(require 'dash)
 
 (defun kill-word-or-region (arg)
   (interactive "p")
@@ -69,6 +70,15 @@ Does not delete the prompt."
                        (not (get-buffer-process buffer)))
               (kill-buffer buffer)))
           (buffer-list)))
+
+(defun delete-frame-if-only ()
+  (interactive)
+  (let* ((graphical-frames (-filter (lambda (f) (not (eq (framep f) t))) (frame-list)))
+         (but-current (delete (window-frame) graphical-frames)))
+    (if (null but-current)
+        (when (y-or-n-p "Delete only graphical frame? ")
+          (delete-frame))
+      (delete-frame))))
 
 (defun buffer-major-mode (buffer-or-name)
   (with-current-buffer buffer-or-name
