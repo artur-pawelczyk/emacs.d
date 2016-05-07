@@ -40,3 +40,9 @@
 (with-package-lazy (org)
   (when (boundp 'org-show-siblings)
     (add-to-list 'org-show-siblings '(org-goto . t))))
+
+
+(with-package-lazy (org)
+  (when (conf/installed-p 'hydra)
+    (define-key org-mode-map (kbd "C-c M-f") #'hydras-org-next-block)
+    (define-key org-mode-map (kbd "C-c M-b") #'hydras-org-previous-block)))

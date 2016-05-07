@@ -29,4 +29,21 @@
   (forward-page)
   (hydras-page-movement/body))
 
+
+(defhydra hydras-org-block-movement
+  (:hint nil)
+  "Org block movement"
+  ("M-f" org-next-block)
+  ("M-b" org-previous-block))
+
+(defun hydras-org-next-block ()
+  (interactive)
+  (org-next-block 1)
+  (hydras-org-block-movement/body))
+
+(defun hydras-org-previous-block ()
+  (interactive)
+  (org-previous-block 1)
+  (hydras-org-block-movement/body))
+
 (provide 'hydras)
