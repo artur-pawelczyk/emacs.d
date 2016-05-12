@@ -57,6 +57,11 @@
             "."
             (jdb-tag-class tags))))
 
+(defun jdb-real-line-number ()
+  (save-restriction
+    (widen)
+    (line-number-at-pos)))
+
 (defun jdb-stop-in-method ()
   (interactive)
   (jdb-ensure-mode)
@@ -65,7 +70,7 @@
 (defun jdb-stop-at-point ()
   (interactive)
   (jdb-ensure-mode)
-  (jdb-call (format "stop at %s:%s" (jdb-current-class) (line-number-at-pos))))
+  (jdb-call (format "stop at %s:%s" (jdb-current-class) (jdb-real-line-number))))
 
 (defun jdb-watch-field-at-point ()
   (interactive)
