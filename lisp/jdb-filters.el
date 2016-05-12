@@ -8,7 +8,7 @@
 (defvar jdb-filters '())
 (defvar jdb-filters-ready-hook nil)
 
-(defconst jdb-filters-temp-buffer "*jdb-filters-tmp*")
+(defconst jdb-filters-temp-buffer " *jdb-filters-tmp*")
 
 (defun jdb-filters-split-output (output)
   (mapcar #'string-trim (split-string output "\n")))
