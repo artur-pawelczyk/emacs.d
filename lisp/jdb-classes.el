@@ -1,10 +1,10 @@
 (defvar jdb-classes nil)
 
-(defun jdb-filter-breakpoint (output)
+(defun jdb-filter-classes (output)
   (when (equal "** classes list **" (car output))
     (setq jdb-classes (cdr output))))
 
-(add-to-list 'jdb-filters #'jdb-filter-breakpoint)
+(add-to-list 'jdb-filters #'jdb-filter-classes)
 
 (defun jdb-classes-insert ()
   (interactive)
