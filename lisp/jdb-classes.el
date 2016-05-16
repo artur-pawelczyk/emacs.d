@@ -1,7 +1,7 @@
 (defvar jdb-classes nil)
 
 (defun jdb-filter-classes (output)
-  (when (equal "** classes list **" (car output))
+  (when (or (equal "** classes list **" (car output)) (find "java.lang.Object" output))
     (setq jdb-classes (cdr output))))
 
 (add-to-list 'jdb-filters #'jdb-filter-classes)
