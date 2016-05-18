@@ -172,10 +172,17 @@ required to be in java-mode"
       (beginning-of-line)
       (point))))
 
+(defun ji-next-line-in-place (point)
+  (save-excursion
+    (goto-char point)
+    (next-line)
+    (point)))
+
 (defun ji-import-region-start ()
   (save-excursion
     (goto-char (point-min))
-    (-when-let (pos (ji-search-forward-in-place ji-import-stmt-pattern))
+    (-when-let (pos (or (ji-search-forward-in-place ji-import-stmt-pattern)
+                        (ji-next-line-in-place (ji-search-forward-in-place ji-package-stmt-pattern))))
       (goto-char pos))
     (beginning-of-line)
     (point)))
