@@ -14,9 +14,8 @@
   (mapcar #'string-trim (split-string output "\n")))
 
 (defun jdb-filters-output-end? (output)
-  (let ((last (car (last (jdb-filters-split-output output)))))
-    (or (string-match-p "^.*>$" last)
-        (string-match-p ".*\[[0-9]+\]$" last))))
+  (or (string-match-p "^.*>[[:space:]]*$" output)
+      (string-match-p "^.*\\[[0-9]+\\][[:space:]]*$" output)))
 
 (defun jdb-filters-advice (output)
   (with-current-buffer (get-buffer-create jdb-filters-temp-buffer)
