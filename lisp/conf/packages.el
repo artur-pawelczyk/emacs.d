@@ -32,7 +32,8 @@
         linum-relative
         ido-vertical-mode
         with-editor ;; Required by Magit
-        pdf-tools))
+        pdf-tools
+        hydra))
 
 (setq package-selected-packages
       (when (boundp 'package-selected-packages)
