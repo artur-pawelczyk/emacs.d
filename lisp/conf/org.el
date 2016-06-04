@@ -46,3 +46,7 @@
   (when (conf/installed-p 'hydra)
     (define-key org-mode-map (kbd "C-c M-f") #'hydras-org-next-block)
     (define-key org-mode-map (kbd "C-c M-b") #'hydras-org-previous-block)))
+
+
+(with-package-lazy (org-agenda)
+  (add-hook 'org-agenda-mode-hook #'hl-line-mode))
