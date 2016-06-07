@@ -119,4 +119,9 @@ Does not delete the prompt."
   (with-current-buffer buffer)
   (s-match-strings-all pattern (buffer-substring (point-min) (point-max))))
 
+(defun find-nearest-directory (root name)
+  (let ((regexp (concat "^" name "$")))
+    (-last #'file-directory-p
+           (directory-files-recursively root regexp :include-dirs))))
+
 (provide 'tools)
