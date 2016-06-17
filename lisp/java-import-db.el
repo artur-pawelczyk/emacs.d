@@ -23,7 +23,9 @@
 
 (defconst ji-package-stmt-pattern "^package [a-zA-z0-9.]+;$")
 
-(defconst ji-import-stmt-pattern "^import [a-zA-z0-9.]+;$")
+(defconst ji-import-stmt-pattern "^import\\([[:space:]]+static\\)?[[:space:]]+[a-zA-z0-9.]+;$")
+
+(defconst ji-import-stmt-prefix-pattern "import\\([[:space:]]+static\\)?[[:space:]]+")
 
 (defun ji-timer-running (timer)
   (memql timer timer-list))
@@ -47,7 +49,7 @@
     (backward-char)
     (let ((name-end (point)))
       (beginning-of-line)
-      (search-forward-regexp "import " nil :noerror)
+      (search-forward-regexp ji-import-stmt-prefix-pattern nil :noerror)
       (buffer-substring-no-properties (point) name-end))))
 
 (defun ji-find-imports-impl ()
