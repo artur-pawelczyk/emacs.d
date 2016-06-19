@@ -55,3 +55,19 @@
                     `((?j . ,conf/jdb-program)
                       (?s . ,(conf/mvn-sourcepath project-root))
                       (?u . ,url)))))
+
+(defun conf/mvn-test (test-name &optional debug)
+  (let ((default-directory (projectile-project-root)))
+    (compile (format "mvn test -Dtest=%s -Dmaven.surefire.debug=%s"
+                     test-name
+                     (if debug "true" "false")))))
+
+(defun conf/mvn-test-current-file (&optional debug)
+  (interactive "P")
+  (require 'java-parser)
+  (conf/mvn-test (java-full-class-at-point) debug))
+
+(defun conf/mvn-test-current-method (&optional debug)
+  (interactive "P")
+  (require 'java-parser)
+  (conf/mvn-test (concat (java-full-class-at-point) "#" (java-method-at-point)) debug))
