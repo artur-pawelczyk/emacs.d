@@ -1,5 +1,8 @@
 (setq projectile-indexing-method 'alien)
 (setq projectile-switch-project-action #'projectile-commander)
+(setq projectile-enable-caching t)
+(when (conf/installed-p 'ivy)
+  (setq projectile-completion-system 'ivy))
 
 
 (defun projectile-ag-regex ()
