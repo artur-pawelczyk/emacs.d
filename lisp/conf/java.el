@@ -26,11 +26,13 @@
 
 
 ;; Maven
+(defvar-local conf/mvn-custom-sourcepath '())
+
 (defun conf/mvn-sourcepath (project-root)
   (let* ((src (directory-files-recursively project-root "^java$" :include-dirs))
          (main (-filter (-partial #'string-match-p "/main/") src))
          (test (-filter (-partial #'string-match-p "/test/") src))
-         (sourcepath (string-join (append main test) ":")))
+         (sourcepath (string-join (append main test conf/mvn-custom-sourcepath) ":")))
     sourcepath))
 
 (defun conf/mvn-classpath (project-root)
@@ -58,9 +60,9 @@
 
 (defun conf/mvn-test (test-name &optional debug)
   (let ((default-directory (projectile-project-root)))
-    (compile (format "mvn test -Dtest=%s -Dmaven.surefire.debug=%s"
+    (compile (format "mvn test -Dtest=%s %s -Dsurefire.useFile=false"
                      test-name
-                     (if debug "true" "false")))))
+                     (if debug "-Dmaven.surefire.debug" "")))))
 
 (defun conf/mvn-test-current-file (&optional debug)
   (interactive "P")
