@@ -43,6 +43,13 @@
 
 (defvar conf/jdb-program "jdb")
 
+(defun conf/maybe-project-root ()
+  "Project root or current directory if project information is not available."
+  (if (fboundp 'projectile-project-root)
+      (let ((projectile-require-project-root))
+        (projectile-project-root))
+    default-directory))
+
 (defun conf/mvn-jdb (project-root)
   (interactive "D")
   (jdb (format-spec "%j -sourcepath%s -classpath%c"
@@ -51,7 +58,7 @@
                       (?c . ,(conf/mvn-classpath project-root))))))
 
 (defun conf/mvn-jdb-attach (project-root url)
-  (interactive (list default-directory
+  (interactive (list (conf/maybe-project-root)
                      (read-from-minibuffer "URL: " "localhost:5005")))
   (jdb (format-spec "%j -attach %u -sourcepath%s"
                     `((?j . ,conf/jdb-program)
@@ -59,7 +66,7 @@
                       (?u . ,url)))))
 
 (defun conf/mvn-test (test-name &optional debug)
-  (let ((default-directory (projectile-project-root)))
+  (let ((default-directory (conf/maybe-project-root)))
     (compile (format "mvn test -Dtest=%s %s -Dsurefire.useFile=false"
                      test-name
                      (if debug "-Dmaven.surefire.debug" "")))))
