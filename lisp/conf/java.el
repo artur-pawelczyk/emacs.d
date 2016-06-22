@@ -80,3 +80,9 @@
   (interactive "P")
   (require 'java-parser)
   (conf/mvn-test (concat (java-full-class-at-point) "#" (java-method-at-point)) debug))
+
+(with-package-lazy (cc-mode)
+  (define-key java-mode-map (kbd "C-c d") #'conf/mvn-jdb-attach)
+  (define-key java-mode-map (kbd "C-c D") #'conf/mvn-jdb)
+  (define-key java-mode-map (kbd "C-c t") #'conf/mvn-test-current-file)
+  (define-key java-mode-map (kbd "C-c T") #'conf/mvn-test-current-method))
