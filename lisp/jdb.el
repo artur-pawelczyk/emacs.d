@@ -6,6 +6,8 @@
 (require 'jdb-breakpoint)
 
 (defvar jdb-pending-commands '())
+(defvar jdb-init-commands '()
+  "Commands to be sent every time jdb starts.")
 
 (defun jdb-call (command)
   (if (get-buffer-process gud-comint-buffer)
@@ -16,7 +18,11 @@
   (mapc #'gud-call jdb-pending-commands)
   (setq jdb-pending-commands '()))
 
+(defun jdb-send-init-commands ()
+  (setq jdb-pending-commands (append jdb-pending-commands jdb-init-commands)))
+
 (add-hook 'jdb-filters-ready-hook #'jdb-send-pending-commands)
+(add-hook 'gud-mode-hook #'jdb-send-init-commands)
 
 
 (defun jdb-ensure-mode ()
