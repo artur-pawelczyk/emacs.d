@@ -11,6 +11,7 @@
 (require 'dash)
 (require 's)
 (require 'projectile)
+(require 'arc-mode)
 
 ;;; Code:
 
@@ -106,9 +107,33 @@
     (unless (or (string-empty-p package) (string-empty-p class))
       (list (list (ji-package-name) (ji-class-name))))))
 
+(defun ji-package-from-class-file-path (path)
+  (let ((package (intern (s-replace "/" "." (directory-file-name (file-name-directory path)))))
+        (class (intern (file-name-base path))))
+    (list package class)))
+
+(defun ji-try-parse-archive ()
+  (when (string-suffix-p ".jar" (buffer-file-name))
+    (let ((orig-buffer (current-buffer)))
+      (with-temp-buffer
+        (insert-buffer-substring orig-buffer)
+        (archive-zip-summarize)))))
+
+(defun ji-class-files-in-archive ()
+  (let ((spec-list (or archive-files (ji-try-parse-archive))))
+    (-filter (lambda (file)
+               (when file
+                 (string-suffix-p ".class" file)))
+             (mapcar (lambda (file) (elt file 1)) spec-list))))
+
+(defun ji-packages-from-jar-file ()
+  (mapcar #'ji-package-from-class-file-path (ji-class-files-in-archive)))
+
 (defun ji-find-current-packages (&optional buffer)
   (with-current-buffer (or buffer (current-buffer))
-    (append (ji-packages-from-current-class) (ji-find-packages-from-imports))))
+    (append (ji-packages-from-current-class)
+            (ji-find-packages-from-imports)
+            (ji-packages-from-jar-file))))
 
 (defun ji-build-database ()
   "Add new entries to the `ji-db' database by extracting
