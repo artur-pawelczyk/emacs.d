@@ -100,13 +100,15 @@
             (symbol-at-point))
         ""))))
 
-(defun ji-package-from-current-class ()
-  "Return the symbol cell corresponding to the current class/file."
-  (list (ji-package-name) (ji-class-name)))
+(defun ji-packages-from-current-class ()
+  (let ((package (ji-package-name))
+        (class (ji-class-name)))
+    (unless (or (string-empty-p package) (string-empty-p class))
+      (list (ji-package-name) (ji-class-name)))))
 
 (defun ji-find-current-packages (&optional buffer)
   (with-current-buffer (or buffer (current-buffer))
-    (cons (ji-package-from-current-class) (ji-find-packages-from-imports))))
+    (append (ji-packages-from-current-class) (ji-find-packages-from-imports))))
 
 (defun ji-build-database ()
   "Add new entries to the `ji-db' database by extracting
