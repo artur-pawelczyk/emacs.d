@@ -92,8 +92,8 @@
 (defun ji-class-name ()
   (save-excursion
     (goto-char (point-min))
-    (let ((name-start (or (save-excursion (search-forward "class " nil :noerror))
-                          (save-excursion (search-forward "interface " nil :noerror)))))
+    (let ((name-start (or (save-excursion (search-forward-regexp "^\\(public \\)?class " nil :noerror))
+                          (save-excursion (search-forward-regexp "^\\(public \\)?interface " nil :noerror)))))
       (if name-start
           (progn
             (goto-char name-start)
