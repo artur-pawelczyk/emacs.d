@@ -104,7 +104,7 @@
   (let ((package (ji-package-name))
         (class (ji-class-name)))
     (unless (or (string-empty-p package) (string-empty-p class))
-      (list (ji-package-name) (ji-class-name)))))
+      (list (list (ji-package-name) (ji-class-name))))))
 
 (defun ji-find-current-packages (&optional buffer)
   (with-current-buffer (or buffer (current-buffer))
