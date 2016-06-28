@@ -42,6 +42,7 @@
    ":"))
 
 (defvar conf/jdb-program "jdb")
+(defvar conf/mvn-program "mvn")
 
 (defun conf/maybe-project-root ()
   "Project root or current directory if project information is not available."
@@ -67,7 +68,8 @@
 
 (defun conf/mvn-test (test-name &optional debug)
   (let ((default-directory (conf/maybe-project-root)))
-    (compile (format "mvn test -Dtest=%s %s -Dsurefire.useFile=false"
+    (compile (format "%s test -Dtest=%s %s -Dsurefire.useFile=false"
+                     conf/mvn-program
                      test-name
                      (if debug "-Dmaven.surefire.debug" "")))))
 
