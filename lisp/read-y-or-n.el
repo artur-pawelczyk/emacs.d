@@ -21,7 +21,8 @@
 (defun read-y-or-n (prompt)
   "Read \"y or n\" from miniubffer.
 Like `y-or-n-p', but uses minibuffer instead of `read-key'."
-  (let ((resp (read-letter prompt)))
+  (let* ((prompt-with-space (concat prompt (if (string-suffix-p " " prompt) "" " ")))
+         (resp (read-letter prompt-with-space)))
     (cond
      ((equal resp "y")
       t)
