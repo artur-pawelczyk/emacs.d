@@ -42,7 +42,8 @@
    ":"))
 
 (defvar conf/jdb-program "jdb")
-(defvar conf/mvn-program "mvn")
+(defvar-local conf/mvn-program "mvn")
+(defvar-local conf/mvn-arguments '())
 
 (defun conf/maybe-project-root ()
   "Project root or current directory if project information is not available."
@@ -67,11 +68,17 @@
                       (?u . ,url)))))
 
 (defun conf/mvn-test (test-name &optional debug)
+  (conf/mvn-run "test"
+                (list (concat "-Dtest=" test-name)
+                      (if debug "-Dmaven.surefire.debug" "")
+                      "-Dsurefire.useFile=false")))
+
+(defun conf/mvn-run (command &optional args)
   (let ((default-directory (conf/maybe-project-root)))
-    (compile (format "%s test -Dtest=%s %s -Dsurefire.useFile=false"
+    (compile (format "%s %s %s"
                      conf/mvn-program
-                     test-name
-                     (if debug "-Dmaven.surefire.debug" "")))))
+                     command
+                     (string-join (append args conf/mvn-arguments) " ")))))
 
 (defun conf/mvn-test-current-file (&optional debug)
   (interactive "P")
