@@ -6,22 +6,38 @@
 (require 'simple)
 (require 'subr-x)
 
-(defun umessage--make-window-bottom ()
+(defun umessage--make-window-bottom (height)
   (let ((ignore-window-parameters t))
-    (split-window (frame-root-window) -1 'below)))
+    (split-window (frame-root-window) (- height) 'below)))
+
+(defconst umessage-window-max-height 5)
+
+(defun umessage--window-height (buffer)
+  (let ((lines (with-current-buffer buffer (count-lines (point-min) (point-max)))))
+    (if (> lines umessage-window-max-height)
+      umessage-window-max-height
+    (if (< lines 1)
+        1
+      lines))))
 
 (defun umessage--new-window (buffer)
-  (let ((w (umessage--make-window-bottom)))
+  "Make a temporary window for BUFFER.
+Height of the window is just enough to fit BUFFER's content, but
+smaller than `umessage-window-max-height'."
+  (let ((w (umessage--make-window-bottom (umessage--window-height buffer))))
     (set-window-parameter w 'no-other-window t)
     (set-window-buffer w buffer)
     (set-window-dedicated-p w t)
     w))
 
-(defun umessage--new-buffer (name)
+(defun umessage--new-buffer (name content)
   (with-current-buffer (generate-new-buffer name)
     (setq mode-line-format nil)
     (setq cursor-type nil)
     (setq window-size-fixed t)
+    (erase-buffer)
+    (insert content)
+    (goto-char (point-min))
     (current-buffer)))
 
 (defun umessage-log-only (message)
@@ -34,11 +50,8 @@
 (defun umessage (message &optional duration)
   "Display MESSAGE in special buffer above the minibuffer for DURATION of seconds."
   (umessage-log-only message)
-  (let* ((buffer (umessage--new-buffer " *umessage*"))
+  (let* ((buffer (umessage--new-buffer " *umessage*" message))
          (win (umessage--new-window buffer)))
-    (with-current-buffer buffer
-      (erase-buffer)
-      (insert message))
     (run-at-time (or duration 5) nil (lambda ()
                                        (when (and (windowp win) (window-valid-p win))
                                          (delete-window win))
