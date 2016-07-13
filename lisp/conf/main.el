@@ -22,7 +22,6 @@
 (setq enable-recursive-minibuffers t)
 
 (with-package (undo-tree)
-    (global-undo-tree-mode)
     (setq undo-tree-auto-save-history t)
     (setq undo-tree-history-directory-alist
       `((".*" . ,(expand-file-name "auto-save/" user-emacs-directory)))))
