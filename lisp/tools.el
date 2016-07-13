@@ -124,4 +124,8 @@ Does not delete the prompt."
     (-last #'file-directory-p
            (directory-files-recursively root regexp :include-dirs))))
 
+(defun ask-advice (fn &rest args)
+  (when (y-or-n-p (format "About to run %s. Proceed?" real-this-command))
+    (apply fn args)))
+
 (provide 'tools)

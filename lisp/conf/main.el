@@ -189,3 +189,7 @@
 
 (with-package-lazy (flycheck)
   (require 'flycheck-java nil :noerror))
+
+
+;; Ask before running `save-buffers-kill-terminal'
+(advice-add 'save-buffers-kill-terminal :around #'ask-advice)
