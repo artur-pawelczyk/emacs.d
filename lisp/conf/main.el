@@ -21,6 +21,7 @@
 (setq visual-line-fringe-indicators '(left-curly-arrow right-curly-arrow))
 (setq enable-recursive-minibuffers t)
 (blink-cursor-mode 1)
+(save-place-mode 1)
 
 (with-package (undo-tree)
     (setq undo-tree-auto-save-history t)
