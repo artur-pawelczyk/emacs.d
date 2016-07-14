@@ -1,6 +1,7 @@
 (setq desktop-dirname user-emacs-directory)
 (setq desktop-lazy-idle-delay 1)
 (setq desktop-restore-eager 20)
+(setq desktop-lazy-verbose nil)
 
 
 (defun scratch-save-desktop (_)
