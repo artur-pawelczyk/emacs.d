@@ -55,3 +55,14 @@
 
 (with-package-lazy (projectile)
   (fset 'projectile-run-compilation 'conf/projectile-run-compilation))
+
+
+;; Shell command
+(defun conf/projectile-background-shell-command ()
+  (interactive)
+  (let ((default-directory (projectile-project-root))
+        (display-buffer-alist '((".*" . (display-buffer-no-window)))))
+    (call-interactively #'async-shell-command)))
+
+(with-package-lazy (projectile)
+  (define-key projectile-command-map "!" #'conf/projectile-background-shell-command))
