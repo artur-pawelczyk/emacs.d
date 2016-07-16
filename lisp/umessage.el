@@ -6,6 +6,11 @@
 (require 'simple)
 (require 'subr-x)
 
+(defconst umessage--format-function
+  (if (fboundp 'format-message)
+      #'format-message
+    #'format))
+
 (defun umessage--make-window-bottom (height)
   (let ((ignore-window-parameters t))
     (split-window (frame-root-window) (- height) 'below)))
@@ -60,7 +65,7 @@ smaller than `umessage-window-max-height'."
 
 (defun umessage-around-message (fun &rest args)
   (if (and args (car args) (window-minibuffer-p))
-      (let ((message (apply #'format-message args)))
+      (let ((message (apply umessage--format-function args)))
         (when (not (string-empty-p message))
           (umessage message)))
     (apply fun args)))
