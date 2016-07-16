@@ -4,7 +4,7 @@
 (autoload 'dired-jump "dired-x" nil :interactive)
 (global-set-key (kbd "C-x C-j") #'dired-jump)
 
-(setq dired-listing-switches "-hlDa")
+(setq dired-listing-switches "-hla")
 (setq dired-dwim-target t)
 
 (with-package-lazy (dired)
