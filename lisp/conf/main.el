@@ -21,7 +21,6 @@
 (setq visual-line-fringe-indicators '(left-curly-arrow right-curly-arrow))
 (setq enable-recursive-minibuffers t)
 (blink-cursor-mode 1)
-(save-place-mode 1)
 
 (with-package (undo-tree)
     (setq undo-tree-auto-save-history t)
@@ -195,3 +194,10 @@
 
 ;; Ask before running `save-buffers-kill-terminal'
 (advice-add 'save-buffers-kill-terminal :around #'ask-advice)
+
+
+;; `save-place-mode' function was introduced in Emacs 25.
+(require 'saveplace nil :noerror)
+(if (fboundp 'save-place-mode)
+    (save-place-mode 1)
+  (setq-default save-place t))
