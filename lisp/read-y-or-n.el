@@ -3,9 +3,10 @@
 (defun read-letter-command (char)
   (lambda ()
     (interactive)
+    (setq this-command 'read-y-or-n)
     (throw 'response char)))
 
-(defvar read-letter-map
+(setq read-letter-map
       (let ((map (make-sparse-keymap)))
         (set-keymap-parent map minibuffer-local-map)
         (cl-loop for char from ?A to ?z
