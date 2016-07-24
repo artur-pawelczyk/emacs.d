@@ -62,6 +62,9 @@ Does not delete the prompt."
   (with-current-buffer buffer-or-name
     major-mode))
 
+(defun buffer-visible-p (buffer)
+  (member buffer (mapcar #'window-buffer (window-list))))
+
 (defun shell-cleanup-dead-buffers ()
   "Kill all shell buffers that have no process running."
   (interactive)
