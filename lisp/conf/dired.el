@@ -6,6 +6,7 @@
 
 (setq dired-listing-switches "-hla")
 (setq dired-dwim-target t)
+(setq dired-omit-verbose nil)
 
 (with-package-lazy (dired)
   (when (fboundp 'dired-hide-details-mode)
