@@ -21,7 +21,7 @@
 (defun java-tag-class (tags)
   (let* ((classes (-filter (lambda (tag) (equal "class" (semantic-tag-type tag))) tags))
          (names (mapcar #'semantic-tag-name classes)))
-    (string-join (seq-uniq names) "$")))
+    (string-join (remove-duplicates names) "$")))
 
 (defun java-tag-method (tags)
   (semantic-tag-name (car (last tags))))

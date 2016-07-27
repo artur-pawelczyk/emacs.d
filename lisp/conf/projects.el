@@ -66,3 +66,9 @@
 
 (with-package-lazy (projectile)
   (define-key projectile-command-map "!" #'conf/projectile-background-shell-command))
+
+
+;; The silver searcher
+
+;; Causes problems with Emacs 24
+(setq ag-group-matches nil)
