@@ -72,3 +72,18 @@
 
 ;; Causes problems with Emacs 24
 (setq ag-group-matches nil)
+
+
+;; Subprojects
+
+;; Redefine this function for the subprojects to work correctly
+(with-package-lazy (projectile)
+  (defun projectile-root-local (dir)
+    (when (and (stringp projectile-project-root)
+               (string-prefix-p projectile-project-root dir))
+      projectile-project-root)))
+
+(defun conf/projectile-dir-into-subproject ()
+  (interactive)
+  (add-dir-local-variable nil 'projectile-project-root (expand-file-name default-directory)))
+
