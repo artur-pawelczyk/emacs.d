@@ -150,15 +150,25 @@
 
 ;; Rename the shell buffers.
 (defun conf/shell-boring-program? (name)
-  (and (or (member name '("nohup"))
-          (string-match-p "^[A-Z]+=.+$" name)) t))
+  (and (string-match-p "^[A-Z]+=.+$" name) t))
+
+(defvar conf/shell-extended-commands '("nohup" "git"))
+
+(defun conf/shell-extended-command? (name)
+  (member name conf/shell-extended-commands))
 
 (defun conf/shell-command-unique-name (command)
   (or (car (-drop-while (-partial #'conf/shell-boring-program?) (split-string command " ")))
       command))
 
+(defun conf/shell-command-buffer-name (command)
+  (let ((parts (-drop-while (-partial #'conf/shell-boring-program?) (split-string command))))
+    (string-join (append (-take-while #'conf/shell-extended-command? parts)
+                         (list (car (-drop-while #'conf/shell-extended-command? parts))))
+                 "-")))
+
 (defun conf/shell-new-buffer-name (command)
-  (let ((base-name (format "*%s: shell-command*" (conf/shell-command-unique-name command))))
+  (let ((base-name (format "*%s: shell-command*" (conf/shell-command-buffer-name command))))
     (generate-new-buffer-name base-name)))
 
 (defun async-shell-command--set-buffer-name (orig-fun command &optional orig-buffer error-buffer)
