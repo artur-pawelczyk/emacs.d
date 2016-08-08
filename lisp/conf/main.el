@@ -21,6 +21,7 @@
 (setq visual-line-fringe-indicators '(left-curly-arrow right-curly-arrow))
 (setq enable-recursive-minibuffers t)
 (blink-cursor-mode 1)
+(setq calendar-week-start-day 1)
 
 (with-package (undo-tree)
     (setq undo-tree-auto-save-history t)
@@ -49,9 +50,6 @@
   (define-key smartparens-mode-map (kbd "C-(") #'sp-backward-slurp-sexp)
   (define-key smartparens-mode-map (kbd "C-{") #'sp-backward-barf-sexp)
   (require 'smartparens-config nil :noerror))
-
-(setq calendar-week-start-day 1)
-(setq async-shell-command-buffer 'new-buffer)
 
 ;; Global keys
 (global-set-key (kbd "C-w") #'kill-word-or-region)
@@ -147,37 +145,6 @@
 (with-package-lazy (ag)
   (define-key ag-mode-map (kbd "n") #'next-error-no-select)
   (define-key ag-mode-map (kbd "p") #'previous-error-no-select))
-
-;; Rename the shell buffers.
-(defun conf/shell-boring-program? (name)
-  (and (string-match-p "^[A-Z]+=.+$" name) t))
-
-(defvar conf/shell-extended-commands '("nohup" "git"))
-
-(defun conf/shell-extended-command? (name)
-  (member name conf/shell-extended-commands))
-
-(defun conf/shell-command-unique-name (command)
-  (or (car (-drop-while (-partial #'conf/shell-boring-program?) (split-string command " ")))
-      command))
-
-(defun conf/shell-command-buffer-name (command)
-  (let ((parts (-drop-while (-partial #'conf/shell-boring-program?) (split-string command))))
-    (string-join (append (-take-while #'conf/shell-extended-command? parts)
-                         (list (car (-drop-while #'conf/shell-extended-command? parts))))
-                 "-")))
-
-(defun conf/shell-new-buffer-name (command)
-  (let ((base-name (format "*%s: shell-command*" (conf/shell-command-buffer-name command))))
-    (generate-new-buffer-name base-name)))
-
-(defun async-shell-command--set-buffer-name (orig-fun command &optional orig-buffer error-buffer)
-  (let ((buffer-name (conf/shell-new-buffer-name command)))
-    (if orig-buffer
-        (funcall orig-fun command orig-buffer error-buffer)
-      (funcall orig-fun command buffer-name buffer-name))))
-
-(advice-add 'shell-command :around #'async-shell-command--set-buffer-name)
 
 
 (defvar linum-mode-suppress-update nil

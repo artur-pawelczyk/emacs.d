@@ -1,3 +1,5 @@
+(setq async-shell-command-buffer 'new-buffer)
+
 (defun background-shell-command ()
   "Run `async-shell-command' but don't display the subprocess's buffer."
   (interactive)
@@ -36,3 +38,35 @@
     (funcall fun process signal)))
 
 (advice-add 'shell-command-sentinel :around #'shell-command-sentinel--print-output)
+
+
+;; Rename the shell buffers.
+(defun conf/shell-non-command? (name)
+  (and (string-match-p "^[A-Z]+=.+$" name) t))
+
+(defvar conf/shell-extended-commands '("nohup" "git"))
+
+(defun conf/shell-extended-command? (name)
+  (member name conf/shell-extended-commands))
+
+(defun conf/shell-command-unique-name (command)
+  (or (car (-drop-while (-partial #'conf/shell-non-command?) (split-string command " ")))
+      command))
+
+(defun conf/shell-command-buffer-name (command)
+  (let ((parts (-drop-while (-partial #'conf/shell-non-command?) (split-string command))))
+    (string-join (append (-take-while #'conf/shell-extended-command? parts)
+                         (list (car (-drop-while #'conf/shell-extended-command? parts))))
+                 "-")))
+
+(defun conf/shell-new-buffer-name (command)
+  (let ((base-name (format "*%s: shell-command*" (conf/shell-command-buffer-name command))))
+    (generate-new-buffer-name base-name)))
+
+(defun async-shell-command--set-buffer-name (orig-fun command &optional orig-buffer error-buffer)
+  (let ((buffer-name (conf/shell-new-buffer-name command)))
+    (if orig-buffer
+        (funcall orig-fun command orig-buffer error-buffer)
+      (funcall orig-fun command buffer-name buffer-name))))
+
+(advice-add 'shell-command :around #'async-shell-command--set-buffer-name)
