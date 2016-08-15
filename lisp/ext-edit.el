@@ -73,7 +73,7 @@ automatically"
   (interactive "CMajor mode: ")
   (let* ((origin-buffer-name (buffer-name))
          (editor-buffer-name (format "*%s-part*" origin-buffer-name))
-         (contents (buffer-substring (mark) (point)))
+         (contents (buffer-substring-no-properties (mark) (point)))
          (overlay (make-overlay (mark) (point))))
     (deactivate-mark)
     (overlay-put overlay 'ext-edit editor-buffer-name)
