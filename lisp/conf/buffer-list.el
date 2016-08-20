@@ -6,8 +6,11 @@
   (ibuffer-filter-by-used-mode 'dired-mode)
   (ibuffer-filters-to-filter-group "Dired")
     
-  (ibuffer-filter-by-name "\*.*\*")
+  (ibuffer-filter-by-name "\\*.*\\*")
   (ibuffer-filters-to-filter-group "Emacs")
+
+  (ibuffer-filter-by-used-mode 'eshell-mode)
+  (ibuffer-filters-to-filter-group "Eshell")
 
   (ibuffer-filter-by-used-mode 'shell-mode)
   (ibuffer-filters-to-filter-group "Shell"))
