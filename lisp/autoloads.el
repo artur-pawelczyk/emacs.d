@@ -24,3 +24,5 @@
 
 (autoload 'read-y-or-n-setup "read-y-or-n" nil :interactive)
 (autoload 'read-y-or-n "read-y-or-n")
+
+(autoload 'narrow-or-widen-dwim "narrow-or-widen" nil :interactive)

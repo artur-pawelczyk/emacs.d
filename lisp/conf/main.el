@@ -67,6 +67,7 @@
 (global-set-key (kbd "C-c m") #'hydras-magit/body)
 (global-set-key (kbd "C-x ^") #'hydra-resize-window/body)
 (global-set-key (kbd "C-x 5 0") #'delete-frame-if-only)
+(global-set-key (kbd "C-x n n") #'narrow-or-widen-dwim)
 (global-unset-key (kbd "C-z"))
 
 (when (conf/installed-p 'hydra)
