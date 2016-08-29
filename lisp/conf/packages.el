@@ -1,7 +1,8 @@
 (require 'dash)
 
 (defvar user-package-list
-      '(ace-window
+      '(ag
+        ace-window
         auctex
         bbdb
         cider
