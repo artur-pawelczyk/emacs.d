@@ -22,7 +22,7 @@
 (autoload 'umessage "umessage")
 (autoload 'umessage-mode "umessage" nil :interactive)
 
-(autoload 'read-y-or-n-setup "read-y-or-n" nil :interactive)
+(autoload 'read-y-or-n-mode "read-y-or-n" nil :interactive)
 (autoload 'read-y-or-n "read-y-or-n")
 
 (autoload 'narrow-or-widen-dwim "narrow-or-widen" nil :interactive)

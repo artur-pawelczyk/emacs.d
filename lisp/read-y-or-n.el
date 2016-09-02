@@ -6,13 +6,16 @@
     (setq this-command 'read-y-or-n)
     (throw 'response char)))
 
-(setq read-letter-map
+(defvar read-letter-map
       (let ((map (make-sparse-keymap)))
         (set-keymap-parent map minibuffer-local-map)
         (cl-loop for char from ?A to ?z
                  do (let ((key (byte-to-string char)))
                       (define-key map key (read-letter-command key))))
         map))
+
+(defvar read-y-or-n-original (symbol-function 'y-or-n-p))
+(defvar read-yes-or-no-original (symbol-function 'yes-or-no-p))
 
 (defun read-letter (prompt)
   "Read a single letter from minibuffer."
@@ -32,8 +35,12 @@ Like `y-or-n-p', but uses minibuffer instead of `read-key'."
      (t
       (read-y-or-n (concat prompt " (answer 'y' or 'n') "))))))
 
-(defun read-y-or-n-setup ()
-  "Replace the default \"y or n\" prompt with `read-y-or-n'"
-  (interactive)
-  (fset 'y-or-n-p #'read-y-or-n)
-  (fset 'yes-or-no-p #'read-y-or-n))
+(define-minor-mode read-y-or-n-mode
+  "Read 'yes' or 'no' from minibuffer"
+  :global t
+  (if read-y-or-n-mode
+      (progn
+        (fset 'y-or-n-p #'read-y-or-n)
+        (fset 'yes-or-no-p #'read-y-or-n))
+    (fset 'y-or-n-p read-y-or-n-original)
+    (fset 'yes-or-no-p read-yes-or-no-original)))
