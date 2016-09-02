@@ -27,30 +27,30 @@
         (message "command \"%s\" finished: %s" command (string-trim output)))
     (funcall fun process signal)))
 
-(defun conf/shell-non-command? (name)
+(defun shell-command-non-command? (name)
   (and (string-match-p "^[A-Z_]+=.+$" name) t))
 
-(defvar conf/shell-extended-commands '("nohup" "git"))
+(defvar shell-command-extended-commands '("nohup" "git"))
 
-(defun conf/shell-extended-command? (name)
-  (member name conf/shell-extended-commands))
+(defun shell-command-extended-command? (name)
+  (member name shell-command-extended-commands))
 
-(defun conf/shell-command-unique-name (command)
-  (or (car (-drop-while (-partial #'conf/shell-non-command?) (split-string command " ")))
+(defun shell-command-unique-name (command)
+  (or (car (-drop-while (-partial #'shell-command-non-command?) (split-string command " ")))
       command))
 
-(defun conf/shell-command-buffer-name (command)
-  (let ((parts (-drop-while (-partial #'conf/shell-non-command?) (split-string command))))
-    (string-join (append (-take-while #'conf/shell-extended-command? parts)
-                         (list (car (-drop-while #'conf/shell-extended-command? parts))))
+(defun shell-command-buffer-name (command)
+  (let ((parts (-drop-while (-partial #'shell-command-non-command?) (split-string command))))
+    (string-join (append (-take-while #'shell-command-extended-command? parts)
+                         (list (car (-drop-while #'shell-command-extended-command? parts))))
                  "-")))
 
-(defun conf/shell-new-buffer-name (command)
-  (let ((base-name (format "*%s: shell-command*" (conf/shell-command-buffer-name command))))
+(defun shell-command-new-buffer-name (command)
+  (let ((base-name (format "*%s: shell-command*" (shell-command-buffer-name command))))
     (generate-new-buffer-name base-name)))
 
-(defun async-shell-command--set-buffer-name (orig-fun command &optional orig-buffer error-buffer)
-  (let ((buffer-name (conf/shell-new-buffer-name command)))
+(defun shell-command--set-buffer-name (orig-fun command &optional orig-buffer error-buffer)
+  (let ((buffer-name (shell-command-new-buffer-name command)))
     (if orig-buffer
         (funcall orig-fun command orig-buffer error-buffer)
       (funcall orig-fun command buffer-name buffer-name))))
@@ -65,7 +65,7 @@
 (define-minor-mode shell-command-rename-buffer-mode ""
   :ligher nil
   (if shell-command-rename-buffer-mode
-      (advice-add 'shell-command :around #'async-shell-command--set-buffer-name)
-    (advice-remove 'shell-command #'async-shell-command--set-buffer-name)))
+      (advice-add 'shell-command :around #'shell-command--set-buffer-name)
+    (advice-remove 'shell-command #'shell-command--set-buffer-name)))
 
 (provide 'shell-command)
