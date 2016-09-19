@@ -31,7 +31,9 @@
       (add-hook 'org-mode-hook #'org-bullets-mode)))
 
 (with-package-lazy (org)
-    (add-hook 'org-mode-hook #'org-indent-mode))
+  (add-hook 'org-mode-hook #'org-indent-mode)
+  (add-hook 'org-mode-hook (lambda ()
+                             (add-hook 'before-save-hook #'delete-trailing-whitespace nil :local))))
 
 (global-set-key (kbd "C-c l") #'org-store-link)
 (global-set-key (kbd "C-c a") #'org-agenda)
