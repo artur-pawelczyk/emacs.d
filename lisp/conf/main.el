@@ -127,13 +127,16 @@
 ;; EWW
 (defun eww-open-relative ()
   (interactive)
+  (cl-assert (< emacs-major-version 25) :show-args "Use `G M-n' instead")
   (if (eq major-mode 'eww-mode)
       (eww (read-from-minibuffer "Url: " eww-current-url))
     (user-error "Not in an eww buffer")))
 
 (with-package-lazy (eww)
-  (define-key eww-mode-map (kbd "o") #'eww)
-  (define-key eww-mode-map (kbd "O") #'eww-open-relative))
+  (unless (lookup-key eww-mode-map (kbd "o"))
+    (define-key eww-mode-map (kbd "o") #'eww))
+  (unless (lookup-key eww-mode-map (kbd "O"))
+    (define-key eww-mode-map (kbd "O") #'eww-open-relative)))
 
 ;; Auto save
 (setq backup-directory-alist
