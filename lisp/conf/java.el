@@ -52,9 +52,17 @@
         (projectile-project-root))
     default-directory))
 
+(defvar conf/jdb-run-format "%j -sourcepath%s -classpath%c")
+(with-package-lazy (realgud)
+  (setq conf/jdb-run-format "%j -sourcepath %s -classpath %c"))
+
+(defvar conf/jdb-attach-format "%j -attach %u -sourcepath%s")
+(with-package-lazy (realgud)
+  (setq conf/jdb-attach-format "%j -attach %u -sourcepath %s"))
+
 (defun conf/mvn-jdb (project-root)
   (interactive "D")
-  (jdb (format-spec "%j -sourcepath%s -classpath%c"
+  (jdb (format-spec conf/jdb-run-format
                     `((?j . ,conf/jdb-program)
                       (?s . ,(conf/mvn-sourcepath project-root))
                       (?c . ,(conf/mvn-classpath project-root))))))
@@ -62,7 +70,7 @@
 (defun conf/mvn-jdb-attach (project-root url)
   (interactive (list (conf/maybe-project-root)
                      (read-from-minibuffer "URL: " "localhost:5005")))
-  (jdb (format-spec "%j -attach %u -sourcepath%s"
+  (jdb (format-spec conf/jdb-attach-format
                     `((?j . ,conf/jdb-program)
                       (?s . ,(conf/mvn-sourcepath project-root))
                       (?u . ,url)))))
