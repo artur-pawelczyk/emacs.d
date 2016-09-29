@@ -28,7 +28,7 @@
     (funcall fun process signal)))
 
 (defun conf/shell-non-command? (name)
-  (and (string-match-p "^[A-Z]+=.+$" name) t))
+  (and (string-match-p "^[A-Z_]+=.+$" name) t))
 
 (defvar conf/shell-extended-commands '("nohup" "git"))
 
