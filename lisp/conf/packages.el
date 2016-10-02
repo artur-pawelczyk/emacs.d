@@ -11,7 +11,6 @@
         org-bullets
         php-mode
         projectile
-        solarized-theme
         web-mode
         yasnippet
         smart-mode-line
