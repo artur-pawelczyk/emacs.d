@@ -52,9 +52,7 @@ smaller than `umessage-window-max-height'."
       (goto-char (point-max))
       (insert ?\n message ?\n))))
 
-(defun umessage (message &optional duration)
-  "Display MESSAGE in special buffer above the minibuffer for DURATION of seconds."
-  (umessage-log-only message)
+(defun umessage-view-only (message &optional duration)
   (let* ((buffer (umessage--new-buffer " *umessage*" message))
          (win (umessage--new-window buffer)))
     (run-at-time (or duration 5) nil (lambda ()
@@ -62,6 +60,24 @@ smaller than `umessage-window-max-height'."
                                          (delete-window win))
                                        (when (bufferp buffer)
                                          (kill-buffer buffer))))))
+
+(defun umessage (message &optional duration)
+  "Display MESSAGE in special buffer above the minibuffer for DURATION of seconds."
+  (umessage-log-only message)
+  (umessage-view-only message duration))
+
+(defun umessage-format-error (data context &optional fun)
+  (let ((msg (error-message-string data))
+        (context-string (when (and (stringp "") (not (string-empty-p context))) context))
+        (fun-string (when (and fun (symbolp fun)) (symbol-name fun))))
+    (string-join (remove-if-not #'identity (list context-string fun-string msg)) ": ")))
+
+(defun umessage-command-error (data context fun)
+  (if (window-minibuffer-p)
+      (progn
+        (umessage-log-only (umessage-format-error data context fun))
+        (umessage-view-only (umessage-format-error data context)))
+    (command-error-default-function data context fun)))
 
 (defun umessage-around-message (fun &rest args)
   (if (and args (car args) (window-minibuffer-p))
@@ -73,7 +89,10 @@ smaller than `umessage-window-max-height'."
 (define-minor-mode umessage-mode ""
   :global t
   (if umessage-mode
-      (advice-add 'message :around #'umessage-around-message)
-    (advice-remove 'message #'umessage-around-message)))
+      (progn
+        (advice-add 'message :around #'umessage-around-message)
+        (setq command-error-function #'umessage-command-error))
+    (advice-remove 'message #'umessage-around-message)
+    (setq command-error-function #'command-error-default-function)))
 
 (provide 'umessage)
