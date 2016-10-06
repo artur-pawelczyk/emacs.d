@@ -68,11 +68,12 @@ Does not delete the prompt."
 (defun shell-cleanup-dead-buffers ()
   "Kill all shell buffers that have no process running."
   (interactive)
-  (mapcar (lambda (buffer)
-            (when (and (eq 'shell-mode (buffer-major-mode buffer))
-                       (not (get-buffer-process buffer)))
-              (kill-buffer buffer)))
-          (buffer-list)))
+  (let ((dead-buffers (-filter (lambda (buffer)
+                                 (and (eq 'shell-mode (buffer-major-mode buffer))
+                                      (not (get-buffer-process buffer))))
+                               (buffer-list))))
+    (mapcar #'kill-buffer dead-buffers)
+    (message "Killed %s buffers" (length dead-buffers))))
 
 (defun run-in-shell (&rest command-and-args)
   "Run COMMAND-AND-ARGS in a shell, so it's not an Emacs process."
