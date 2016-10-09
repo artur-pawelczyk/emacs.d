@@ -69,7 +69,7 @@ Does not delete the prompt."
   "Kill all shell buffers that have no process running."
   (interactive)
   (let ((dead-buffers (-filter (lambda (buffer)
-                                 (and (eq 'shell-mode (buffer-major-mode buffer))
+                                 (and (memq (buffer-major-mode buffer) '(shell-mode term-mode))
                                       (not (get-buffer-process buffer))))
                                (buffer-list))))
     (mapcar #'kill-buffer dead-buffers)
