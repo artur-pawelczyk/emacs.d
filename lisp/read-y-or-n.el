@@ -22,18 +22,22 @@
   (catch 'response
     (read-from-minibuffer prompt "" read-letter-map)))
 
-(defun read-y-or-n (prompt)
+(defun read-y-or-n-prompt (prompt &optional help)
+  (let ((parts (list prompt
+                     (if help "(answer 'y' or 'n')" ""))))
+    (concat (string-trim (string-join parts " ")) " ")))
+
+(defun read-y-or-n (prompt &optional help)
   "Read \"y or n\" from miniubffer.
 Like `y-or-n-p', but uses minibuffer instead of `read-key'."
-  (let* ((prompt-with-space (concat prompt (if (string-suffix-p " " prompt) "" " ")))
-         (resp (read-letter prompt-with-space)))
+  (let ((resp (read-letter (read-y-or-n-prompt prompt help))))
     (cond
      ((equal resp "y")
       t)
      ((equal resp "n")
       nil)
      (t
-      (read-y-or-n (concat prompt " (answer 'y' or 'n') "))))))
+      (read-y-or-n prompt :help)))))
 
 (define-minor-mode read-y-or-n-mode
   "Read 'yes' or 'no' from minibuffer"
