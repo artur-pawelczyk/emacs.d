@@ -1,26 +1,19 @@
 ;; -*- mode: emacs-lisp; lexical-binding: t -*-
 
-(defun read-letter-command (char)
-  (lambda ()
-    (interactive)
-    (setq this-command 'read-y-or-n)
-    (throw 'response char)))
-
-(defvar read-letter-map
-      (let ((map (make-sparse-keymap)))
-        (set-keymap-parent map minibuffer-local-map)
-        (cl-loop for char from ?A to ?z
-                 do (let ((key (byte-to-string char)))
-                      (define-key map key (read-letter-command key))))
-        map))
-
 (defvar read-y-or-n-original (symbol-function 'y-or-n-p))
 (defvar read-yes-or-no-original (symbol-function 'yes-or-no-p))
 
-(defun read-letter (prompt)
-  "Read a single letter from minibuffer."
-  (catch 'response
-    (read-from-minibuffer prompt "" read-letter-map)))
+(defun read-char-setup-hook ()
+  (add-hook 'post-self-insert-hook (lambda ()
+                                     (throw 'read-char-response last-command-event))
+            nil :local))
+
+(defun read-char (prompt)
+  "Read a single char from minibuffer."
+  (catch 'read-char-response
+    (minibuffer-with-setup-hook #'read-char-setup-hook
+      (read-from-minibuffer prompt))))
+
 
 (defun read-y-or-n-prompt (prompt &optional help)
   (let ((parts (list prompt
@@ -30,11 +23,11 @@
 (defun read-y-or-n (prompt &optional help)
   "Read \"y or n\" from miniubffer.
 Like `y-or-n-p', but uses minibuffer instead of `read-key'."
-  (let ((resp (read-letter (read-y-or-n-prompt prompt help))))
+  (let ((resp (read-char (read-y-or-n-prompt prompt help))))
     (cond
-     ((equal resp "y")
+     ((equal resp ?y)
       t)
-     ((equal resp "n")
+     ((equal resp ?n)
       nil)
      (t
       (read-y-or-n prompt :help)))))
