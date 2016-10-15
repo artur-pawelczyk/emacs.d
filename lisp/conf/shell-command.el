@@ -10,3 +10,12 @@
 
 (shell-command-rename-buffer-mode 1)
 (shell-command-print-output-mode 1)
+
+
+(defvar shell-after-cd-hook nil)
+
+(defun conf/shell-directory-tracker--after (&rest ignore)
+  (when shell-dirtrackp
+    (run-hooks 'shell-after-cd-hook)))
+
+(advice-add 'shell-directory-tracker :after #'conf/shell-directory-tracker--after)
