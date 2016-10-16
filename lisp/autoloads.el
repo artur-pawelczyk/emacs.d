@@ -28,3 +28,5 @@
 (autoload 'narrow-or-widen-dwim "narrow-or-widen" nil :interactive)
 
 (autoload 'polish-radio-for-day "polish-radio" nil :interactive)
+
+(autoload 'live-skeleton "live-skeleton" nil :interactive)
