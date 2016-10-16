@@ -26,3 +26,5 @@
 (autoload 'read-y-or-n "read-y-or-n")
 
 (autoload 'narrow-or-widen-dwim "narrow-or-widen" nil :interactive)
+
+(autoload 'polish-radio-for-day "polish-radio" nil :interactive)
