@@ -1,4 +1,6 @@
-;;; umessage.el -- unobstructive `message' -*- lexical-binding: t -*-
+;;; umessage.el --- unobstructive `message' -*- lexical-binding: t -*-
+
+;; Version: 0.1
 
 ;;; Commentary:
 ;; Display messages above the minibuffer.
@@ -61,6 +63,7 @@ smaller than `umessage-window-max-height'."
                                        (when (bufferp buffer)
                                          (kill-buffer buffer))))))
 
+;;;###autoload
 (defun umessage (message &optional duration)
   "Display MESSAGE in special buffer above the minibuffer for DURATION of seconds."
   (umessage-log-only message)
@@ -86,6 +89,7 @@ smaller than `umessage-window-max-height'."
           (umessage message)))
     (apply fun args)))
 
+;;;###autoload
 (define-minor-mode umessage-mode ""
   :global t
   (if umessage-mode
@@ -96,3 +100,4 @@ smaller than `umessage-window-max-height'."
     (setq command-error-function #'command-error-default-function)))
 
 (provide 'umessage)
+;;; umessage.el ends here
