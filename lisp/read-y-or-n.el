@@ -1,4 +1,10 @@
-;; -*- mode: emacs-lisp; lexical-binding: t -*-
+;;; read-y-or-n.el --- "yes or no" prompt in minibuffer -*- lexical-binding: t -*-
+
+;;; Version: 0.1
+
+;;; Commentary
+;; Replacement for `y-or-n-p' that uses the minibuffer instead of
+;; `read-key'
 
 (defvar read-y-or-n-original (symbol-function 'y-or-n-p))
 (defvar read-yes-or-no-original (symbol-function 'yes-or-no-p))
@@ -20,6 +26,7 @@
                      (if help "(answer 'y' or 'n')" ""))))
     (concat (string-trim (string-join parts " ")) " ")))
 
+;;;###autoload
 (defun read-y-or-n (prompt &optional help)
   "Read \"y or n\" from miniubffer.
 Like `y-or-n-p', but uses minibuffer instead of `read-key'."
@@ -32,6 +39,7 @@ Like `y-or-n-p', but uses minibuffer instead of `read-key'."
      (t
       (read-y-or-n prompt :help)))))
 
+;;;###autoload
 (define-minor-mode read-y-or-n-mode
   "Read 'yes' or 'no' from minibuffer"
   :global t
@@ -41,3 +49,7 @@ Like `y-or-n-p', but uses minibuffer instead of `read-key'."
         (fset 'yes-or-no-p #'read-y-or-n))
     (fset 'y-or-n-p read-y-or-n-original)
     (fset 'yes-or-no-p read-yes-or-no-original)))
+
+
+(provide 'read-y-or-n)
+;;; read-y-or-n.el ends here
