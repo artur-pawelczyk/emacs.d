@@ -1,4 +1,4 @@
-(setq sml/theme 'respectful)
+(setq sml/theme 'automatic)
 
 (with-package (smart-mode-line)
   (sml/setup)
