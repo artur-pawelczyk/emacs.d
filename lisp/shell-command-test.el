@@ -42,3 +42,23 @@
     (should (string-match-p "program" last-buffer-name))
     (shell-command--set-buffer-name run-shell-fn "program" "my-buffer")
     (should (equal last-buffer-name "my-buffer"))))
+
+(ert-deftest shell-command-get-real-command ()
+  (should (equal (conf/shell-get-real-command '("ls")) '("ls")))
+  (should (equal (conf/shell-get-real-command '("ls" "-la")) '("ls" "-la")))
+  (should (equal (conf/shell-get-real-command '("bash" "-c" "ls" "-la")) '("ls" "-la")))
+  (should (equal (conf/shell-get-real-command '("/bin/bash" "-c" "ls" "-la")) '("ls" "-la"))))
+
+(ert-deftest shell-command-save-command ()
+  (with-temp-buffer
+    (cl-letf* (((symbol-function 'get-buffer-process) (-const 'fake-process))
+               ((symbol-function 'process-command) (lambda (process)
+                                                     (if (eq process 'fake-process)
+                                                         '("fake-command")
+                                                       (error "Expected a fake object")))))
+      (shell-command-save-command)
+      (should (equal shell-command-last-command '("fake-command"))))))
+
+
+(cl-letf* (((symbol-function 'message) (lambda (&rest args) "shit")))
+  (message 'a))

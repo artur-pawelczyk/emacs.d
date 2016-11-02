@@ -68,4 +68,25 @@
       (advice-add 'shell-command :around #'shell-command--set-buffer-name)
     (advice-remove 'shell-command #'shell-command--set-buffer-name)))
 
+(defun shell-command-get-real-command (command)
+  (if (and (string-suffix-p "bash" (car command)) (equal (cadr command) "-c"))
+      (nthcdr 2 command)
+    command))
+
+(defvar-local shell-command-last-command nil)
+
+(defun shell-command-save-command ()
+  (let ((process (get-buffer-process (current-buffer))))
+    (when process
+      (setq-local shell-command-last-command (shell-command-get-real-command (process-command process))))))
+
+(add-hook 'shell-mode-hook #'shell-command-save-command)
+
+(defun shell-command-rerun ()
+  (interactive)
+  (let ((async-shell-command-buffer 'confirm-kill-process))
+    (if shell-command-last-command
+        (async-shell-command (string-join shell-command-last-command " ") (buffer-name))
+      (message "No command to run"))))
+
 (provide 'shell-command)

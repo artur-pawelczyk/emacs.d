@@ -19,3 +19,6 @@
     (run-hooks 'shell-after-cd-hook)))
 
 (advice-add 'shell-directory-tracker :after #'conf/shell-directory-tracker--after)
+
+(with-package-lazy (shell)
+  (define-key shell-mode-map (kbd "C-c r") #'shell-command-rerun))
