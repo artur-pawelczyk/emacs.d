@@ -82,11 +82,15 @@
 
 (add-hook 'shell-mode-hook #'shell-command-save-command)
 
-(defun shell-command-rerun ()
-  (interactive)
-  (let ((async-shell-command-buffer 'confirm-kill-process))
-    (if shell-command-last-command
-        (async-shell-command (string-join shell-command-last-command " ") (buffer-name))
+(defun shell-command-rerun (&optional edit)
+  (interactive "P")
+  (let ((async-shell-command-buffer 'confirm-kill-process)
+        (command (string-join shell-command-last-command " ")))
+    (if (not (string-empty-p command))
+        (async-shell-command (if edit
+                                 (read-shell-command "Run: " command)
+                               command)
+                             (buffer-name))
       (message "No command to run"))))
 
 (provide 'shell-command)
