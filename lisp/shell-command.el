@@ -40,7 +40,8 @@
       command))
 
 (defun shell-command-buffer-name (command)
-  (let ((parts (-drop-while (-partial #'shell-command-non-command?) (split-string command))))
+  (let* ((split (-drop-while (-partial #'shell-command-non-command?) (split-string command)))
+         (parts (cons (file-name-base (car split)) (cdr split))))
     (string-join (append (-take-while #'shell-command-extended-command? parts)
                          (list (car (-drop-while #'shell-command-extended-command? parts))))
                  "-")))
