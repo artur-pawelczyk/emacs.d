@@ -75,15 +75,6 @@ Does not delete the prompt."
     (mapcar #'kill-buffer dead-buffers)
     (message "Killed %s buffers" (length dead-buffers))))
 
-(defun run-in-shell (&rest command-and-args)
-  "Run COMMAND-AND-ARGS in a shell, so it's not an Emacs process."
-  (interactive (list (read-shell-command "Run in shell: ")))
-  (let ((default-directory "~/"))
-    (with-current-buffer (get-buffer-create "*tmp-shell*")
-      (unless (comint-check-proc "*tmp-shell*")
-        (make-comint-in-buffer "tmp-shell" (current-buffer) "/bin/bash"))
-      (comint-simple-send (get-buffer-process (current-buffer)) (string-join command-and-args " ")))))
-
 (defun delete-frame-if-only ()
   (interactive)
   (let* ((graphical-frames (-filter (lambda (f) (not (eq (framep f) t))) (frame-list)))

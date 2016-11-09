@@ -94,4 +94,13 @@
                              (buffer-name))
       (message "No command to run"))))
 
+(defun shell-command-in-subshell (command)
+  "Run COMMAND in a shell, so it's controlled by it and not by
+  Emacs"
+  (interactive (list (read-shell-command "Run in shell: ")))
+  (let ((buffer (get-buffer-create (shell-command-new-buffer-name command))))
+    (async-shell-command (getenv "SHELL") buffer)
+    (comint-simple-send (get-buffer-process buffer) command)
+    (comint-simple-send (get-buffer-process buffer) "exit")))
+
 (provide 'shell-command)
