@@ -59,12 +59,14 @@
 (define-minor-mode shell-command-print-output-mode
   "Print output of asychronous command to the minibuffer"
   :lighter nil
+  :global t
   (if shell-command-print-output-mode
       (advice-add 'shell-command-sentinel :around #'shell-command-sentinel--print-output)
     (advice-remove 'shell-command-sentinel #'shell-command-sentinel--print-output)))
 
 (define-minor-mode shell-command-rename-buffer-mode ""
-  :ligher nil
+  :lighter nil
+  :global t
   (if shell-command-rename-buffer-mode
       (advice-add 'shell-command :around #'shell-command--set-buffer-name)
     (advice-remove 'shell-command #'shell-command--set-buffer-name)))
