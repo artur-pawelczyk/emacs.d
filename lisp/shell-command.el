@@ -41,9 +41,9 @@
 
 (defun shell-command-buffer-name (command)
   (let* ((split (-drop-while (-partial #'shell-command-non-command?) (split-string command)))
-         (parts (cons (file-name-base (car split)) (cdr split))))
-    (string-join (append (-take-while #'shell-command-extended-command? parts)
-                         (list (car (-drop-while #'shell-command-extended-command? parts))))
+         (base-names (mapcar #'file-name-base split)))
+    (string-join (append (-take-while #'shell-command-extended-command? base-names)
+                         (list (car (-drop-while #'shell-command-extended-command? base-names))))
                  "-")))
 
 (defun shell-command-new-buffer-name (command)

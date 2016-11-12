@@ -32,7 +32,8 @@
   (should (equal (shell-command-new-buffer-name "A_VAR=:1 program") "*program: shell-command*")))
 
 (ert-deftest shell-command-new-buffer-name--use-base-name ()
-  (should (equal (shell-command-new-buffer-name "/usr/bin/program") "*program: shell-command*")))
+  (should (equal (shell-command-new-buffer-name "/usr/bin/program") "*program: shell-command*"))
+  (should (equal (shell-command-new-buffer-name "nohup /usr/bin/program") "*nohup-program: shell-command*")))
 
 (ert-deftest shell-command-new-buffer-name--handle-extended-command ()
   (should (equal (shell-command-new-buffer-name "git log --pretty=oneline") "*git-log: shell-command*")))
