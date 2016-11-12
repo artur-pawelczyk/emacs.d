@@ -2,6 +2,9 @@
 
 (require 'ert)
 
+(require 'shell-command)
+(require 'dash-functional)
+
 (ert-deftest shell-command-sentinel--max-output--small-buffer ()
   (let* ((input-string (make-string 10 ?x))
          (actual-string (with-temp-buffer
@@ -25,7 +28,7 @@
     (unwind-protect
         (progn
           (get-buffer-create first-buffer)
-          (should (equal (shell-command-new-buffer-name "program") "*program: shell-command<2>*")))
+          (should (equal (shell-command-new-buffer-name "program") "*program: shell-command*<2>")))
       (kill-buffer first-buffer))))
 
 (ert-deftest shell-command-new-buffer-name--omit-vars ()
@@ -48,10 +51,10 @@
     (should (equal last-buffer-name "my-buffer"))))
 
 (ert-deftest shell-command-get-real-command ()
-  (should (equal (conf/shell-get-real-command '("ls")) '("ls")))
-  (should (equal (conf/shell-get-real-command '("ls" "-la")) '("ls" "-la")))
-  (should (equal (conf/shell-get-real-command '("bash" "-c" "ls" "-la")) '("ls" "-la")))
-  (should (equal (conf/shell-get-real-command '("/bin/bash" "-c" "ls" "-la")) '("ls" "-la"))))
+  (should (equal (shell-command-get-real-command '("ls")) '("ls")))
+  (should (equal (shell-command-get-real-command '("ls" "-la")) '("ls" "-la")))
+  (should (equal (shell-command-get-real-command '("bash" "-c" "ls" "-la")) '("ls" "-la")))
+  (should (equal (shell-command-get-real-command '("/bin/bash" "-c" "ls" "-la")) '("ls" "-la"))))
 
 (ert-deftest shell-command-save-command ()
   (with-temp-buffer

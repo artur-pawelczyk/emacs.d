@@ -1,3 +1,7 @@
+(require 'tools)
+(require 'dash)
+(require 'subr-x)
+
 (defun background-shell-command ()
   "Run `async-shell-command' but don't display the subprocess's buffer."
   (interactive)
