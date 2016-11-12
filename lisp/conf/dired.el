@@ -50,7 +50,8 @@
   (find-dired default-directory find-args))
 
 (with-package-lazy (dired)
-  (define-key dired-mode-map (kbd "C-c f") #'find-dired-current))
+  (define-key dired-mode-map (kbd "C-c f") #'find-dired-current)
+  (define-key dired-mode-map (kbd "X") #'shell-command-run-at-point))
 
 
 (with-package-lazy (locate)

@@ -103,4 +103,25 @@
     (comint-simple-send (get-buffer-process buffer) command)
     (comint-simple-send (get-buffer-process buffer) "exit")))
 
+(defun shell-command-nohup (command)
+  (interactive (list (read-shell-command "Run in shell: ")))
+  (async-shell-command (concat "nohup " command)))
+
+(defun shell-command-at-point ()
+  (cond ((eq major-mode 'dired-mode)
+         (let ((files (dired-get-marked-files)))
+           (if (> 1 (length files))
+               (user-error "Can run only single file")
+             (car files))))
+        (t
+         (user-error "No program at point"))))
+
+(defun shell-command-run-at-point (&optional edit)
+  (interactive "P")
+  (let ((command (shell-commad-get-at-point)))
+    (shell-command-nohup (if edit
+                             (read-shell-command "Run: " command)
+                           command))))
+
+
 (provide 'shell-command)
