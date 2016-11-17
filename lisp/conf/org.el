@@ -5,6 +5,7 @@
   (define-key org-mode-map (kbd "M-p") #'org-metaup))
 
 (setq org-src-fontify-natively t)
+(setq org-src-window-setup 'current-window)
 
 (with-package-lazy (org)
   (when (conf/installed-p 'helm)
