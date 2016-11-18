@@ -124,7 +124,7 @@
 
 (defun shell-command-run-at-point (&optional edit)
   (interactive "P")
-  (let ((command (shell-commad-get-at-point)))
+  (let ((command (shell-command-at-point)))
     (shell-command-nohup (if edit
                              (read-shell-command "Run: " command)
                            command))))
