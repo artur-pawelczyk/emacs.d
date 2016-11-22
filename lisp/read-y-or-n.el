@@ -14,7 +14,7 @@
                                      (throw 'read-char-response last-command-event))
             nil :local))
 
-(defun read-char (prompt)
+(defun read-char-from-minibuffer (prompt)
   "Read a single char from minibuffer."
   (catch 'read-char-response
     (minibuffer-with-setup-hook #'read-char-setup-hook
@@ -30,7 +30,7 @@
 (defun read-y-or-n (prompt &optional help)
   "Read \"y or n\" from miniubffer.
 Like `y-or-n-p', but uses minibuffer instead of `read-key'."
-  (let ((resp (read-char (read-y-or-n-prompt prompt help))))
+  (let ((resp (read-char-from-minibuffer (read-y-or-n-prompt prompt help))))
     (cond
      ((equal resp ?y)
       t)
