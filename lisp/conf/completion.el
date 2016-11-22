@@ -128,10 +128,18 @@ buffers and files."
         (last (-filter #'dired-buffer? ido-temp-list)))
     (append first last)))
 
-(add-hook 'ido-make-buffer-list-hook #'ido-move-dired-buffers-last)
+(defun ido-toggle-dired-buffers ()
+  (interactive)
+  (if (member 'ido-move-dired-buffers-last ido-make-buffer-list-hook)
+      (remove-hook 'ido-make-buffer-list-hook 'ido-move-dired-buffers-last)
+    (add-hook 'ido-make-buffer-list-hook 'ido-move-dired-buffers-last))
+  (setq ido-text-init ido-text)
+  (setq ido-exit 'refresh)
+  (exit-minibuffer))
 
 (defun conf/ido-keys ()
-  (define-key ido-file-dir-completion-map (kbd "C-l") #'ido-up-directory))
+  (define-key ido-file-dir-completion-map (kbd "C-l") #'ido-up-directory)
+  (define-key ido-buffer-completion-map (kbd "C-v") #'ido-toggle-dired-buffers))
 
 (add-hook 'ido-setup-hook #'conf/ido-keys)
 
