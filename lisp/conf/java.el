@@ -3,6 +3,13 @@
 
 (add-hook 'java-mode-hook #'conf/enable-electric-pair)
 
+(defun conf/java-setup-indentation ()
+  (add-to-list 'c-offsets-alist '(arglist-intro . +))
+  (add-to-list 'c-offsets-alist '(arglist-cont . 0))
+  (add-to-list 'c-offsets-alist '(arglist-close . 0)))
+
+(add-hook 'java-mode-hook #'conf/java-setup-indentation)
+
 (when (conf/installed-p 'ggtags)
   (add-hook 'java-mode-hook #'ggtags-mode))
 
