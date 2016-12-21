@@ -29,7 +29,7 @@
       `((".*" . ,(expand-file-name "auto-save/" user-emacs-directory)))))
 
 (defun maybe-enable-smartparens-mode ()
-  (unless (eq major-mode 'java-mode)
+  (unless (member major-mode '(java-mode js2-mode))
     (smartparens-mode 1)))
 
 (when (conf/installed-p 'smartparens)
