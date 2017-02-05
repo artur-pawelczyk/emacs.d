@@ -155,6 +155,20 @@ buffers and files."
         (-filter (-not (-compose (-partial #'equal "^") #'cdr))
                  ivy-initial-inputs-alist)))
 
+(defvar conf/ivy-completing-read-omit-list
+  '(dired-do-copy dired-do-rename ido-edit-input))
+
+(defun conf/ivy-completing-read--omit (orig &rest args)
+  "Advice around `ivy-completing-read'.  Use the default
+completing method of Emacs when `completing-read' has been
+invoked by functions specified by `conf/ivy-completing-read-omit-list'"
+  (if (memq this-command conf/ivy-completing-read-omit-list)
+      (apply #'completing-read-default args)
+    (apply orig args)))
+
+(with-package-lazy (ivy)
+  (advice-add 'ivy-completing-read :around #'conf/ivy-completing-read--omit))
+
 
 ;; M-x
 (defvar conf/extended-command-function (if (conf/installed-p 'counsel)
@@ -180,3 +194,5 @@ keyboard macro.  Otherwise use function defined by `conf/extended-command-functi
 
 
 (recentf-mode t)
+
+
