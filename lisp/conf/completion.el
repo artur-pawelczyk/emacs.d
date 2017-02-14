@@ -156,7 +156,7 @@ buffers and files."
                  ivy-initial-inputs-alist)))
 
 (defvar conf/ivy-completing-read-omit-list
-  '(dired-do-copy dired-do-rename ido-edit-input))
+  '(dired-do-copy dired-do-rename ido-edit-input ido-magic-forward-char))
 
 (defun conf/ivy-completing-read--omit (orig &rest args)
   "Advice around `ivy-completing-read'.  Use the default
