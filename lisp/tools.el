@@ -75,6 +75,26 @@ Does not delete the prompt."
     (mapcar #'kill-buffer dead-buffers)
     (message "Killed %s buffers" (length dead-buffers))))
 
+(defvar cleanup-old-buffers--time 60)
+
+(defun cleanup-old-buffers ()
+  "Kill every shell buffer that:
+- has no running process,
+- hasn't been viewed in `cleanup-old-buffers--time' seconds."
+  (interactive)
+  (let* ((time-constraint (time-subtract (current-time) cleanup-old-buffers--time))
+         (candidates (-filter (lambda (buffer)
+                                (and (memq (buffer-major-mode buffer) '(shell-mode term-mode ag-mode))
+                                     (not (get-buffer-process buffer))))
+                              (buffer-list)))
+         (old-buffers (-filter (lambda (b)
+                                 (let ((last-viewed (with-current-buffer b buffer-display-time)))
+                                   (not (time-less-p time-constraint last-viewed))))
+                               candidates)))
+    (mapcar #'kill-buffer old-buffers)
+    (message "Killed %s buffers" (length old-buffers))
+    old-buffers))
+
 (defun delete-frame-if-only ()
   (interactive)
   (let* ((graphical-frames (-filter (lambda (f) (not (eq (framep f) t))) (frame-list)))
