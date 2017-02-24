@@ -77,6 +77,12 @@ Does not delete the prompt."
 
 (defvar cleanup-old-buffers--time 60)
 
+(defun cleanup-old-buffers--touch (buffer)
+  (with-current-buffer buffer
+    (unless buffer-display-time
+      (setq buffer-display-time (current-time)))
+    buffer-display-time))
+
 (defun cleanup-old-buffers ()
   "Kill every shell buffer that:
 - has no running process,
@@ -88,7 +94,7 @@ Does not delete the prompt."
                                      (not (get-buffer-process buffer))))
                               (buffer-list)))
          (old-buffers (-filter (lambda (b)
-                                 (let ((last-viewed (with-current-buffer b buffer-display-time)))
+                                 (let ((last-viewed (cleanup-old-buffers--touch b)))
                                    (not (time-less-p time-constraint last-viewed))))
                                candidates)))
     (mapcar #'kill-buffer old-buffers)
