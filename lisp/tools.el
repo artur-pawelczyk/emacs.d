@@ -158,4 +158,12 @@ Does not delete the prompt."
   (when (y-or-n-p (format "About to run %s. Proceed?" real-this-command))
     (apply fn args)))
 
+(defun conf/delete-trailing-whitespace-not-current-line ()
+  "Like `delete-trailing-whitespace', but omit current line."
+  (let ((start (save-excursion (beginning-of-line) (point)))
+        (end (save-excursion (end-of-line) (point))))
+    (delete-trailing-whitespace (point-min) start)
+    (delete-trailing-whitespace end (point-max))))
+
+
 (provide 'tools)
