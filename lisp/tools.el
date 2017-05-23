@@ -90,7 +90,7 @@ Does not delete the prompt."
   (interactive)
   (let* ((time-constraint (time-subtract (current-time) cleanup-old-buffers--time))
          (candidates (-filter (lambda (buffer)
-                                (and (memq (buffer-major-mode buffer) '(shell-mode term-mode ag-mode))
+                                (and (memq (buffer-major-mode buffer) '(shell-mode term-mode ag-mode compilation-mode))
                                      (not (get-buffer-process buffer))))
                               (buffer-list)))
          (old-buffers (-filter (lambda (b)
