@@ -9,6 +9,7 @@
 (put 'upcase-region 'disabled nil)
 (put 'dired-find-alternate-file 'disabled nil)
 (put 'narrow-to-region 'disabled nil)
+(put 'erase-buffer 'disabled nil)
 
 (savehist-mode t)
 (setq column-number-mode t)
