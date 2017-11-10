@@ -67,6 +67,11 @@ Return a new overlay over the new text."
                                                                 (make-composed-keymap live-skeleton-minibuffer-keymap minibuffer-local-map))))))
     (remove-hook 'post-command-hook #'live-skeleton-minibuffer-after-insert)))
 
+(defun live-skeleton-default (val default)
+  (if (and val (not (string-empty-p val)))
+      val
+    default))
+
 
 ;; Example skeletons
 (defun live-skeleton-example (var val)
