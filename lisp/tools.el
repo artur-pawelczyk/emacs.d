@@ -165,5 +165,10 @@ Does not delete the prompt."
     (delete-trailing-whitespace (point-min) start)
     (delete-trailing-whitespace end (point-max))))
 
+(defmacro with-open-file (file &rest body)
+  `(with-temp-file ,file
+     (insert-file-contents ,file)
+     ,@body))
+
 
 (provide 'tools)
