@@ -9,6 +9,12 @@
     (let ((current-prefix-arg t))
       (call-interactively #'projectile-ag)))
 
+(defun conf/projectile-pt (regexp)
+  (interactive (list (read-from-minibuffer
+                       "Pt search for: "
+                       (when mark-active (buffer-substring (point) (mark))))))
+  (projectile-pt regexp))
+
 (defun conf/projectile-relevant-known-projects ()
     projectile-known-projects)
 
@@ -18,6 +24,9 @@
   (global-set-key (kbd "C-c p") projectile-command-map)
   (global-set-key (kbd "C-x p") projectile-command-map)
   (define-key projectile-command-map (kbd "s s") #'projectile-ag-regex))
+
+(with-package-lazy (projectile pt)
+  (define-key projectile-command-map (kbd "s s") #'conf/projectile-pt))
 
 
 (defvar helm-projectile-hook nil)
@@ -69,10 +78,10 @@
 
 ;; The silver searcher
 
-;; Causes problems with Emacs 24
+;; It just doesn't work
 (setq ag-group-matches nil)
-
 
+
 ;; Subprojects
 
 ;; Redefine this function for the subprojects to work correctly
