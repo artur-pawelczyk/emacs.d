@@ -33,7 +33,8 @@
         ido-vertical-mode
         with-editor ;; Required by Magit
         pdf-tools
-        hydra))
+        hydra
+        ghub))
 
 (setq package-selected-packages
       (when (boundp 'package-selected-packages)
