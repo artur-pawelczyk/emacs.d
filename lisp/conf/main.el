@@ -69,6 +69,14 @@
 (global-set-key (kbd "C-x ^") #'hydra-resize-window/body)
 (global-set-key (kbd "C-x 5 0") #'delete-frame-if-only)
 (global-set-key (kbd "C-x n n") #'narrow-or-widen-dwim)
+(global-set-key (kbd "C-c r") #'revert-buffer)
+(global-set-key (kbd "C-x 6") #'previous-buffer)
+(global-set-key (kbd "C-x 7") #'next-buffer)
+(global-set-key (kbd "M-g c") #'avy-goto-char-timer)
+(global-set-key (kbd "M-g M-c") #'avy-goto-char-timer)
+(global-set-key (kbd "C-x 4 c") #'clone-indirect-buffer-in-place)
+(global-set-key (kbd "C-x 4 C") #'clone-indirect-buffer-other-window)
+
 (global-unset-key (kbd "C-z"))
 
 (when (conf/installed-p 'hydra)

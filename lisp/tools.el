@@ -110,6 +110,12 @@ Does not delete the prompt."
           (delete-frame))
       (delete-frame))))
 
+(defun clone-indirect-buffer-in-place ()
+  "Like `clone-indirect-buffer' but always in the current window."
+  (interactive)
+  (let ((display-buffer-alist '((".*" . (display-buffer-same-window)))))
+    (call-interactively #'clone-indirect-buffer)))
+
 (defun buffer-major-mode (buffer-or-name)
   (with-current-buffer buffer-or-name
     major-mode))
