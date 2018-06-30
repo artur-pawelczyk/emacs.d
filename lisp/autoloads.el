@@ -17,6 +17,7 @@
 (autoload 'hydras-backward-page "hydras" nil :interactive)
 (autoload 'hydras-org-next-block "hydras" nil :interactive)
 (autoload 'hydras-org-previous-block "hydras" nil :interactive)
+(autoload 'hydras-home/body "hydras" nil :interactive)
 (autoload 'hydra-resize-window/body "hydra-resize-window" nil :interactive)
 
 (autoload 'umessage "umessage")

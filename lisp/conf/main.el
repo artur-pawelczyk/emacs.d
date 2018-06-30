@@ -76,12 +76,14 @@
 (global-set-key (kbd "M-g M-c") #'avy-goto-char-timer)
 (global-set-key (kbd "C-x 4 c") #'clone-indirect-buffer-in-place)
 (global-set-key (kbd "C-x 4 C") #'clone-indirect-buffer-other-window)
-
 (global-unset-key (kbd "C-z"))
 
 (when (conf/installed-p 'hydra)
   (global-set-key (kbd "C-x ]") #'hydras-forward-page)
-  (global-set-key (kbd "C-x [") #'hydras-backward-page))
+  (global-set-key (kbd "C-x [") #'hydras-backward-page)
+  (global-set-key (kbd "C-c C-h") #'hydras-home/body)
+  (global-set-key (kbd "C-c DEL") #'hydras-home/body)
+  (global-set-key (kbd "C-c h") #'hydras-home/body))
 
 ;; This key binding gets overwritten by some package if set here.  Set
 ;; it after init.

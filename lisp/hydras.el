@@ -47,7 +47,7 @@
   (hydras-org-block-movement/body))
 
 
-(defhydra home-hydra
+(defhydra hydras-home
   (global-map "C-c h"   :exit t)
   ("y" youtube-dl)
   ("C-y" youtube-dl)
@@ -61,8 +61,5 @@
   ("n" (org-todo-list "NEXT"))
   ("p" (org-todo-list "PROJ"))
   ("c" cleanup-old-buffers))
-
-(global-set-key (kbd "C-c C-h") home-hydra/keymap)
-(global-set-key (kbd "C-c DEL") home-hydra/keymap)
 
 (provide 'hydras)
