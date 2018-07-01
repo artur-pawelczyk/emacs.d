@@ -31,3 +31,6 @@
 (autoload 'polish-radio-for-day "polish-radio" nil :interactive)
 
 (autoload 'live-skeleton "live-skeleton" nil :interactive)
+
+(autoload 'magit-autocommit-mode "magit-autocommit" nil :interactive)
+(autoload 'magit-autocommit-global-prevent "magit-autocommit" nil :interactive)
