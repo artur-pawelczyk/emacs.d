@@ -23,6 +23,7 @@
 (setq enable-recursive-minibuffers t)
 (blink-cursor-mode 1)
 (setq calendar-week-start-day 1)
+(read-y-or-n-mode 1)
 
 (with-package (undo-tree)
     (setq undo-tree-auto-save-history t)
