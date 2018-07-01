@@ -34,3 +34,5 @@
 
 (autoload 'magit-autocommit-mode "magit-autocommit" nil :interactive)
 (autoload 'magit-autocommit-global-prevent "magit-autocommit" nil :interactive)
+
+(autoload 'youtube-dl "youtube-dl" nil :interactive)
