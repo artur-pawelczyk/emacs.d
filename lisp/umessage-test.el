@@ -44,3 +44,8 @@
           (umessage-log-only "message")
           (should (string-match-p "message" (with-current-buffer buf (buffer-string)))))
       (kill-buffer buf))))
+
+(ert-deftest umessage-inhibit ()
+  (cl-letf* (((symbol-function 'umessage--new-buffer) (lambda (&rest args) (should-not "Should not be called")))
+             (inhibit-message t))
+    (umessage "Hidden message")))

@@ -67,7 +67,9 @@ smaller than `umessage-window-max-height'."
 (defun umessage (message &optional duration)
   "Display MESSAGE in special buffer above the minibuffer for DURATION of seconds."
   (umessage-log-only message)
-  (umessage-view-only message duration))
+  (unless inhibit-message
+    (umessage-view-only message duration))
+  message)
 
 (defun umessage-format-error (data context &optional fun)
   (let ((msg (error-message-string data))
