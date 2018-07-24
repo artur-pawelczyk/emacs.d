@@ -36,3 +36,5 @@ after-init.el
 /after-init/*
 /network-security.data
 /places
+/eclipse.jdt.ls
+/workspace
