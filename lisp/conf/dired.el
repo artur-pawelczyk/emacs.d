@@ -31,7 +31,7 @@
 
 (add-hook 'dired-mode-hook #'conf/dired-maybe-enable-omit-mode)
 
-(defvar conf/video-player "smplayer")
+(defvar conf/video-player "mpv")
 (defvar conf/pdf-viewer "mupdf")
 (setq dired-guess-shell-alist-user
       '(("\\.pdf\\'" conf/pdf-viewer)

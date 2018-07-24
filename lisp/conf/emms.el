@@ -7,7 +7,7 @@
   (require 'emms-history)
   (emms-history-load)
   (emms-mode-line -1)
-  (setq emms-player-list '(emms-player-mplayer))
+  (setq emms-player-list '(emms-player-mpv))
   (setq emms-source-file-default-directory "~/Music/")
   (setq emms-info-functions (append emms-info-functions '(emms-info-metaflac)))
   (setq emms-playlist-buffer-name "*EMMS Playlist*"))
