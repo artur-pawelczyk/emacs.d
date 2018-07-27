@@ -40,3 +40,11 @@
 (setq magit-display-buffer-noselect nil)
 
 (add-to-list 'savehist-additional-variables 'log-edit-comment-ring)
+
+
+(with-package-lazy (magit-status)
+  (setq magit-status-sections-hook (mapcar (lambda (elem)
+                                             (if (eq elem 'magit-insert-unpushed-to-upstream-or-recent)
+                                                 #'magit-insert-unpushed-to-upstream
+                                               elem))
+                                           magit-status-sections-hook)))
