@@ -116,6 +116,7 @@ buffers and files."
 (setq ido-enable-regexp t)
 (setq ido-default-buffer-method 'selected-window)
 (setq ido-default-file-method 'selected-window)
+(setq ido-use-virtual-buffers t)
 
 (defun ido-move-dired-buffers-last ()
   (let ((omit-first? (eq this-command 'ido-kill-buffer)))
@@ -147,6 +148,15 @@ buffers and files."
   (setq ido-temp-list (cons "." ido-temp-list)))
 
 (add-hook 'ido-make-file-list-hook #'ido-add-dot-file)
+
+(defun ido-insert-wildcard ()
+  (interactive)
+  (insert ".*"))
+
+(with-package-lazy (ido)
+  (add-hook 'ido-setup-hook (lambda ()
+                              (define-key ido-completion-map (kbd "SPC") #'ido-insert-wildcard))))
+
 
 
 ;; Ivy
