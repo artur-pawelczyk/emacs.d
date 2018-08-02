@@ -5,7 +5,9 @@
   ;; Optimization: Call `sml/generate-buffer-identification' only on
   ;; shell buffers, but not async command buffers.
   (remove-hook 'comint-output-filter-functions 'sml/generate-buffer-identification)
-  (add-hook 'shell-after-cd-hook #'sml/generate-buffer-identification))
+  (add-hook 'shell-after-cd-hook #'sml/generate-buffer-identification)
+  (with-package-lazy (projectile)
+    (setq projectile-mode-line nil)))
 
 (setq rm-blacklist nil)
 (let ((whitelist '(" View"
@@ -15,8 +17,10 @@
                    " Compiling"
                    " FlyC.*"
                    " Wrap"
-                   " Vis")))
+                   " Vis"
+                   " Projectile\\[.*\\]")))
   (setq rm-whitelist (mapconcat 'identity whitelist "\\|")))
 
-(with-package (projectile)
-  (setq projectile-mode-line nil))
+
+(with-package (rich-minority)
+  (rich-minority-mode 1))

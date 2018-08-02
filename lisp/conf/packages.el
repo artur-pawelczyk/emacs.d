@@ -13,7 +13,6 @@
         projectile
         web-mode
         yasnippet
-        smart-mode-line
         smartparens
         slime
         markdown-mode
