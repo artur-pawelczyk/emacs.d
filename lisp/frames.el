@@ -22,18 +22,19 @@
     (when prev-frame
       (select-frame-set-input-focus prev-frame))))
 
+(autoload 'mouse-avoidance-banish "avoid")
+
+(defun frames-banish-mouse ()
+  (interactive)
+  (mouse-avoidance-banish))
+
 (global-set-key (kbd "C-z") frames-map)
 (define-key frames-map (kbd "C-n") #'frames-next)
 (define-key frames-map (kbd "C-p") #'frames-prev)
 (define-key frames-map (kbd "c") #'make-frame-command)
 (define-key frames-map (kbd "C-z") #'other-frame)
 (define-key frames-map (kbd "k") #'delete-frame)
-
-(eval-after-load 'avoid
-  '(progn
-     (define-key frames-map (kbd "C-b")  (lambda () (interactive) (mouse-avoidance-banish)))
-     (define-key frames-map (kbd "C-b")  (lambda () (interactive) (mouse-avoidance-banish)))))
-
+(define-key frames-map (kbd "C-b") #'frames-banish-mouse)
 
 (provide 'frames)
 ;;; frames.el ends here
