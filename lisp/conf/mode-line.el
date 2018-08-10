@@ -24,3 +24,8 @@
 
 (with-package (rich-minority)
   (rich-minority-mode 1))
+
+
+;; This hook makes `magit-refresh' an order of magniture slower
+(with-package-lazy (doom-modeline)
+  (remove-hook 'magit-post-refresh-hook #'doom-modeline-magit-post-refresh))
