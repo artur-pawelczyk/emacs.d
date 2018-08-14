@@ -8,6 +8,3 @@
   (setq web-mode-enable-auto-opening nil)
   (setq web-mode-enable-auto-pairing nil)
   (setq web-mode-enable-auto-quoting nil))
-
-(with-package-lazy (restclient)
-  (add-hook 'restclient-response-loaded-hook #'view-mode))
