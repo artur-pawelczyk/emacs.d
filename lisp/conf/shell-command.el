@@ -22,7 +22,3 @@
 
 (with-package-lazy (shell)
   (define-key shell-mode-map (kbd "C-c r") #'shell-command-rerun))
-
-
-(with-package-lazy (popwin)
-  (add-to-list 'popwin:special-display-config '(": shell-command\\*" :regexp t)))
