@@ -13,6 +13,9 @@
 (with-package-lazy (magit-diff)
   (define-key magit-revision-mode-map (kbd "M-u") #'magit-section-up))
 
+(with-package-lazy (magit-stash)
+  (define-key magit-stash-mode-map (kbd "M-u") #'magit-section-up))
+
 (with-package-lazy (magit-log)
   (let* ((new-entry '(?d "Sort by date" "--date-order"))
          (new-list (cons new-entry (plist-get magit-log-popup :switches))))
