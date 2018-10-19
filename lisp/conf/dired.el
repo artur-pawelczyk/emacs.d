@@ -56,3 +56,15 @@
 
 (with-package-lazy (locate)
   (add-hook 'locate-mode-hook (-partial #'set 'conf/dired-omit-mode nil)))
+
+
+(defun conf/dired--yes-no-all-quit-help (prompt &optional help-msg)
+  "Replacement for `dired--yes-no-all-quit-help'.  `help-msg' is ignored"
+  (case (read-choice-from-minibuffer prompt '(?y ?n ?a ?q))
+    (?y "yes")
+    (?n "no")
+    (?a "all")
+    (?q "quit")))
+
+(with-package-lazy (dired)
+  (fset 'dired--yes-no-all-quit-help #'conf/dired--yes-no-all-quit-help))

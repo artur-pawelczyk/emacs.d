@@ -51,5 +51,15 @@ Like `y-or-n-p', but uses minibuffer instead of `read-key'."
     (fset 'yes-or-no-p read-yes-or-no-original)))
 
 
+(defun read-choice-prompt (text options)
+  (format "%s [%s]: " text (apply #'concat (mapcar #'char-to-string options))))
+
+;;;###autoload
+(defun read-choice-from-minibuffer (prompt options)
+  (let ((resp (read-char-from-minibuffer (read-choice-prompt prompt options))))
+    (if (member resp options)
+        resp
+      (user-error "No such option: %c" resp))))
+
 (provide 'read-y-or-n)
 ;;; read-y-or-n.el ends here
