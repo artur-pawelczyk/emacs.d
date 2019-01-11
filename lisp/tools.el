@@ -106,7 +106,7 @@ Does not delete the prompt."
   (let* ((graphical-frames (-filter (lambda (f) (not (eq (framep f) t))) (frame-list)))
          (but-current (delete (window-frame) graphical-frames)))
     (if (null but-current)
-        (when (y-or-n-p "Delete only graphical frame? ")
+        (when (y-or-n-p "Delete the only graphical frame? ")
           (delete-frame))
       (delete-frame))))
 
