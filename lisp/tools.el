@@ -171,10 +171,18 @@ Does not delete the prompt."
     (delete-trailing-whitespace (point-min) start)
     (delete-trailing-whitespace end (point-max))))
 
+(defun conf/copy-raw ()
+  (interactive)
+  (let ((content (buffer-substring-no-properties (mark) (point)))
+        (fill-column most-positive-fixnum))
+    (with-temp-buffer
+      (insert content)
+      (fill-region (point-min) (point-max))
+      (kill-new (buffer-substring (point-min) (point-max))))))
+
 (defmacro with-open-file (file &rest body)
   `(with-temp-file ,file
      (insert-file-contents ,file)
      ,@body))
-
 
 (provide 'tools)
