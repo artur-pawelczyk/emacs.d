@@ -197,3 +197,15 @@
 (if (fboundp 'save-place-mode)
     (save-place-mode 1)
   (setq-default save-place t))
+
+
+;; enable coloring in compilation buffers
+(defun conf/colorize-compilation ()
+  "Colorize from `compilation-filter-start' to `point'."
+  (require 'ansi-color)
+  (let ((inhibit-read-only t))
+    (ansi-color-apply-on-region
+     compilation-filter-start (point))))
+
+(add-hook 'compilation-filter-hook
+          #'conf/colorize-compilation)
