@@ -203,9 +203,10 @@
 (defun conf/colorize-compilation ()
   "Colorize from `compilation-filter-start' to `point'."
   (require 'ansi-color)
-  (let ((inhibit-read-only t))
-    (ansi-color-apply-on-region
-     compilation-filter-start (point))))
+  (unless (eq major-mode 'ag-mode)
+    (let ((inhibit-read-only t))
+      (ansi-color-apply-on-region
+       compilation-filter-start (point)))))
 
 (add-hook 'compilation-filter-hook
           #'conf/colorize-compilation)
