@@ -46,7 +46,8 @@ Like `y-or-n-p', but uses minibuffer instead of `read-key'."
   (if read-y-or-n-mode
       (progn
         (fset 'y-or-n-p #'read-y-or-n)
-        (fset 'yes-or-no-p #'read-y-or-n))
+        (fset 'yes-or-no-p #'read-y-or-n)
+        (setq read-answer-short t))
     (fset 'y-or-n-p read-y-or-n-original)
     (fset 'yes-or-no-p read-yes-or-no-original)))
 
