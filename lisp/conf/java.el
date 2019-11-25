@@ -110,3 +110,9 @@
   (define-key java-mode-map (kbd "C-c D") #'conf/mvn-jdb)
   (define-key java-mode-map (kbd "C-c t") #'conf/mvn-test-current-file)
   (define-key java-mode-map (kbd "C-c T") #'conf/mvn-test-current-method))
+
+
+(with-package-lazy (lsp-java)
+  (define-key lsp-mode-map (kbd "M-.") #'lsp-find-definition)
+  (define-key lsp-mode-map (kbd "M-?") #'lsp-find-references)
+  (define-key lsp-mode-map (kbd "C-c M-.") #'lsp-find-implementation))
