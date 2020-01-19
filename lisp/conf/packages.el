@@ -33,7 +33,12 @@
         with-editor ;; Required by Magit
         pdf-tools
         hydra
-        ghub))
+        ghub
+        elfeed
+        markdown-mode
+        pass
+        ivy-pass
+        ))
 
 (setq package-selected-packages
       (when (boundp 'package-selected-packages)

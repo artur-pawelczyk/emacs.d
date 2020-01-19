@@ -2,6 +2,7 @@
 
 (add-to-list 'load-path (user-file "lisp"))
 (load-file (user-file "lisp/autoloads.el"))
+(package-initialize)
 (add-to-list 'load-path (user-file "site-lisp"))
 (load-file (user-file "site-lisp/autoloads.el"))
 
@@ -10,7 +11,6 @@
 (when (file-exists-p (user-file "before-init.el"))
   (load-file (user-file "before-init.el")))
 
-(package-initialize)
 (require 'packages)
 (load-library "conf/packages")
 (if (not (file-exists-p package-user-dir))
