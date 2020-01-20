@@ -5,4 +5,6 @@
 (setq zoom-size '(0.618 . 0.618))
 
 (with-package (zoom)
+  (add-to-list 'zoom-ignored-major-modes 'calc-mode)
+  (add-to-list 'zoom-ignored-major-modes 'ediff-mode)
   (zoom-mode))
