@@ -196,6 +196,10 @@ keyboard macro.  Otherwise use function defined by `conf/extended-command-functi
 
 (global-set-key (kbd "M-x") #'conf/extended-command)
 
+(with-package-lazy (counsel)
+  (ivy-configure 'counsel-M-x
+    :initial-input ""))
+
 
 ;; Auto-complete is currenty used only for Jedi
 (with-package-lazy (auto-complete-mode)
