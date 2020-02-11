@@ -210,3 +210,6 @@
 
 (add-hook 'compilation-filter-hook
           #'conf/colorize-compilation)
+
+(with-package-lazy (elfeed-show)
+  (define-key elfeed-show-mode-map (kbd "TAB") #'shr-next-link))
