@@ -185,8 +185,4 @@ Does not delete the prompt."
      (insert-file-contents ,file)
      ,@body))
 
-;; Adds missing function for Magit
-(defalias '-some '-find)
-(defalias '--some '--find)
-
 (provide 'tools)
