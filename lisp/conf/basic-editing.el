@@ -36,4 +36,5 @@
 
 
 (when (conf/installed-p 'avy)
-  (define-key isearch-mode-map (kbd "C-'") #'avy-isearch))
+  (define-key isearch-mode-map (kbd "C-'") #'avy-isearch)
+  (global-set-key (kbd "M-g M-g") #'avy-goto-line))
