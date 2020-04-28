@@ -11,3 +11,6 @@
                                         (file+headline "~/org/notes.org" "Inbox")))
   (add-to-list 'org-capture-templates '("z" "Shopping list item" item
                                         (file+headline "~/org/notes.org" "Shopping list"))))
+
+(setq org-refile-targets '((nil :maxlevel . 9)
+                           (org-agenda-files :maxlevel . 1)))
