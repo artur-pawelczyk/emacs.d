@@ -25,6 +25,7 @@
 (setq calendar-week-start-day 1)
 (read-y-or-n-mode 1)
 (umessage-mode 1)
+(setq sentence-end-double-space nil)
 
 (with-package (undo-tree)
     (setq undo-tree-auto-save-history t)
