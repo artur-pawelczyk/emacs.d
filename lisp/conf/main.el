@@ -121,12 +121,7 @@
     (linum-relative-toggle)))
 
 ;; Menubar
-(when (conf/installed-p 'lacarte)
-  (menu-bar-mode -1)
-  (let ((menubar-function (if (conf/installed-p 'helm)
-                              #'helm-browse-menubar
-                            #'lacarte-execute-menu-command)))
-    (global-set-key (kbd "<f10>") menubar-function)))
+(menu-bar-mode -1)
 
 ;; Winner mode
 (winner-mode t)
