@@ -18,10 +18,6 @@
 (with-package-lazy (org)
   (advice-add 'org-goto-map :after #'conf/org-goto-map--add-custom-keys))
 
-;; `C-m' calls a removed function `isearch-other-control-char'.
-(with-package-lazy (org)
-  (define-key org-goto-local-auto-isearch-map (kbd "C-m") nil))
-
 ;; org-crypt
 (with-package-lazy (org org-crypt)
   (org-crypt-use-before-save-magic)
