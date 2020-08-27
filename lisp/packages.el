@@ -1,5 +1,4 @@
 (require 'package)
-(package-initialize)
 
 (defun conf/install-package (package)
   "Install PACKAGE if not installed."
