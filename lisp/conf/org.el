@@ -2,7 +2,9 @@
 
 (with-package-lazy (org)
   (define-key org-mode-map (kbd "M-n") #'org-metadown)
-  (define-key org-mode-map (kbd "M-p") #'org-metaup))
+  (define-key org-mode-map (kbd "M-p") #'org-metaup)
+  (define-key org-mode-map (kbd "C-c >") #'org-metaright)
+  (define-key org-mode-map (kbd "C-c <") #'org-metaleft))
 
 (setq org-src-fontify-natively t)
 (setq org-src-window-setup 'current-window)
