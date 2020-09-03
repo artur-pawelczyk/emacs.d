@@ -17,10 +17,6 @@
   (define-key magit-stash-mode-map (kbd "M-u") #'magit-section-up))
 
 
-(with-package-lazy (magit)
-  (magit-wip-after-save-mode 1))
-
-
 (defun conf/magit-switch-to-buffer (buffer)
   "Display Magit status buffer in the same window"
   (if (eq (with-current-buffer buffer major-mode) 'magit-status-mode)
@@ -29,12 +25,13 @@
         (selected-window))
     (magit-display-buffer-traditional buffer)))
 
-(setq magit-display-buffer-function #'conf/magit-switch-to-buffer)
+(setq magit-display-buffer-function #'magit-display-buffer-same-window-except-diff-v1)
 (setq magit-display-buffer-noselect nil)
 
 (add-to-list 'savehist-additional-variables 'log-edit-comment-ring)
 
 
+;; Remove `magit-insert-unpushed-to-upstream' section of the status buffer.
 (with-package-lazy (magit-status)
   (setq magit-status-sections-hook (mapcar (lambda (elem)
                                              (if (eq elem 'magit-insert-unpushed-to-upstream-or-recent)
