@@ -1,6 +1,5 @@
 ;; -*- mode: emacs-lisp; lexical-binding: t -*-
 
-(require 'cl)
 (require 's)
 (require 'dash)
 

@@ -23,7 +23,6 @@
     markdown-mode
     org
     org-bullets
-    pass
     pdf-tools
     projectile
     s

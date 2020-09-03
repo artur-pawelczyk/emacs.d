@@ -6,7 +6,6 @@
 
 ;;; Code:
 (require 'dash)
-(require 'cl-lib)
 
 (defvar live-skeleton-current-overlay nil)
 

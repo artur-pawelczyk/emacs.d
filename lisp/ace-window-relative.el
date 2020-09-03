@@ -2,6 +2,7 @@
 
 (require 'windmove)
 (require 'ace-window)
+(require 'cl-macs)
 
 (defun ace-window-relative-direction (dir)
   "Return the window on DIR.  Ignore minibuffer."
@@ -15,7 +16,7 @@
 neighbour window (DIR).  Requires lexical binding."
   (lambda ()
     (interactive)
-    (case aw-action
+    (cl-case aw-action
       (#'aw-switch-to-window
        (windmove-do-window-select dir))
       (#'aw-delete-window

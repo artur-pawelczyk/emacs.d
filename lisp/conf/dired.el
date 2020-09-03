@@ -1,3 +1,5 @@
+(require 'cl-macs)
+
 (with-package-lazy (dired)
   (require 'dired-x))
 
@@ -60,7 +62,7 @@
 
 (defun conf/dired--yes-no-all-quit-help (prompt &optional help-msg)
   "Replacement for `dired--yes-no-all-quit-help'.  `help-msg' is ignored"
-  (case (read-choice-from-minibuffer prompt '(?y ?n ?a ?q))
+  (cl-case (read-choice-from-minibuffer prompt '(?y ?n ?a ?q))
     (?y "yes")
     (?n "no")
     (?a "all")
