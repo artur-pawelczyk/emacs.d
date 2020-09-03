@@ -1,46 +1,41 @@
 (defvar user-package-list
-      '(ag
-        ace-window
-        auctex
-        bbdb
-        cider
-        js2-mode
-        org
-        org-bullets
-        php-mode
-        projectile
-        web-mode
-        yasnippet
-        smartparens
-        slime
-        markdown-mode
-        counsel
-        smex
-        ggtags
-        flycheck
-        lacarte
-        sql-indent
-        s
-        dash
-        dash-functional
-        emms
-        easy-kill
-        macrostep
-        linum-relative
-        ido-vertical-mode
-        with-editor ;; Required by Magit
-        pdf-tools
-        hydra
-        ghub
-        elfeed
-        markdown-mode
-        pass
-        ivy-pass
-        ))
+  '(
+    ace-window
+    ag
+    auctex
+    bbdb
+    counsel
+    dash
+    dash-functional
+    easy-kill
+    elfeed
+    flycheck
+    ggtags
+    ghub
+    hydra
+    ido-vertical-mode
+    ivy-pass
+    js2-mode
+    linum-relative
+    macrostep
+    magit
+    markdown-mode
+    markdown-mode
+    org
+    org-bullets
+    pass
+    pdf-tools
+    projectile
+    s
+    smartparens
+    smex
+    sql-indent
+    web-mode
+    ))
 
 (setq package-selected-packages
       (when (boundp 'package-selected-packages)
         (delete-dups (append user-package-list package-selected-packages))))
 
-(add-to-list 'package-archives '("mepla" . "http://melpa.milkbox.net/packages/"))
-(add-to-list 'package-archives '("org" . "http://orgmode.org/elpa/"))
+(add-to-list 'package-archives '("melpa-stable" . "https://stable.melpa.org/packages/") :append)
+(add-to-list 'package-archives '("org" . "http://orgmode.org/elpa/") :append)
