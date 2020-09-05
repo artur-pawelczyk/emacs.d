@@ -14,7 +14,7 @@
                                      (throw 'read-char-response last-command-event))
             nil :local))
 
-(defun read-char-from-minibuffer (prompt)
+(defun read-char-from-minibuffer (prompt &rest rest)
   "Read a single char from minibuffer."
   (catch 'read-char-response
     (minibuffer-with-setup-hook #'read-char-setup-hook
