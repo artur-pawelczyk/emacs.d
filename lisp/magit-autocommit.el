@@ -3,6 +3,8 @@
 (require 'magit-process)
 (require 'magit-sequence)
 
+(defvar magit-autocommit-machine-id (system-name))
+
 (defun magit-autocommit-can-amend (desired-message)
   (equal desired-message (car (magit-git-lines "log" "--pretty=%s" "@{upstream}..HEAD"))))
 
@@ -20,7 +22,7 @@
     (unless (magit-autocommit-prevented-p)
       (magit-save-repository-buffers :force)
       (magit-stage-1 "--all")
-      (let ((message (format "Autocommit on %s" (system-name))))
+      (let ((message (format "Autocommit on %s" magit-autocommit-machine-id)))
         (with-temp-message message
           (magit-run-git "commit" "-m" message
                          (when (magit-autocommit-can-amend message) "--amend")))))))
