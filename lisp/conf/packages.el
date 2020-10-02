@@ -36,5 +36,5 @@
       (when (boundp 'package-selected-packages)
         (delete-dups (append user-package-list package-selected-packages))))
 
-(add-to-list 'package-archives '("melpa-stable" . "https://stable.melpa.org/packages/") :append)
+(add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") :append)
 (add-to-list 'package-archives '("org" . "http://orgmode.org/elpa/") :append)
