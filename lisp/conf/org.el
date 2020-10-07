@@ -1,4 +1,7 @@
 (setq org-modules '(org-bbdb org-bibtex org-crypt org-docview org-gnus org-habit org-info org-irc org-mhe org-rmail org-w3m))
+(setq org-src-fontify-natively t)
+(setq org-src-window-setup 'current-window)
+(setq org-agenda-todo-ignore-scheduled 'all)
 
 (with-package-lazy (org)
   (define-key org-mode-map (kbd "M-n") #'org-metadown)
@@ -6,8 +9,6 @@
   (define-key org-mode-map (kbd "C-c >") #'org-metaright)
   (define-key org-mode-map (kbd "C-c <") #'org-metaleft))
 
-(setq org-src-fontify-natively t)
-(setq org-src-window-setup 'current-window)
 
 (with-package-lazy (org)
   (when (conf/installed-p 'helm)
