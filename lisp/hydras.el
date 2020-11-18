@@ -4,10 +4,10 @@
   (:exit t :pre (require 'magit nil :noerror))
   "Magit"
   ("b" magit-blame)
-  ("l" magit-log-popup)
+  ("l" magit-log)
   ("L" magit-log-buffer-file)
   ("v" magit-status)
-  ("c" magit-branch-popup)
+  ("c" magit-branch)
   ("f" magit-find-file)
   ("s" magit-show-commit)
   ("w" magit-wip-log-current)
