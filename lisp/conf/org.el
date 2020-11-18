@@ -2,6 +2,8 @@
 (setq org-src-fontify-natively t)
 (setq org-src-window-setup 'current-window)
 (setq org-agenda-todo-ignore-scheduled 'all)
+(setq org-blank-before-new-entry '((heading . t)
+					               (plain-list-item . nil)))
 
 (with-package-lazy (org)
   (define-key org-mode-map (kbd "M-n") #'org-metadown)
