@@ -52,3 +52,10 @@
 
 (with-package-lazy (org-agenda)
   (add-hook 'org-agenda-mode-hook #'hl-line-mode))
+
+
+(with-package-lazy (org)
+  (org-babel-do-load-languages
+   'org-babel-load-languages
+   '((emacs-lisp . t)
+     (shell . t))))
