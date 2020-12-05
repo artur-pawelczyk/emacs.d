@@ -1,6 +1,7 @@
 (require 'shell-command)
 
 (setq async-shell-command-buffer 'new-buffer)
+(setq shell-file-name "/bin/bash") ;; Disable zsh in shell buffers
 
 (global-set-key (kbd "M-!") #'background-shell-command)
 
