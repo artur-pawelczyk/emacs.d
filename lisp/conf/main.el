@@ -26,6 +26,7 @@
 (read-y-or-n-mode 1)
 (umessage-mode 1)
 (setq sentence-end-double-space nil)
+(setq ring-bell-function #'ignore)
 
 (with-package (undo-tree)
     (setq undo-tree-auto-save-history t)
