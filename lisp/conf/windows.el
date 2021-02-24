@@ -8,3 +8,5 @@
   (add-to-list 'zoom-ignored-major-modes 'calc-mode)
   (add-to-list 'zoom-ignored-major-modes 'ediff-mode)
   (zoom-mode))
+
+(require 'frames)

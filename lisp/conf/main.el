@@ -27,6 +27,7 @@
 (umessage-mode 1)
 (setq sentence-end-double-space nil)
 (setq ring-bell-function #'ignore)
+(add-to-list 'auto-mode-alist '("\\password-store/.*\\.gpg\\'" . pass-view-mode))
 
 (with-package (undo-tree)
     (setq undo-tree-auto-save-history t)
@@ -76,8 +77,7 @@
 (global-set-key (kbd "C-c r") #'revert-buffer)
 (global-set-key (kbd "C-x 6") #'previous-buffer)
 (global-set-key (kbd "C-x 7") #'next-buffer)
-(global-set-key (kbd "M-g c") #'avy-goto-char-timer)
-(global-set-key (kbd "M-g M-c") #'avy-goto-char-timer)
+
 (global-set-key (kbd "C-x 4 c") #'clone-indirect-buffer-in-place)
 (global-set-key (kbd "C-x 4 C") #'clone-indirect-buffer-other-window)
 (global-unset-key (kbd "C-z"))
@@ -210,3 +210,8 @@
 
 (with-package-lazy (elfeed-show)
   (define-key elfeed-show-mode-map (kbd "TAB") #'shr-next-link))
+
+(with-package (avy)
+  (global-set-key (kbd "M-g c") #'avy-goto-char-timer)
+  (global-set-key (kbd "M-g M-c") #'avy-goto-char-timer)
+  (global-set-key (kbd "M-g M-g") #'avy-goto-line))
