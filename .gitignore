@@ -38,3 +38,7 @@ after-init.el
 /places
 /eclipse.jdt.ls
 /workspace
+/.cache
+/.lsp-session-v1
+/emojis
+/transient
