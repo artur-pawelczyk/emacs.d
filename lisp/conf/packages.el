@@ -8,9 +8,7 @@
     dash
     dash-functional
     easy-kill
-    elfeed
     flycheck
-    ggtags
     ghub
     hydra
     ido-vertical-mode
@@ -20,7 +18,6 @@
     macrostep
     magit
     markdown-mode
-    markdown-mode
     org
     org-bullets
     pdf-tools
@@ -28,7 +25,6 @@
     s
     smartparens
     smex
-    sql-indent
     web-mode
     ))
 
