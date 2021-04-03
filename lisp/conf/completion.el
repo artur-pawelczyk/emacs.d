@@ -1,9 +1,6 @@
 (require 'dash)
 (require 'dash-functional)
 
-;; Loads the aliases
-(require 'helm-config nil :noerror)
-
 (defun conf/enable-ido ()
   (interactive)
   (require 'ido)
@@ -16,14 +13,6 @@
   (global-set-key (kbd "C-x 4 C-f") #'ido-find-file-other-window)
   (global-set-key (kbd "C-x C-4 C-f") #'ido-find-file-other-window))
 
-(defun conf/enable-helm ()
-  (interactive)
-  (require 'helm)
-  (helm-mode 1)
-  (helm-adaptive-mode 1)
-  (global-set-key (kbd "C-x b") 'helm-buffers-list)
-  (global-set-key (kbd "M-x") 'helm-M-x)
-  (global-set-key (kbd "C-x C-f") 'helm-find-files))
 
 (defun conf/completion-default-keys ()
   (global-set-key (kbd "M-x") #'execute-extended-command)
@@ -39,71 +28,18 @@
   (ido-mode -1)
   (conf/completion-default-keys))
 
-(defun conf/disable-helm ()
-  (interactive)
-  (helm-mode -1)
-  (conf/completion-default-keys))
-
-(defun conf/ido-helm-hybrid-setup ()
-  "Use helm as main completion method and Ido for choosing
-buffers and files."
-  (interactive)
-  (conf/enable-helm)
-  (ido-mode) ;; Documentation of `helm-completing-read-handlers-alist'
-             ;; claims that `ido-mode' does not need to be enabled,
-             ;; although `ido-make-buffer-list-hook' is not applied
-             ;; when the mode is disabled.
-  (add-to-list 'helm-completing-read-handlers-alist '(find-file . ido))
-  (add-to-list 'helm-completing-read-handlers-alist '(find-file-other-window . ido))
-  (add-to-list 'helm-completing-read-handlers-alist '(switch-to-buffer . ido))
-  (global-set-key (kbd "C-x b") #'switch-to-buffer)
-  (global-set-key (kbd "C-x C-f") #'find-file))
 
 (after-init
     (cond
      ((require 'ivy nil :noerror)
       (ivy-mode 1)
       (conf/enable-ido))
-     ((require 'helm nil :noerror)
-      (conf/ido-helm-hybrid-setup))
      (t (conf/enable-ido))))
 
 
-;; helm-imenu
-(defvar conf/imenu-function (if (conf/installed-p 'helm)
-                                #'helm-imenu
-                              #'imenu))
-
 (defun conf/imenu ()
   (interactive)
   (call-interactively conf/imenu-function))
-
-
-;; Helm configuration
-(setq helm-ff-file-name-history-use-recentf t
-      helm-buffers-fuzzy-matching t
-      helm-split-window-in-side-p t
-      helm-ag-base-command "ag --nocolor --nogroup --ignore-case")
-
-;; Customizing some helm options triggers come code that would not
-;; run if set by `setq'.
-(custom-set-variables '(helm-command-prefix-key "C-c h")
-                      '(helm-minibuffer-history-key "M-r"))
-
-(with-package-lazy (helm)
-  (define-key helm-map (kbd "C-w") #'kill-word-or-region)
-  (define-key helm-map (kbd "<f1>") nil)
-  (define-key helm-map (kbd "<f2>") nil)
-  (define-key helm-map (kbd "<f3>") nil)
-  (define-key helm-map (kbd "<f4>") nil)
-  (define-key helm-map (kbd "<f5>") nil)
-  (define-key helm-map (kbd "<f6>") nil)
-  (define-key helm-map (kbd "<f7>") nil)
-  (define-key helm-map (kbd "<f8>") nil)
-  (define-key helm-map (kbd "<f9>") nil)
-  (define-key helm-map (kbd "<f10>") nil)
-  (define-key helm-map (kbd "<f11>") nil)
-  (define-key helm-map (kbd "<f12>") nil))
 
 
 ;; Ido
