@@ -150,12 +150,10 @@
 
 ;; Auto save
 (setq backup-directory-alist
-      `((".*\\.org\\'" . ".")
-        ("." . ,(expand-file-name "auto-save/" user-emacs-directory))))
+      `(("." . ,(expand-file-name "auto-save/" user-emacs-directory))))
 
 (setq auto-save-file-name-transforms
-      `((".*\\.org\\'" "\\&")
-        (".*" ,(expand-file-name "auto-save/" user-emacs-directory) t)))
+      `((".*" ,(expand-file-name "auto-save/" user-emacs-directory) t)))
 
 ;; The silver searcher
 (with-package-lazy (ag)
