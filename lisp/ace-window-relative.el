@@ -13,7 +13,7 @@
 
 (defun ace-window-relative-dispatcher (dir)
   "Return a dispatch handler for `aw-dispatch-alist' acting on a
-neighbour window (DIR).  Requires lexical binding."
+neighbor window (DIR). Requires lexical binding."
   (lambda ()
     (interactive)
     (cl-case aw-action
