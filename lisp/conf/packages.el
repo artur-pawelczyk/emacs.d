@@ -22,6 +22,7 @@
     org-bullets
     pdf-tools
     projectile
+    rich-minority
     s
     smartparens
     smex
