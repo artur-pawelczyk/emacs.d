@@ -1,6 +1,7 @@
 (require 'tools)
 (require 'dash)
 (require 'subr-x)
+(require 's)
 
 (defun background-shell-command ()
   "Run `async-shell-command' but don't display the subprocess's buffer."
@@ -50,8 +51,11 @@
                          (list (car (-drop-while #'shell-command-extended-command? base-names))))
                  "-")))
 
+(defun shell-command-short-dir (dir)
+  (file-name-base (s-chop-suffix "/" dir)))
+
 (defun shell-command-new-buffer-name (command)
-  (let ((base-name (format "*%s: shell-command*" (shell-command-buffer-name command))))
+  (let ((base-name (format "*%s [%s]*" (shell-command-buffer-name command) (shell-command-short-dir default-directory))))
     (generate-new-buffer-name base-name)))
 
 (defun shell-command--set-buffer-name (orig-fun command &optional orig-buffer error-buffer)
