@@ -1,6 +1,7 @@
 (require 'dash)
 
 (define-key vc-prefix-map "e" #'vc-ediff)
+(setq magit-revision-filter-files-on-follow nil)
 
 (with-package-lazy (vc-dir)
   (define-key vc-dir-mode-map "e" #'vc-ediff))
