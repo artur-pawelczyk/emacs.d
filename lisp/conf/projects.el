@@ -1,3 +1,6 @@
+(with-package-lazy (projectile)
+  (projectile-mode t))
+
 (setq projectile-indexing-method 'alien)
 (setq projectile-switch-project-action #'projectile-commander)
 (when (conf/installed-p 'ivy)
@@ -27,25 +30,6 @@
 
 (with-package-lazy (projectile pt)
   (define-key projectile-command-map (kbd "s s") #'conf/projectile-pt))
-
-
-(defvar helm-projectile-hook nil)
-
-(defun helm-projectile--after-toggle (toggle &rest other)
-  (run-hooks 'helm-projectile-hook))
-
-(with-package-lazy (helm-projectile)
-  (advice-add 'helm-projectile-toggle :after #'helm-projectile--after-toggle)
-  (add-hook 'helm-projectile-hook (lambda ()
-                                    (setq projectile-switch-project-action #'projectile-commander)))
-  (add-hook 'helm-projectile-hook #'conf/projectile-helm-functionality))
-
-
-(defun display-startup-screen--enable-projectile (&rest args)
-  (when (conf/installed-p 'projectile)
-    (projectile-mode t)))
-
-(advice-add #'display-startup-screen :after #'display-startup-screen--enable-projectile)
 
 
 ;; Compilation
