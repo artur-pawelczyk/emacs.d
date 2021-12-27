@@ -64,16 +64,6 @@ Does not delete the prompt."
 (defun buffer-visible-p (buffer)
   (member buffer (mapcar #'window-buffer (window-list))))
 
-(defun shell-cleanup-dead-buffers ()
-  "Kill all shell buffers that have no process running."
-  (interactive)
-  (let ((dead-buffers (-filter (lambda (buffer)
-                                 (and (memq (buffer-major-mode buffer) '(shell-mode term-mode))
-                                      (not (get-buffer-process buffer))))
-                               (buffer-list))))
-    (mapcar #'kill-buffer dead-buffers)
-    (message "Killed %s buffers" (length dead-buffers))))
-
 (defvar cleanup-old-buffers--time 60)
 
 (defun cleanup-old-buffers--touch (buffer)
