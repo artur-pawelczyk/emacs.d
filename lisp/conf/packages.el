@@ -12,6 +12,8 @@
     ghub
     hydra
     ido-vertical-mode
+    ivy
+    ivy-hydra
     ivy-pass
     js2-mode
     linum-relative
