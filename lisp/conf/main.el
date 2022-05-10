@@ -213,3 +213,6 @@
   (global-set-key (kbd "M-g c") #'avy-goto-char-timer)
   (global-set-key (kbd "M-g M-c") #'avy-goto-char-timer)
   (global-set-key (kbd "M-g M-g") #'avy-goto-line))
+
+(with-package-lazy (frame)
+  (setq default-frame-alist (cons '(fullscreen . maximized) default-frame-alist)))
