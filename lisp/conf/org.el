@@ -4,6 +4,7 @@
 (setq org-agenda-todo-ignore-scheduled 'all)
 (setq org-blank-before-new-entry '((heading . t)
 					               (plain-list-item . nil)))
+(setq org-catch-invisible-edits 'show-and-error)
 
 (with-package-lazy (org)
   (define-key org-mode-map (kbd "M-n") #'org-metadown)
