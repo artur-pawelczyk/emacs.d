@@ -39,7 +39,7 @@
         (format "*%s*" default)
       (format "*%s: %s*" default project-name))))
 
-(defun conf/projectile-run-compilation (cmd)
+(defun conf/projectile-run-compilation (cmd &optional use-comint-mode)
   "Run external or Elisp compilation command CMD."
   (if (functionp cmd)
       (funcall cmd)
