@@ -148,13 +148,6 @@
   (unless (lookup-key eww-mode-map (kbd "O"))
     (define-key eww-mode-map (kbd "O") #'eww-open-relative)))
 
-;; Auto save
-(setq backup-directory-alist
-      `(("." . ,(expand-file-name "auto-save/" user-emacs-directory))))
-
-(setq auto-save-file-name-transforms
-      `((".*" ,(expand-file-name "auto-save/" user-emacs-directory) t)))
-
 ;; The silver searcher
 (with-package-lazy (ag)
   (define-key ag-mode-map (kbd "n") #'next-error-no-select)
