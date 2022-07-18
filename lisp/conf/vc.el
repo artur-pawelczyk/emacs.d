@@ -1,5 +1,8 @@
 (require 'dash)
 
+;; Workaround for a Magit error
+(require 'project)
+
 (define-key vc-prefix-map "e" #'vc-ediff)
 (setq magit-revision-filter-files-on-follow nil)
 
