@@ -60,10 +60,16 @@
   (define-key projectile-command-map "!" #'conf/projectile-background-shell-command))
 
 
-;; The silver searcher
+;; Searching
 
-;; It just doesn't work
+;; Silver searcher: this just doesn't work
 (setq ag-group-matches nil)
+
+;; ripgrep
+(with-package-lazy (ripgrep)
+  (define-key ripgrep-search-mode-map (kbd "n") #'next-error-no-select)
+  (define-key ripgrep-search-mode-map (kbd "p") #'previous-error-no-select))
+
 
 
 ;; Subprojects
