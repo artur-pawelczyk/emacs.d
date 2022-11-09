@@ -52,7 +52,9 @@
   (find-dired default-directory find-args))
 
 (with-package-lazy (dired)
-  (define-key dired-mode-map (kbd "C-c f") #'find-dired-current)
+  (if (conf/installed-p 'fd-dired)
+      (define-key dired-mode-map (kbd "C-c f") #'fd-dired)
+      (define-key dired-mode-map (kbd "C-c f") #'find-dired-current))
   (define-key dired-mode-map (kbd "X") #'shell-command-run-at-point))
 
 
