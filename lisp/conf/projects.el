@@ -7,10 +7,10 @@
   (setq projectile-completion-system 'ivy))
 
 
-(defun projectile-ag-regex ()
+(defun projectile-search-regex ()
     (interactive)
     (let ((current-prefix-arg t))
-      (call-interactively #'projectile-ag)))
+      (call-interactively #'projectile-ripgrep)))
 
 (defun conf/projectile-pt (regexp)
   (interactive (list (read-from-minibuffer
@@ -26,7 +26,7 @@
   (projectile-global-mode)
   (global-set-key (kbd "C-c p") projectile-command-map)
   (global-set-key (kbd "C-x p") projectile-command-map)
-  (define-key projectile-command-map (kbd "s s") #'projectile-ag-regex))
+  (define-key projectile-command-map (kbd "s s") #'projectile-search-regex))
 
 (with-package-lazy (projectile pt)
   (define-key projectile-command-map (kbd "s s") #'conf/projectile-pt))
