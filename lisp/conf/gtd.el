@@ -1,5 +1,6 @@
 (setq org-babel-tangle-use-relative-file-links nil)
 (setq org-agenda-todo-ignore-timestamp 'all)
+(setq org-enforce-todo-dependencies t)
 
 (with-package (org-capture)
   (add-to-list 'org-capture-templates `("t" "Todo" entry
@@ -15,4 +16,3 @@
 
 (setq org-refile-targets '((nil :maxlevel . 9)
                            (org-agenda-files :maxlevel . 1)))
-
