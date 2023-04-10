@@ -12,12 +12,6 @@
     (let ((current-prefix-arg t))
       (call-interactively #'projectile-ripgrep)))
 
-(defun conf/projectile-pt (regexp)
-  (interactive (list (read-from-minibuffer
-                       "Pt search for: "
-                       (when mark-active (buffer-substring (point) (mark))))))
-  (projectile-pt regexp))
-
 (defun conf/projectile-relevant-known-projects ()
     projectile-known-projects)
 
@@ -27,9 +21,6 @@
   (global-set-key (kbd "C-c p") projectile-command-map)
   (global-set-key (kbd "C-x p") projectile-command-map)
   (define-key projectile-command-map (kbd "s s") #'projectile-search-regex))
-
-(with-package-lazy (projectile pt)
-  (define-key projectile-command-map (kbd "s s") #'conf/projectile-pt))
 
 
 ;; Compilation
@@ -69,19 +60,3 @@
 (with-package-lazy (ripgrep)
   (define-key ripgrep-search-mode-map (kbd "n") #'next-error-no-select)
   (define-key ripgrep-search-mode-map (kbd "p") #'previous-error-no-select))
-
-
-
-;; Subprojects
-
-;; Redefine this function for the subprojects to work correctly
-(with-package-lazy (projectile)
-  (defun projectile-root-local (dir)
-    (when (and (stringp projectile-project-root)
-               (string-prefix-p projectile-project-root dir))
-      projectile-project-root)))
-
-(defun conf/projectile-dir-into-subproject ()
-  (interactive)
-  (add-dir-local-variable nil 'projectile-project-root (expand-file-name default-directory)))
-
