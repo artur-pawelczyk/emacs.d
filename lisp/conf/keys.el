@@ -1,0 +1,16 @@
+(with-package (god-mode)
+  (global-set-key (kbd "<escape>") #'god-local-mode)
+  (define-key god-local-mode-map (kbd ".") #'repeat)
+  (global-set-key (kbd "C-x C-1") #'delete-other-windows)
+  (global-set-key (kbd "C-x C-2") #'split-window-below)
+  (global-set-key (kbd "C-x C-3") #'split-window-right)
+  (global-set-key (kbd "C-x C-0") #'delete-window)
+  (define-key god-local-mode-map (kbd "[") #'backward-paragraph)
+  (define-key god-local-mode-map (kbd "]") #'forward-paragraph)
+
+  (add-hook 'god-mode-enabled-hook (lambda () (setq cursor-type 'hollow)))
+  (add-hook 'god-mode-disabled-hook (lambda () (setq cursor-type 'bar))))
+
+(with-package (god-mode-isearch)
+  (define-key isearch-mode-map (kbd "<escape>") #'god-mode-isearch-activate)
+  (define-key god-mode-isearch-map (kbd "<escape>") #'god-mode-isearch-disable))
