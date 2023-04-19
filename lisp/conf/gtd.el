@@ -3,16 +3,18 @@
 (setq org-enforce-todo-dependencies t)
 
 (with-package (org-capture)
-  (add-to-list 'org-capture-templates `("t" "Todo" entry
+  (add-to-list 'org-capture-templates `("t" "Inbox" entry
                                         (file ,(format "~/org/inbox-%s.org" system-name))
-                                        "* TODO %?\n%U"))
-  (add-to-list 'org-capture-templates '("T" "Old-style todo" entry
-                                        (file+headline "~/org/notes.org" "Inbox")
-                                        "* TODO %?\n%U"))
-  (add-to-list 'org-capture-templates '("e" "Event" entry
-                                        (file+headline "~/org/notes.org" "Inbox")))
-  (add-to-list 'org-capture-templates '("z" "Shopping list item" item
-                                        (file+headline "~/org/notes.org" "Shopping list"))))
+                                        "* NEW %?\n%U")))
+
+(with-package (org-faces)
+  (add-to-list 'org-todo-keyword-faces '("NEW" . org-todo))
+  (add-to-list 'org-todo-keyword-faces '("NEXT" . org-todo))
+  (add-to-list 'org-todo-keyword-faces '("WAIT" . org-todo))
+  (add-to-list 'org-todo-keyword-faces '("PROJ" . org-todo))
+  (add-to-list 'org-todo-keyword-faces '("DONE" . org-done))
+  (add-to-list 'org-todo-keyword-faces '("CLND" . org-done))
+  (add-to-list 'org-todo-keyword-faces '("SOME" . org-done)))
 
 (setq org-refile-targets '((nil :maxlevel . 9)
                            (org-agenda-files :maxlevel . 1)))

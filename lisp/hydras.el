@@ -57,7 +57,7 @@
   ("S" (let ((current-prefix-arg t)) (call-interactively #'shell)))
   ("a" (ansi-term "/bin/bash"))
   ("r" shell-command-in-subshell)
-  ("t" (org-todo-list "TODO"))
+  ("t" (org-todo-list "NEW"))
   ("n" (org-todo-list "NEXT"))
   ("p" (org-todo-list "PROJ"))
   ("c" cleanup-old-buffers))
