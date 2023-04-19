@@ -12,4 +12,10 @@
       (package-install-selected-packages)
     (mapcar 'conf/install-package user-package-list)))
 
+(defun conf/install-optional-packages ()
+  (package-refresh-contents)
+  (if (fboundp 'package-install-selected-packages)
+      (package-install-selected-packages)
+    (mapcar 'conf/install-package user-package-list-optional)))
+
 (provide 'packages)

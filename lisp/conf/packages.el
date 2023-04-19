@@ -2,32 +2,34 @@
   '(
     ace-window
     ag
-    auctex
-    bbdb
     counsel
     dash
     dash-functional
     easy-kill
-    flycheck
-    ghub
     hydra
     ido-vertical-mode
     ivy
     ivy-hydra
     ivy-pass
-    js2-mode
     linum-relative
-    macrostep
     magit
-    markdown-mode
-    org
-    org-bullets
-    pdf-tools
     projectile
     rich-minority
     s
     smartparens
     smex
+    ))
+
+(defvar user-package-list-optional
+  '(
+    auctex
+    bbdb
+    flycheck
+    js2-mode
+    macrostep
+    org
+    org-bullets
+    pdf-tools
     web-mode
     ))
 
