@@ -7,8 +7,10 @@
   (global-set-key (kbd "C-x C-0") #'delete-window)
   (define-key god-local-mode-map (kbd "[") #'backward-paragraph)
   (define-key god-local-mode-map (kbd "]") #'forward-paragraph)
+  (add-to-list 'god-mode-alist '("h" . "M-"))
+  (add-to-list 'god-mode-alist '("H" . "C-M-"))
 
-  (add-hook 'god-mode-enabled-hook (lambda () (setq cursor-type 'hollow)))
+  (add-hook 'god-mode-enabled-hook (lambda () (setq cursor-type 'box)))
   (add-hook 'god-mode-disabled-hook (lambda () (setq cursor-type 'bar))))
 
 (with-package (god-mode-isearch)
