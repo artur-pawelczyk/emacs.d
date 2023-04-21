@@ -61,7 +61,7 @@
 
 ;; Global keys
 (global-set-key (kbd "C-w") #'kill-word-or-region)
-(global-set-key (kbd "C-h") #'backward-delete-char-untabify)
+(define-key key-translation-map [?\C-h] [?\C-?])
 (define-key key-translation-map (kbd "C-;") (kbd "C-SPC"))
 (define-key key-translation-map (kbd "C-M-;") (kbd "C-M-SPC"))
 (global-set-key (kbd "<f5>") #'magit-status)
