@@ -1,4 +1,5 @@
 (with-package (god-mode)
+  (god-mode)
   (global-set-key (kbd "<escape>") #'god-local-mode)
   (define-key god-local-mode-map (kbd ".") #'repeat)
   (global-set-key (kbd "C-x C-1") #'delete-other-windows)
