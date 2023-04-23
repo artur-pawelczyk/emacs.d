@@ -9,12 +9,12 @@
 
 (with-package (org-faces)
   (add-to-list 'org-todo-keyword-faces '("NEW" . org-todo))
-  (add-to-list 'org-todo-keyword-faces '("NEXT" . org-todo))
-  (add-to-list 'org-todo-keyword-faces '("WAIT" . org-todo))
-  (add-to-list 'org-todo-keyword-faces '("PROJ" . org-todo))
+  (add-to-list 'org-todo-keyword-faces '("NEXT" . "red"))
+  (add-to-list 'org-todo-keyword-faces '("WAIT" . "green"))
+  (add-to-list 'org-todo-keyword-faces '("PROJ" . "yellow"))
   (add-to-list 'org-todo-keyword-faces '("DONE" . org-done))
   (add-to-list 'org-todo-keyword-faces '("CLND" . org-done))
-  (add-to-list 'org-todo-keyword-faces '("SOME" . org-done)))
+  (add-to-list 'org-todo-keyword-faces '("SOME" . "orange")))
 
 (setq org-refile-targets '((nil :maxlevel . 9)
                            (org-agenda-files :maxlevel . 1)))
