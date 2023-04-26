@@ -6,6 +6,7 @@
     dash
     dash-functional
     easy-kill
+    god-mode
     hydra
     ido-vertical-mode
     ivy
