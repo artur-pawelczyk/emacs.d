@@ -15,8 +15,6 @@
 (defun conf/install-optional-packages ()
   (interactive)
   (package-refresh-contents)
-  (if (fboundp 'package-install-selected-packages)
-      (package-install-selected-packages)
-    (mapcar 'conf/install-package user-package-list-optional)))
+  (mapcar 'conf/install-package user-package-list-optional))
 
 (provide 'packages)
