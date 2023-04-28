@@ -15,7 +15,9 @@
   (add-to-list 'god-mode-alist '("H" . "C-M-"))
 
   (add-hook 'god-mode-enabled-hook (lambda () (setq cursor-type 'box)))
-  (add-hook 'god-mode-disabled-hook (lambda () (setq cursor-type 'bar))))
+  (add-hook 'god-mode-disabled-hook (lambda () (setq cursor-type 'bar)))
+
+  (add-to-list 'god-exempt-major-modes 'vterm-mode))
 
 (with-package (god-mode-isearch)
   (define-key isearch-mode-map (kbd "<escape>") #'god-mode-isearch-activate)
