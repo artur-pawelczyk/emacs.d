@@ -7,7 +7,7 @@
                                         (file ,(format "~/org/inbox-%s.org" system-name))
                                         "* NEW %?\n%U")))
 
-(setq org-todo-keywords '(("NEW" "NEXT(n)" "WAIT(w@)" "PROJ(p)" "|" "DONE(d)" "CNLD(c@)" "SOME(s!)")))
+(setq org-todo-keywords '((sequence "NEW" "NEXT(n)" "WAIT(w@)" "PROJ(p)" "|" "DONE(d)" "CNLD(c@)" "SOME(s!)")))
 
 (with-package (org-faces)
   (add-to-list 'org-todo-keyword-faces '("NEW" . org-todo))
