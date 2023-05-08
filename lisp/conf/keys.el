@@ -22,3 +22,6 @@
 (with-package (god-mode-isearch)
   (define-key isearch-mode-map (kbd "<escape>") #'god-mode-isearch-activate)
   (define-key god-mode-isearch-map (kbd "<escape>") #'god-mode-isearch-disable))
+
+(with-package (vterm)
+  (add-hook 'vterm-copy-mode-hook (lambda () (god-local-mode (if vterm-copy-mode 1 -1)))))
