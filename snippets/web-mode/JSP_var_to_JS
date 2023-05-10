@@ -1,6 +1,0 @@
-# -*- mode: snippet; require-final-newline: nil -*-
-# name: JSP var to JS
-# key: varjsp
-# binding: direct-keybinding
-# --
-var $1  = '\${$1}';

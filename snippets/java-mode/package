@@ -1,6 +1,0 @@
-# -*- mode: snippet; require-final-newline: nil -*-
-# name: package
-# key: pa
-# binding: direct-keybinding
-# --
-package $1 ${1:$(conf/file-name->package (buffer-file-name (current-buffer)))};

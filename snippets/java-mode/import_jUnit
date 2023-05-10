@@ -1,7 +1,0 @@
-# -*- mode: snippet; require-final-newline: nil -*-
-# name: import jUnit
-# key: importj
-# binding: direct-keybinding
-# --
-import org.junit.*;
-import static org.junit.Assert.*;

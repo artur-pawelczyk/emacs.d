@@ -1,6 +1,0 @@
-# -*- mode: snippet -*-
-#name : var a = function () {}
-# --
-var ${1:name} = function ($2) {
-    $0
-};

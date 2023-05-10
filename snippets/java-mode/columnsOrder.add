@@ -1,6 +1,0 @@
-# -*- mode: snippet; require-final-newline: nil -*-
-# name: columnsOrder.add
-# key: columnsOrder
-# binding: direct-keybinding
-# --
-columnsOrder.add(new ListColumn("${1:name}", "col_${2:$1}"));

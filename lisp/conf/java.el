@@ -1,22 +1,6 @@
 (require 'dash)
 (require 'subr-x)
 
-(add-hook 'java-mode-hook #'conf/enable-electric-pair)
-
-(defun conf/java-setup-indentation ()
-  (add-to-list 'c-offsets-alist '(arglist-intro . +))
-  (add-to-list 'c-offsets-alist '(arglist-cont . 0))
-  (add-to-list 'c-offsets-alist '(arglist-close . 0)))
-
-(add-hook 'java-mode-hook #'conf/java-setup-indentation)
-
-(when (conf/installed-p 'ggtags)
-  (add-hook 'java-mode-hook #'ggtags-mode))
-
-(with-package-lazy (cc-mode)
-  (define-key java-mode-map (kbd "C-c .") #'semantic-ia-fast-jump)
-  (define-key java-mode-map (kbd "C-c i") #'ji-add))
-
 
 (with-package-lazy (smartparens)
   (sp-local-pair 'java-mode "{" "}" :post-handlers '(:add conf/open-block) :unless '(sp-in-string-p))
@@ -110,9 +94,18 @@
   (define-key java-mode-map (kbd "C-c D") #'conf/mvn-jdb)
   (define-key java-mode-map (kbd "C-c t") #'conf/mvn-test-current-file)
   (define-key java-mode-map (kbd "C-c T") #'conf/mvn-test-current-method))
+
 
+(when (conf/installed-p 'ggtags)
+  (add-hook 'java-mode-hook #'ggtags-mode))
+
+(when (conf/installed-p 'lsp-java)
+  (add-hook 'java-mode-hook #'lsp))
 
 (with-package-lazy (lsp-java)
   (define-key lsp-mode-map (kbd "M-.") #'lsp-find-definition)
   (define-key lsp-mode-map (kbd "M-?") #'lsp-find-references)
   (define-key lsp-mode-map (kbd "C-c M-.") #'lsp-find-implementation))
+
+(with-package-lazy (lsp)
+  (add-hook 'lsp-mode-hook (lambda () (ggtags-mode -1))))

@@ -1,8 +1,0 @@
-# -*- mode: snippet -*-
-# name: JUnit test
-# key: test
-# --
-@Test
-public void test${1:Case}() {
-    $0
-}
