@@ -45,13 +45,6 @@ Does not delete the prompt."
           (rest (substring str 1)))
       (concat (upcase first) rest))))
 
-(defun conf/open-block (id action context)
-  "Function to be used as a hook for Smartparens"
-  (when (eq action 'insert)
-    (save-excursion
-      (newline)
-      (indent-according-to-mode))))
-
 (defun call-process-return-output (cmd &rest args)
   (with-temp-buffer
     (apply #'call-process cmd nil t nil args)

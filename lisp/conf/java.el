@@ -2,12 +2,6 @@
 (require 'subr-x)
 
 
-(with-package-lazy (smartparens)
-  (sp-local-pair 'java-mode "{" "}" :post-handlers '(:add conf/open-block) :unless '(sp-in-string-p))
-  (sp-local-pair 'java-mode "\"" "\"" :unless '(sp-in-string-p))
-  (sp-local-pair 'java-mode "/*" "*/"))
-
-
 (defun conf/file-name->package (file-name)
   (string-join (->> (split-string file-name "/")
                     (-drop-while (lambda (e) (not (equal "java" e))))
