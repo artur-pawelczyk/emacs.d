@@ -28,13 +28,12 @@
   (ido-mode -1)
   (conf/completion-default-keys))
 
-
-(after-init
-    (cond
-     ((require 'ivy nil :noerror)
-      (ivy-mode 1)
-      (conf/enable-ido))
-     (t (conf/enable-ido))))
+(defun conf/enable-counsel ()
+  (interactive)
+  (require 'counsel)
+  (global-set-key (kbd "C-x b") #'counsel-switch-buffer)
+  (global-set-key (kbd "C-x 4 b") #'counsel-switch-buffer-other-window)
+  (global-set-key (kbd "C-x C-f") #'counsel-find-file))
 
 
 (defun conf/imenu ()
@@ -78,12 +77,13 @@
   (define-key ido-file-dir-completion-map (kbd "C-l") #'ido-up-directory)
   (define-key ido-buffer-completion-map (kbd "C-v") #'ido-toggle-dired-buffers))
 
-(add-hook 'ido-setup-hook #'conf/ido-keys)
+(with-package-lazy (ido)
+  (add-hook 'ido-setup-hook #'conf/ido-keys)
+  (add-hook 'ido-make-file-list-hook #'ido-add-dot-file))
 
 (defun ido-add-dot-file ()
   (setq ido-temp-list (cons "." ido-temp-list)))
 
-(add-hook 'ido-make-file-list-hook #'ido-add-dot-file)
 
 (defun ido-insert-wildcard ()
   (interactive)
@@ -96,13 +96,16 @@
 
 
 ;; Ivy
+(with-package (ivy)
+  (ivy-mode 1))
+
 (with-package-lazy (ivy)
   (setq ivy-initial-inputs-alist
         (-filter (-not (-compose (-partial #'equal "^") #'cdr))
                  ivy-initial-inputs-alist)))
 
 (defvar conf/ivy-completing-read-omit-list
-  '(dired-do-copy dired-do-rename ido-edit-input ido-magic-forward-char find-file))
+  '(ido-edit-input ido-magic-forward-char find-file))
 
 (defun conf/ivy-completing-read--omit (orig &rest args)
   "Advice around `ivy-completing-read'.  Use the default
@@ -114,6 +117,9 @@ invoked by functions specified by `conf/ivy-completing-read-omit-list'"
 
 (with-package-lazy (ivy)
   (advice-add 'ivy-completing-read :around #'conf/ivy-completing-read--omit))
+
+(if (conf/installed-p 'counsel)
+    (conf/enable-counsel))
 
 
 ;; M-x
@@ -135,12 +141,6 @@ keyboard macro.  Otherwise use function defined by `conf/extended-command-functi
 (with-package-lazy (counsel)
   (ivy-configure 'counsel-M-x
     :initial-input ""))
-
-
-;; Auto-complete is currenty used only for Jedi
-(with-package-lazy (auto-complete-mode)
-  (require 'auto-complete-config)
-  (ac-config-default))
 
 
 (recentf-mode t)
