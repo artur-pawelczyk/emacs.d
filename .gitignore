@@ -1,12 +1,7 @@
 *~
 *.elc
 
-/.cache
-/.emacs.desktop
-/.emacs.desktop.lock
-/.lsp-session-v1
-/.org-id-locations
-/.python-environments/
+/.*
 /abbrev_defs
 /ac-comphist.dat
 /after-init/*
@@ -14,8 +9,11 @@
 /before-init.el
 /bookmarks
 /custom.el
+/dirvish
 /eclipse.jdt.ls
 /ede-projects.el
+/eglot-*
+/eln-cache
 /elpa
 /emms
 /emojis
@@ -35,6 +33,7 @@
 /recentf
 /request
 /semanticdb
+/session*
 /smex-items
 /speed-type
 /srecode-map.el
@@ -42,4 +41,3 @@
 /transient
 /url
 /workspace
-/session*
