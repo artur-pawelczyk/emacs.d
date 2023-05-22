@@ -104,6 +104,8 @@
         (-filter (-not (-compose (-partial #'equal "^") #'cdr))
                  ivy-initial-inputs-alist)))
 
+(setq ivy-extra-directories nil)
+
 (defvar conf/ivy-completing-read-omit-list
   '(ido-edit-input ido-magic-forward-char find-file))
 
@@ -144,5 +146,3 @@ keyboard macro.  Otherwise use function defined by `conf/extended-command-functi
 
 
 (recentf-mode t)
-
-
