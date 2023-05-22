@@ -27,3 +27,9 @@
 (when (conf/installed-p 'avy)
   (define-key isearch-mode-map (kbd "C-'") #'avy-isearch)
   (global-set-key (kbd "M-g M-g") #'avy-goto-line))
+
+
+(setq linum-relative-backend 'display-line-numbers-mode)
+(with-package-lazy (prog-mode)
+  (if (conf/installed-p 'linum-relative)
+      (add-hook 'prog-mode-hook #'linum-relative-mode)))
