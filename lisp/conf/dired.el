@@ -61,14 +61,15 @@
 (with-package-lazy (locate)
   (add-hook 'locate-mode-hook (-partial #'set 'conf/dired-omit-mode nil)))
 
+
 
-(defun conf/dired--yes-no-all-quit-help (prompt &optional help-msg)
-  "Replacement for `dired--yes-no-all-quit-help'.  `help-msg' is ignored"
-  (cl-case (read-choice-from-minibuffer prompt '(?y ?n ?a ?q))
-    (?y "yes")
-    (?n "no")
-    (?a "all")
-    (?q "quit")))
+(with-package-lazy (dirvish)
+  (setq dirvish-attributes '(all-the-icons file-size collapse))
+  (define-key dirvish-mode-map (kbd "a") #'dirvish-quick-access)
+  (define-key dirvish-mode-map (kbd "s") #'dirvish-quicksort)
+  (define-key dirvish-mode-map (kbd "TAB") #'dirvish-subtree-toggle)
+  (define-key dirvish-mode-map (kbd "M-t") #'dirvish-layout-toggle))
 
 (with-package-lazy (dired)
-  (fset 'dired--yes-no-all-quit-help #'conf/dired--yes-no-all-quit-help))
+  (if (conf/installed-p 'dirvish)
+      (dirvish-override-dired-mode)))
