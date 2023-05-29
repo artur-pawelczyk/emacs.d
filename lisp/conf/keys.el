@@ -9,8 +9,8 @@
   (global-set-key (kbd "C-x C-2") #'split-window-below)
   (global-set-key (kbd "C-x C-3") #'split-window-right)
   (global-set-key (kbd "C-x C-0") #'delete-window)
-  (define-key god-local-mode-map (kbd "[") #'backward-paragraph)
-  (define-key god-local-mode-map (kbd "]") #'forward-paragraph)
+  (define-key god-local-mode-map (kbd "[") #'previous-buffer)
+  (define-key god-local-mode-map (kbd "]") #'next-buffer)
 
   (add-hook 'god-mode-enabled-hook (lambda () (setq cursor-type 'box)))
   (add-hook 'god-mode-disabled-hook (lambda () (setq cursor-type 'bar)))
@@ -23,3 +23,10 @@
 
 (with-package (vterm)
   (add-hook 'vterm-copy-mode-hook (lambda () (god-local-mode (if vterm-copy-mode 1 -1)))))
+
+(defun conf/god-mode-after-newline ()
+  (if (eq (seq-first (this-command-keys-vector)) ?\C-m)
+      (god-local-mode -1)))
+
+(with-package-lazy (god-mode)
+  (add-hook 'post-self-insert-hook #'conf/god-mode-after-newline))
