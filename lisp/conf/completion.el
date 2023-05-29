@@ -96,6 +96,9 @@
 
 
 ;; Ivy
+(setq ivy-use-virtual-buffers t)
+(setq counsel-find-file-ignore-regexp "\\`\\.")
+
 (with-package (ivy)
   (ivy-mode 1))
 
