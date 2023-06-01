@@ -64,7 +64,9 @@
 
 
 (with-package-lazy (dirvish)
-  (setq dirvish-attributes '(all-the-icons file-size collapse))
+  (dirvish-peek-mode 1)
+  (dirvish-side-follow-mode 1)
+  (setq dirvish-attributes '(all-the-icons file-size collapse subtree-state))
   (define-key dirvish-mode-map (kbd "a") #'dirvish-quick-access)
   (define-key dirvish-mode-map (kbd "s") #'dirvish-quicksort)
   (define-key dirvish-mode-map (kbd "TAB") #'dirvish-subtree-toggle)
