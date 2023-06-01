@@ -96,10 +96,12 @@
 (when (conf/installed-p 'lsp-java)
   (add-hook 'java-mode-hook #'lsp))
 
-(with-package-lazy (lsp-java)
-  (define-key lsp-mode-map (kbd "M-.") #'lsp-find-definition)
-  (define-key lsp-mode-map (kbd "M-?") #'lsp-find-references)
-  (define-key lsp-mode-map (kbd "C-c M-.") #'lsp-find-implementation))
-
 (with-package-lazy (lsp)
   (add-hook 'lsp-mode-hook (lambda () (ggtags-mode -1))))
+
+
+;; Keybindings
+(with-package-lazy (cc-mode)
+  (define-key java-mode-map (kbd "M-.") #'xref-find-definitions))
+
+
