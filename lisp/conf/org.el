@@ -3,8 +3,10 @@
 (setq org-src-window-setup 'current-window)
 (setq org-agenda-todo-ignore-scheduled 'all)
 (setq org-blank-before-new-entry '((heading . t)
-					               (plain-list-item . nil)))
+				   (plain-list-item . nil)))
 (setq org-catch-invisible-edits 'show-and-error)
+(setq org-special-ctrl-a/e t)
+(setq org-special-ctrl-k t)
 
 (with-package-lazy (org)
   (define-key org-mode-map (kbd "M-n") #'org-metadown)
