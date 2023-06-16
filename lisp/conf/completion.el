@@ -98,6 +98,7 @@
 ;; Ivy
 (setq ivy-use-virtual-buffers t)
 (setq counsel-find-file-ignore-regexp "\\`\\.")
+(setq ivy-extra-directories '("./"))
 
 (with-package (ivy)
   (ivy-mode 1))
@@ -106,8 +107,6 @@
   (setq ivy-initial-inputs-alist
         (-filter (-not (-compose (-partial #'equal "^") #'cdr))
                  ivy-initial-inputs-alist)))
-
-(setq ivy-extra-directories nil)
 
 (defvar conf/ivy-completing-read-omit-list
   '(ido-edit-input ido-magic-forward-char find-file))
