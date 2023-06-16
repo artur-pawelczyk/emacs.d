@@ -26,6 +26,7 @@
 (setq ring-bell-function #'ignore)
 (add-to-list 'auto-mode-alist '("\\password-store/.*\\.gpg\\'" . pass-view-mode))
 (setq use-short-answers t)
+(setq scroll-margin 3)
 
 (when (conf/installed-p 'smartparens)
   (add-hook 'ielm-mode-hook #'smartparens-mode)
