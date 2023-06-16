@@ -1,5 +1,5 @@
-(add-hook 'emacs-lisp-mode-hook (lambda ()
-                                  (local-set-key (kbd "M-.") #'find-function-at-point)))
+(with-package-lazy (elisp-mode)
+  (define-key emacs-lisp-mode-map (kbd "M-.") #'xref-find-definitions))
 
 (when (fboundp 'global-eldoc-mode)
   (global-eldoc-mode 1))
