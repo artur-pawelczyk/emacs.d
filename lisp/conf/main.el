@@ -71,8 +71,6 @@
   (require 'smartparens-config nil :noerror))
 
 (when (conf/installed-p 'hydra)
-  (global-set-key (kbd "C-x ]") #'hydras-forward-page)
-  (global-set-key (kbd "C-x [") #'hydras-backward-page)
   (global-set-key (kbd "C-c C-h") #'hydras-home/body)
   (global-set-key (kbd "C-c DEL") #'hydras-home/body)
   (global-set-key (kbd "C-c h") #'hydras-home/body))
@@ -104,7 +102,7 @@
 
 ;; Winner mode
 (winner-mode t)
-(global-set-key (kbd "C-x ,") #'winner-undo)
+(global-set-key (kbd "C-x ,") #'winner-undo) ;; will be overriden by hydra
 (global-set-key (kbd "C-x .") #'winner-redo)
 (global-set-key (kbd "C-x C-,") #'winner-undo)
 (global-set-key (kbd "C-x C-.") #'winner-redo)

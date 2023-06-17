@@ -13,22 +13,6 @@
   ("w" magit-wip-log-current)
   ("W" magit-wip-commit))
 
-(defhydra hydras-page-movement
-  (:hint nil)
-  "Page movement"
-  ("[" backward-page)
-  ("]" forward-page))
-
-(defun hydras-backward-page ()
-  (interactive)
-  (backward-page)
-  (hydras-page-movement/body))
-
-(defun hydras-forward-page ()
-  (interactive)
-  (forward-page)
-  (hydras-page-movement/body))
-
 
 (defhydra hydras-org-block-movement
   (:hint nil)
@@ -65,8 +49,15 @@
 
 (defhydra hydras-navigation (global-map "C-x" :hint nil)
   "
-_<left>_: prev buffer, _<right>_: next, _<up>_: pop mark, _<down>_: pop global mark
+_[_, _]_: prev, next buffer, _,_, _._: winner undo, redo, _<up>_: pop mark, _<down>_: pop global mark
 "
+  ("[" previous-buffer)
+  ("]" next-buffer)
+  ("," winner-undo)
+  ("." winner-redo)
+  ("C-," winner-undo)
+  ("C-." winner-redo)
+
   ("<left>" previous-buffer)
   ("<right>" next-buffer)
   ("<up>" pop-to-mark-command)
@@ -75,5 +66,8 @@ _<left>_: prev buffer, _<right>_: next, _<up>_: pop mark, _<down>_: pop global m
   ("C-<right>" next-buffer)
   ("C-<up>" pop-to-mark-command)
   ("C-<down>" pop-global-mark))
+
+(global-set-key (kbd "M-[") #'hydras-navigation/previous-buffer)
+(global-set-key (kbd "M-]") #'hydras-navigation/next-buffer)
 
 (provide 'hydras)
