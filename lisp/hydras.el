@@ -62,4 +62,18 @@
   ("p" (org-todo-list "PROJ"))
   ("c" cleanup-old-buffers))
 
+
+(defhydra hydras-navigation (global-map "C-x" :hint nil)
+  "
+_<left>_: prev buffer, _<right>_: next, _<up>_: pop mark, _<down>_: pop global mark
+"
+  ("<left>" previous-buffer)
+  ("<right>" next-buffer)
+  ("<up>" pop-to-mark-command)
+  ("<down>" pop-global-mark)
+  ("C-<left>" previous-buffer)
+  ("C-<right>" next-buffer)
+  ("C-<up>" pop-to-mark-command)
+  ("C-<down>" pop-global-mark))
+
 (provide 'hydras)
