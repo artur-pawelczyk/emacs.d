@@ -1,10 +1,15 @@
+(defvar conf/org-path "~/org")
+
 (setq org-babel-tangle-use-relative-file-links nil)
 (setq org-agenda-todo-ignore-timestamp 'all)
 (setq org-enforce-todo-dependencies t)
 
-(with-package (org-capture)
+(with-package-lazy (org)
+  (add-to-list 'org-agenda-files conf/org-path))
+
+(with-package-lazy (org-capture)
   (add-to-list 'org-capture-templates `("t" "Inbox" entry
-                                        (file ,(format "~/org/inbox-%s.org" system-name))
+                                        (file ,(format "%s/inbox-%s.org" conf/org-path system-name))
                                         "* NEW %?\n%U")))
 
 (setq org-todo-keywords '((sequence "NEW" "NEXT(n)" "WAIT(w@)" "PROJ(p)" "|" "DONE(d)" "CNLD(c@)" "SOME(s!)")))
