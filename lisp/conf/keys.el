@@ -12,6 +12,7 @@
   (define-key god-local-mode-map (kbd "[") #'previous-buffer)
   (define-key god-local-mode-map (kbd "]") #'next-buffer)
 
+  (setq-default cursor-type 'bar)
   (add-hook 'god-mode-enabled-hook (lambda () (setq cursor-type 'box)))
   (add-hook 'god-mode-disabled-hook (lambda () (setq cursor-type 'bar)))
 
