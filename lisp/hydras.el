@@ -14,23 +14,6 @@
   ("W" magit-wip-commit))
 
 
-(defhydra hydras-org-block-movement
-  (:hint nil)
-  "Org block movement"
-  ("M-f" org-next-block)
-  ("M-b" org-previous-block))
-
-(defun hydras-org-next-block ()
-  (interactive)
-  (org-next-block 1)
-  (hydras-org-block-movement/body))
-
-(defun hydras-org-previous-block ()
-  (interactive)
-  (org-previous-block 1)
-  (hydras-org-block-movement/body))
-
-
 (defhydra hydras-home
   (global-map "C-c h"   :exit t)
   ("y" youtube-dl)
@@ -39,7 +22,8 @@
   ("E" (eshell :new-buffer))
   ("s" shell)
   ("S" (let ((current-prefix-arg t)) (call-interactively #'shell)))
-  ("a" (ansi-term "/bin/bash"))
+  ("a" (vterm))
+  ("A" (vterm 1))
   ("r" shell-command-in-subshell)
   ("t" (org-todo-list "NEW"))
   ("n" (org-todo-list "NEXT"))

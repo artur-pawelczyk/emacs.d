@@ -13,8 +13,6 @@
 (autoload 'walk-undo "walk-undo" nil :interactive)
 
 (autoload 'hydras-magit/body "hydras" nil :interactive)
-(autoload 'hydras-org-next-block "hydras" nil :interactive)
-(autoload 'hydras-org-previous-block "hydras" nil :interactive)
 (autoload 'hydras-home/body "hydras" nil :interactive)
 (autoload 'hydras-navigation/body "hydras" nil :interactive)
 (autoload 'hydra-resize-window/body "hydra-resize-window" nil :interactive)
