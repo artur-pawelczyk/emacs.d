@@ -75,3 +75,16 @@
 (with-package-lazy (dired)
   (if (conf/installed-p 'dirvish)
       (dirvish-override-dired-mode)))
+
+
+(setq treemacs-collapse-dirs 3)
+(setq treemacs-show-hidden-files t)
+
+(with-package-lazy (treemacs)
+  (treemacs-project-follow-mode 1)
+  (treemacs-tag-follow-mode 1 )
+  (treemacs-fringe-indicator-mode 'only-when-focused)
+  (setq treemacs-select-when-already-in-treemacs 'close))
+
+(if (conf/installed-p 'treemacs)
+    (global-set-key (kbd "M-0") #'treemacs-select-window))
