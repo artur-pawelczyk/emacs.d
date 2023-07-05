@@ -43,8 +43,6 @@
 (global-set-key (kbd "M-/") #'hippie-expand)
 (global-set-key (kbd "M-SPC") #'cycle-spacing)
 (global-set-key (kbd "M-o") #'other-window)
-(global-set-key (kbd "C-c m") #'hydras-magit/body)
-(global-set-key (kbd "C-x ^") #'hydra-resize-window/body)
 (global-set-key (kbd "C-x 5 0") #'delete-frame-if-only)
 (global-set-key (kbd "C-x n n") #'narrow-or-widen-dwim)
 (global-set-key (kbd "C-c r") #'revert-buffer)
@@ -71,9 +69,7 @@
   (require 'smartparens-config nil :noerror))
 
 (when (conf/installed-p 'hydra)
-  (global-set-key (kbd "C-c C-h") #'hydras-home/body)
-  (global-set-key (kbd "C-c DEL") #'hydras-home/body)
-  (global-set-key (kbd "C-c h") #'hydras-home/body))
+  (require 'hydras))
 
 ;; This key binding gets overwritten by some package if set here.  Set
 ;; it after init.
