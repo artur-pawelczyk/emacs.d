@@ -1,5 +1,7 @@
 (with-package-lazy (projectile)
-  (projectile-mode t))
+  (projectile-mode t)
+  (require 'project)
+  (setq project-find-functions (delq 'project-try-vc project-find-functions)))
 
 (setq projectile-indexing-method 'alien)
 (setq projectile-switch-project-action #'projectile-commander)
