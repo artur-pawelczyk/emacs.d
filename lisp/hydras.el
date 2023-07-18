@@ -51,7 +51,13 @@ _[_, _]_: prev, next buffer, _,_, _._: winner undo, redo, _<up>_: pop mark, _<do
   ("C-<up>" pop-to-mark-command)
   ("C-<down>" pop-global-mark))
 
+(defun hydras-navigation-after-advice (&rest args)
+  (hydras-navigation/body))
+
 (global-set-key (kbd "M-[") #'hydras-navigation/previous-buffer)
 (global-set-key (kbd "M-]") #'hydras-navigation/next-buffer)
+(advice-add 'winner-undo :after #'hydras-navigation-after-advice)
+(advice-add 'pop-to-mark-command :after #'hydras-navigation-after-advice)
+(advice-add 'pop-global-mark :after #'hydras-navigation-after-advice)
 
 (provide 'hydras)
