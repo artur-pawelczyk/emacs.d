@@ -90,14 +90,11 @@
   (define-key java-mode-map (kbd "C-c T") #'conf/mvn-test-current-method))
 
 
-(when (conf/installed-p 'ggtags)
+(when (and (conf/installed-p 'ggtags) (not (conf/installed-p 'lsp-java)))
   (add-hook 'java-mode-hook #'ggtags-mode))
 
 (when (conf/installed-p 'lsp-java)
   (add-hook 'java-mode-hook #'lsp))
-
-(with-package-lazy (lsp)
-  (add-hook 'lsp-mode-hook (lambda () (ggtags-mode -1))))
 
 
 ;; Keybindings
