@@ -1,4 +1,3 @@
-(setq org-modules '(org-bbdb org-bibtex org-crypt org-docview org-gnus org-habit org-info org-irc org-mhe org-rmail org-w3m))
 (setq org-src-fontify-natively t)
 (setq org-src-window-setup 'current-window)
 (setq org-agenda-todo-ignore-scheduled 'all)
