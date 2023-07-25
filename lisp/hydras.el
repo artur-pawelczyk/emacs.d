@@ -1,7 +1,7 @@
 (require 'hydra)
 
 (defhydra hydras-magit
-  (:exit t :pre (require 'magit nil :noerror))
+  (global-map "C-c m" :exit t :pre (require 'magit nil :noerror))
   "Magit"
   ("b" magit-blame)
   ("l" magit-log)
