@@ -11,14 +11,18 @@
 
 
 ;; Magit key bindings
-(with-package-lazy (magit)
-  (define-key magit-status-mode-map (kbd "M-u") #'magit-section-up))
+(with-package-lazy (magit-status)
+  (define-key magit-status-mode-map (kbd "M-u") #'magit-section-up)
+  (define-key magit-status-mode-map (kbd "C-<tab>") nil))
 
 (with-package-lazy (magit-diff)
   (define-key magit-revision-mode-map (kbd "M-u") #'magit-section-up))
 
 (with-package-lazy (magit-stash)
   (define-key magit-stash-mode-map (kbd "M-u") #'magit-section-up))
+
+(with-package-lazy (magit-log)
+  (define-key magit-log-mode-map (kbd "C-<tab>") nil))
 
 
 (defun conf/magit-switch-to-buffer (buffer)
