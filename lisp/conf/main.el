@@ -15,7 +15,8 @@
 (setq column-number-mode t)
 (setq-default indent-tabs-mode nil)
 (prefer-coding-system 'utf-8-unix)
-(show-paren-mode)
+(show-paren-mode 1)
+(setq show-paren-context-when-offscreen 'child-frame)
 (setq ido-enable-flex-matching t)
 (setq save-interprogram-paste-before-kill t)
 (setq enable-recursive-minibuffers t)
@@ -106,6 +107,7 @@
 ;; Calc
 (with-package-lazy (calc-mode)
   (calc-group-char (aref " " 0)))
+(setq calc-kill-line-numbering nil)
 
 
 (when (conf/installed-p 'flycheck)
