@@ -70,7 +70,8 @@
   (require 'smartparens-config nil :noerror))
 
 (when (conf/installed-p 'hydra)
-  (require 'hydras))
+  (require 'hydras)
+  (require 'hydra-resize-window))
 
 ;; This key binding gets overwritten by some package if set here.  Set
 ;; it after init.

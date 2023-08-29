@@ -22,14 +22,18 @@
      ((memq dir '(left right))
       (enlarge-window-horizontally (if (memq dir (conf/window-corner)) -n n))))))
 
-(defhydra hydra-resize-window (:pre (setq linum-mode-suppress-update t)
-                                 :post (setq linum-mode-suppress-update nil))
-  "Resize window"
+(defhydra hydra-resize-window (global-map "C-x ^" :hint nil)
+  "
+_h_, _j_, _k_, _l_: resize window, _RET_: exit
+"
   ("h" (conf/resize-window 'left))
   ("j" (conf/resize-window 'down))
   ("k" (conf/resize-window 'up))
   ("l" (conf/resize-window 'right))
   ("RET" nil)
   ("" nil))
+
+(define-key global-map (kbd "C-x C-^") #'hydra-resize-window/body)
+(define-key global-map (kbd "C-x C-6") #'hydra-resize-window/body)
 
 (provide 'hydra-resize-window)
