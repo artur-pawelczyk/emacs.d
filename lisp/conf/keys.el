@@ -31,4 +31,5 @@
       (god-local-mode -1)))
 
 (with-package-lazy (god-mode)
-  (add-hook 'post-self-insert-hook #'conf/god-mode-after-newline))
+  (add-hook 'post-self-insert-hook #'conf/god-mode-after-newline)
+  (global-set-key (kbd "C-x C-n") nil))
