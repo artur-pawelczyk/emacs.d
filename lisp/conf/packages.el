@@ -23,6 +23,7 @@
 
 (defvar user-package-list-optional
   '(
+    all-the-icons
     auctex
     bbdb
     flycheck
@@ -31,6 +32,11 @@
     org
     org-bullets
     pdf-tools
+    treemacs
+    treemacs-all-the-icons
+    treemacs-magit
+    treemacs-projectile
+    treemacs-tab-bar
     web-mode
     ))
 
