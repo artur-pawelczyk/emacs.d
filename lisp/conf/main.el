@@ -28,6 +28,7 @@
 (add-to-list 'auto-mode-alist '("\\password-store/.*\\.gpg\\'" . pass-view-mode))
 (setq use-short-answers t)
 (setq scroll-margin 3)
+(pixel-scroll-precision-mode 1)
 
 (when (conf/installed-p 'smartparens)
   (add-hook 'ielm-mode-hook #'smartparens-mode)
