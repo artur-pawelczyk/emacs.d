@@ -30,6 +30,13 @@
   (if (eq (seq-first (this-command-keys-vector)) ?\C-m)
       (god-local-mode -1)))
 
+(defun conf/god-view-mode (orig arg)
+  "Replacement for view-mode when god-mode is enabled"
+  (setq-local buffer-read-only arg))
+
 (with-package-lazy (god-mode)
   (add-hook 'post-self-insert-hook #'conf/god-mode-after-newline)
-  (global-set-key (kbd "C-x C-n") nil))
+  (define-key god-local-mode-map (kbd "h") #'backward-delete-char)
+  (define-key god-local-mode-map (kbd "^") #'dired-jump)
+  (global-set-key (kbd "C-x C-n") nil)
+  (advice-add 'view-mode :around #'conf/god-view-mode))
