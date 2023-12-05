@@ -13,7 +13,7 @@
 (with-package-lazy (dired)
   (when (fboundp 'dired-hide-details-mode)
     (add-hook 'dired-mode-hook 'dired-hide-details-mode)
-    (define-key dired-mode-map (kbd "C-x M-h") 'dired-hide-details-mode)))
+    (define-key dired-mode-map (kbd "h") #'dired-omit-mode)))
 
 (add-hook 'dired-mode-hook
 	  (lambda ()
