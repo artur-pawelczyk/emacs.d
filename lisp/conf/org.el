@@ -19,7 +19,8 @@
   (define-key org-goto-map (kbd "C-p") #'previous-line))
 
 (with-package-lazy (org)
-  (advice-add 'org-goto-map :after #'conf/org-goto-map--add-custom-keys))
+  (advice-add 'org-goto-map :after #'conf/org-goto-map--add-custom-keys)
+  (require 'org-tempo))
 
 ;; org-crypt
 (with-package-lazy (org org-crypt)
