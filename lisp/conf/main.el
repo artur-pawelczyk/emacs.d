@@ -29,6 +29,7 @@
 (setq use-short-answers t)
 (setq scroll-margin 3)
 (pixel-scroll-precision-mode 1)
+(setq frame-resize-pixelwise t)
 
 (when (conf/installed-p 'smartparens)
   (add-hook 'ielm-mode-hook #'smartparens-mode)
