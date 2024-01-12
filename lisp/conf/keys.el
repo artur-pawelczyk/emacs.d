@@ -38,5 +38,6 @@
   (add-hook 'post-self-insert-hook #'conf/god-mode-after-newline)
   (define-key god-local-mode-map (kbd "h") #'backward-delete-char)
   (define-key god-local-mode-map (kbd "^") #'dired-jump)
+  (define-key god-local-mode-map (kbd "`") #'quit-window)
   (global-set-key (kbd "C-x C-n") nil)
   (advice-add 'view-mode :around #'conf/god-view-mode))
