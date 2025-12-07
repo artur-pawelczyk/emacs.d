@@ -1,4 +1,6 @@
 (require 'dash)
+(require 'use-package)
+(require 'bind-key)
 
 (when (fboundp 'tool-bar-mode)
       (tool-bar-mode 0))
@@ -30,6 +32,7 @@
 (setq scroll-margin 3)
 (pixel-scroll-precision-mode 1)
 (setq frame-resize-pixelwise t)
+(repeat-mode 1)
 
 (when (conf/installed-p 'smartparens)
   (add-hook 'ielm-mode-hook #'smartparens-mode)
@@ -81,11 +84,11 @@
                              (global-set-key (kbd "C-x c") #'calendar)))
 
 ;; Ace-window
-(when (conf/installed-p 'ace-window)
-  (global-set-key (kbd "M-o") #'ace-window)
-  (setq aw-scope 'frame))
-(with-package-lazy (ace-window)
-  (require 'ace-window-relative nil :noerror))
+(use-package ace-window
+  :init
+  (setq aw-scope 'frame)
+  (require 'ace-window-relative nil :noerror)
+  (bind-key* "M-o" 'ace-window))
 
 ;; easy-kill
 (when (conf/installed-p 'easy-kill)
