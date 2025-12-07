@@ -36,12 +36,8 @@
   (global-set-key (kbd "C-x C-f") #'counsel-find-file))
 
 
-(defun conf/imenu ()
-  (interactive)
-  (call-interactively conf/imenu-function))
-
-
 ;; Ido
+;; TODO: Replace with `fido-mode' and `fido-vertical-mode'
 (with-package-lazy (ido)
   (when (conf/installed-p 'ido-vertical-mode)
     (setq ido-vertical-define-keys t)
