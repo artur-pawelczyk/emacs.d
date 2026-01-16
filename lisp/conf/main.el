@@ -84,11 +84,15 @@
                              (global-set-key (kbd "C-x c") #'calendar)))
 
 ;; Ace-window
-(use-package ace-window
-  :init
-  (setq aw-scope 'frame)
-  (require 'ace-window-relative nil :noerror)
-  (bind-key* "M-o" 'ace-window))
+;; (use-package ace-window
+;;   :init
+;;   (setq aw-scope 'frame)
+;;   (require 'ace-window-relative nil :noerror)
+;;   (bind-key* "M-o" 'ace-window))
+
+(if (conf/installed-p 'hydra)
+    (bind-key* "M-o" #'hydra-switch-window)
+  (bind-key* "M-o" #'other-window))
 
 ;; easy-kill
 (when (conf/installed-p 'easy-kill)
