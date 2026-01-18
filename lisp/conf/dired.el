@@ -9,6 +9,7 @@
 (setq dired-listing-switches "-hla")
 (setq dired-dwim-target t)
 (setq dired-omit-verbose nil)
+(setq dired-clean-confirm-killing-deleted-buffers nil)
 
 (with-package-lazy (dired)
   (when (fboundp 'dired-hide-details-mode)
