@@ -54,3 +54,11 @@
    'org-babel-load-languages
    '((emacs-lisp . t)
      (shell . t))))
+
+(defun conf/org-export-output-file-name (orig-fun extension &optional subtreep pub-dir)
+  (let ((export-dir (if pub-dir
+                        pub-dir
+                      (ensure-directory "export"))))
+    (apply orig-fun extension subtreep export-dir nil)))
+
+(advice-add 'org-export-output-file-name :around #'conf/org-export-output-file-name)

@@ -167,4 +167,9 @@ Does not delete the prompt."
      (insert-file-contents ,file)
      ,@body))
 
+(defun ensure-directory (dir)
+  (unless (file-directory-p dir)
+    (make-directory dir))
+  dir)
+
 (provide 'tools)
