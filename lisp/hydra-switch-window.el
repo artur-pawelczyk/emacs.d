@@ -6,15 +6,23 @@
       (call-interactively #'hydra-switch-window-dispatch/body)
     (call-interactively #'other-window)))
 
-(defhydra hydra-switch-window-dispatch ()
-  "Other window"
-  ("h" windmove-left "←" :exit t)
-  ("j" windmove-down "↓" :exit t)
-  ("k" windmove-up "↑" :exit t)
-  ("l" windmove-right "→" :exit t)
-  ("d" hydra-switch-window-delete/body "delete" :exit t)
-  ("s" hydra-switch-window-swap/body "swap" :exit t)
-  ("o" other-window))
+;; TODO: M-h, ...
+(defhydra hydra-switch-window-dispatch (:exit t :hint nil)
+  "
+(M-)[_h_ _j_ _k_ _l_]: move [_s_]: swap, [_d_]: delete, (M-o)[_o_]: next
+"
+  ("h" windmove-left)
+  ("j" windmove-down)
+  ("k" windmove-up)
+  ("l" windmove-right)
+  ("M-h" windmove-left)
+  ("M-j" windmove-down)
+  ("M-k" windmove-up)
+  ("M-l" windmove-right)
+  ("d" hydra-switch-window-delete/body)
+  ("s" hydra-switch-window-swap/body)
+  ("o" other-window)
+  ("M-o" other-window))
 
 (defhydra hydra-switch-window-delete ()
   "Delete window"
