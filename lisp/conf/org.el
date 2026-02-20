@@ -6,6 +6,7 @@
 (setq org-catch-invisible-edits 'show-and-error)
 (setq org-special-ctrl-a/e t)
 (setq org-special-ctrl-k t)
+(setq org-id-link-to-org-use-id 'create-if-interactive)
 
 (with-package-lazy (org)
   (define-key org-mode-map (kbd "M-n") #'org-metadown)
