@@ -101,4 +101,11 @@
 (with-package-lazy (cc-mode)
   (define-key java-mode-map (kbd "M-.") #'xref-find-definitions))
 
-
+(use-package cc-mode
+  :defer t
+  :init
+  (add-hook 'java-mode-hook (lambda ()
+                              (c-set-offset 'arglist-intro 8)
+                              (c-set-offset 'arglist-close 0)
+                              (c-set-offset 'statement-cont '++)))
+  )
