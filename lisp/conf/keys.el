@@ -27,7 +27,7 @@
   (add-hook 'vterm-copy-mode-hook (lambda () (god-local-mode (if vterm-copy-mode 1 -1)))))
 
 (defun conf/god-mode-after-newline ()
-  (if (eq (seq-first (this-command-keys-vector)) ?\C-m)
+  (if (eq last-command-event ?\C-m)
       (god-local-mode -1)))
 
 (defun conf/god-view-mode (orig arg)
