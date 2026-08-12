@@ -4,7 +4,7 @@
   (setq project-find-functions (delq 'project-try-vc project-find-functions)))
 
 (setq projectile-indexing-method 'alien)
-(setq projectile-switch-project-action #'projectile-commander)
+(setq projectile-switch-project-action #'projectile-dispatch)
 (when (conf/installed-p 'ivy)
   (setq projectile-completion-system 'ivy))
 
@@ -19,7 +19,7 @@
 
 (with-package (projectile)
   (fset 'projectile-relevant-known-projects #'conf/projectile-relevant-known-projects)
-  (projectile-global-mode)
+  (projectile-mode)
   (global-set-key (kbd "C-c p") projectile-command-map)
   (global-set-key (kbd "C-x p") projectile-command-map)
   (define-key projectile-command-map (kbd "s s") #'projectile-search-regex))
