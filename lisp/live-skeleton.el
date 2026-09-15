@@ -1,4 +1,4 @@
-;;; live-skeleton --- skeletons with live preview
+;;; live-skeleton --- skeletons with live preview  -*- lexical-binding: t; -*-
 ;;; -*- mode: emacs-lisp; lexical-binding: t
 
 ;;; Commentary:

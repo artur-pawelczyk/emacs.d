@@ -1,3 +1,4 @@
+;; -*- lexical-binding: t; -*-
 (with-package-lazy (elisp-mode)
   (define-key emacs-lisp-mode-map (kbd "M-.") #'xref-find-definitions))
 

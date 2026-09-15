@@ -1,3 +1,4 @@
+;; -*- lexical-binding: t; -*-
 (require 'cl-macs)
 
 (with-package-lazy (dired)

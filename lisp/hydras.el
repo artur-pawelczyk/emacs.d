@@ -1,3 +1,4 @@
+;; -*- lexical-binding: t; -*-
 (require 'hydra)
 
 (defhydra hydras-magit

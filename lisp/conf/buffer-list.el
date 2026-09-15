@@ -1,3 +1,4 @@
+;; -*- lexical-binding: t; -*-
 (global-set-key (kbd "C-x C-b") 'ibuffer)
 
 (defun ibuffer-apply-filters ()

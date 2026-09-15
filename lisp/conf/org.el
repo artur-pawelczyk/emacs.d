@@ -1,3 +1,4 @@
+;; -*- lexical-binding: t; -*-
 (setq org-src-fontify-natively t)
 (setq org-src-window-setup 'current-window)
 (setq org-agenda-todo-ignore-scheduled 'all)

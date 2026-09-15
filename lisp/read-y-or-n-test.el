@@ -1,3 +1,4 @@
+;; -*- lexical-binding: t; -*-
 (require 'ert)
 
 (ert-deftest read-y-or-n-construct-message ()

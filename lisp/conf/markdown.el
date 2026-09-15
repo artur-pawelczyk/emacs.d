@@ -1,3 +1,4 @@
+;; -*- lexical-binding: t; -*-
 (with-package-lazy (markdown-mode)
   (define-key markdown-mode-map (kbd "M-<up>") #'markdown-move-up)
   (define-key markdown-mode-map (kbd "M-<down>") #'markdown-move-down)

@@ -1,3 +1,4 @@
+;; -*- lexical-binding: t; -*-
 (require 'shell-command)
 
 (setq async-shell-command-buffer 'new-buffer)

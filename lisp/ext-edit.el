@@ -1,4 +1,4 @@
-;;; ext-edit --- edit region in other buffer
+;;; ext-edit --- edit region in other buffer  -*- lexical-binding: t; -*-
 
 ;;; Commentary:
 ;;; Call `ext-edit-region' to edit region in other buffer.  C-x C-s to

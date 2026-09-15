@@ -1,4 +1,4 @@
-;;; frames.el -- Convenience functions for handing frames
+;;; frames.el -- Convenience functions for handing frames  -*- lexical-binding: t; -*-
 
 ;;;; Commentary:
 ;;; Set of command for better handling of frames with less advanced

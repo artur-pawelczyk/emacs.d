@@ -1,3 +1,4 @@
+;; -*- lexical-binding: t; -*-
 (defvar conf/org-path "~/org")
 
 (setq org-babel-tangle-use-relative-file-links nil)

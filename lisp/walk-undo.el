@@ -1,4 +1,4 @@
-;;; walk-undo -- preview "undo" changes without modifing the buffer
+;;; walk-undo -- preview "undo" changes without modifing the buffer  -*- lexical-binding: t; -*-
 
 ;;; Code:
 (require 'cl-lib)

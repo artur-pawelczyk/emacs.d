@@ -1,3 +1,4 @@
+;; -*- lexical-binding: t; -*-
 (setq desktop-dirname user-emacs-directory)
 (setq desktop-lazy-idle-delay 1)
 (setq desktop-restore-eager 20)

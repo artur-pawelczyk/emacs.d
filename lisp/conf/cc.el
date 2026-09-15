@@ -1,4 +1,4 @@
-;; C-like languages (based on `cc-mode').
+;; C-like languages (based on `cc-mode').  -*- lexical-binding: t; -*-
 
 (when (conf/installed-p 'ggtags)
   (add-hook 'c-mode-hook #'ggtags-mode))

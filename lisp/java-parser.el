@@ -1,3 +1,4 @@
+;; -*- lexical-binding: t; -*-
 (require 'semantic)
 (require 'semantic/tag)
 (require 'semantic/tag-ls)

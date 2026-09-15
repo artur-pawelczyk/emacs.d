@@ -1,3 +1,4 @@
+;; -*- lexical-binding: t; -*-
 (defun narrow-or-widen-dwim (p)
   "Widen if buffer is narrowed, narrow-dwim otherwise.
 Dwim means: region, org-subtree, or defun, whichever applies

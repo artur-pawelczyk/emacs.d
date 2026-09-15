@@ -1,4 +1,4 @@
-;;; java-import-db -- Add Java import statements
+;;; java-import-db -- Add Java import statements  -*- lexical-binding: t; -*-
 
 ;;; Commentary:
 ;; Use `ji-build-database' to extract information from current buffer.

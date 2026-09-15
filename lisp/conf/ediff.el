@@ -1,3 +1,4 @@
+;; -*- lexical-binding: t; -*-
 (setq ediff-window-setup-function 'ediff-setup-windows-plain)
 (setq ediff-grab-mouse nil)
 

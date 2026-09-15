@@ -1,3 +1,4 @@
+;; -*- lexical-binding: t; -*-
 (require 'subr-x)
 (require 'cl-lib)
 

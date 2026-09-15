@@ -1,3 +1,4 @@
+;; -*- lexical-binding: t; -*-
 (when (conf/installed-p 'web-mode)
   (add-to-list 'auto-mode-alist '("\\.jsp\\'" . web-mode))
   (add-to-list 'auto-mode-alist '("\\.vm\\'" . web-mode))

@@ -1,3 +1,4 @@
+;; -*- lexical-binding: t; -*-
 (add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode))
 
 (with-package-lazy (js2-mode)

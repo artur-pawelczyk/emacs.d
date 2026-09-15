@@ -1,3 +1,4 @@
+;; -*- lexical-binding: t; -*-
 (require 'tools)
 (require 'dash)
 (require 'subr-x)

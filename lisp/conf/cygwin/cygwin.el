@@ -1,1 +1,1 @@
-;; Configuration for Emacs running on Cygwin
+;; Configuration for Emacs running on Cygwin  -*- lexical-binding: t; -*-

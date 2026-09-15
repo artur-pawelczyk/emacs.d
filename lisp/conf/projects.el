@@ -1,3 +1,4 @@
+;; -*- lexical-binding: t; -*-
 (with-package-lazy (projectile)
   (projectile-mode t)
   (require 'project)

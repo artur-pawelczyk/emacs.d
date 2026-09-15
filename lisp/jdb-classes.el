@@ -1,3 +1,4 @@
+;; -*- lexical-binding: t; -*-
 (defvar jdb-classes nil)
 
 (defun jdb-filter-classes (output)

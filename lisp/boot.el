@@ -1,3 +1,4 @@
+;; -*- lexical-binding: t; -*-
 (require 'cl-lib)
 
 (defvar conf/installed-packages '() "Packages installed outside `package.el'")

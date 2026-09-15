@@ -1,3 +1,4 @@
+;; -*- lexical-binding: t; -*-
 (setq rm-blacklist nil)
 (let ((whitelist '(" View"
                    " Narrow"

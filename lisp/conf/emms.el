@@ -1,3 +1,4 @@
+;; -*- lexical-binding: t; -*-
 (autoload 'emms "emms" nil :interactive)
 (autoload 'emms-pause "emms" nil :interactive)
 (autoload 'emms-info-metaflac "emms-info-metaflac")

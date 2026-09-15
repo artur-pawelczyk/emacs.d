@@ -1,3 +1,4 @@
+;; -*- lexical-binding: t; -*-
 (require 'dash)
 (require 'use-package)
 (require 'bind-key)

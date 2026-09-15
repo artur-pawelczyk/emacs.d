@@ -1,3 +1,4 @@
+;; -*- lexical-binding: t; -*-
 (require 'magit-mode)
 (require 'magit-apply)
 (require 'magit-process)

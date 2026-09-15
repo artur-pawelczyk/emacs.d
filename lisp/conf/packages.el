@@ -1,3 +1,4 @@
+;; -*- lexical-binding: t; -*-
 (defvar user-package-list
   '(
     ace-window

@@ -1,3 +1,4 @@
+;; -*- lexical-binding: t; -*-
 (setq god-mode-enable-function-key-translation nil)
 
 (with-package (god-mode)

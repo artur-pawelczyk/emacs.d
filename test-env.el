@@ -1,3 +1,4 @@
+;; -*- lexical-binding: t; -*-
 (require 'ert)
 
 (load (expand-file-name "lisp/boot.el" user-emacs-directory))
