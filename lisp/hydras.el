@@ -60,4 +60,15 @@ _[_, _]_: prev, next buffer, _,_, _._: winner undo, redo, _<up>_: pop mark, _<do
 (advice-add 'pop-to-mark-command :after #'hydras-navigation-after-advice)
 (advice-add 'pop-global-mark :after #'hydras-navigation-after-advice)
 
+(defhydra hydras-sexp-movement ()
+  ("u" backward-up-list "up" :exit nil)
+  ("d" up-list "down" :exit nil)
+  ("f" forward-sexp "forward" :exit nil)
+  ("b" backward-sexp "backward" :exit nil))
+
+(global-set-key (kbd "C-M-u") #'hydras-sexp-movement/backward-up-list)
+(global-set-key (kbd "C-M-d") #'hydras-sexp-movement/up-list)
+(global-set-key (kbd "C-M-f") #'hydras-sexp-movement/forward-sexp)
+(global-set-key (kbd "C-M-d") #'hydras-sexp-movement/backward-sexp)
+
 (provide 'hydras)
