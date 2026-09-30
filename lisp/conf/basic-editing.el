@@ -1,3 +1,5 @@
+;; -*- lexical-binding: t; -*-
+
 (defun query-replace--act-on-all (orig from to &optional delimited start end &rest args)
   "Replace on all visible text, not only after point."
   (let ((beg (if mark-active (mark) (point-min)))
